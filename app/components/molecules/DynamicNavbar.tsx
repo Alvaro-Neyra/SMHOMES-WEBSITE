@@ -26,13 +26,16 @@ export default function DynamicNavbar() {
     };
 
     useEffect(() => {
-        if (pathname === "/") {
+        if (pathname === "/" || pathname === '/contacto') {
             setPosition("fixed");
             setActive(false);
+        } else if (pathname.startsWith("/vender") || pathname.startsWith("/comprar") || pathname.startsWith("/nosotros") || pathname.startsWith("/privacidad") || pathname.startsWith("/testimonios") || pathname.startsWith("/propiedades")) { 
+            setPosition("relative");
+            setActive(true);
         }
     }, [pathname]);
 
-    const isScrollToggleEnabled = ["/"].includes(pathname);
+    const isScrollToggleEnabled = ["/", "/contacto"].includes(pathname);
 
     useScrollToggle(navBarRef, active, "navbar-active", isScrollToggleEnabled);
 

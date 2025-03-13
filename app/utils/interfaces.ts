@@ -1,6 +1,6 @@
 export interface ButtonProps {
     type: "button" | "submit" | "reset";
-    title: string; 
+    title: string;
     icon?: React.ReactNode;
     variant: string;
     full?: boolean;
@@ -54,8 +54,8 @@ export interface VideoSectionProps {
 }
 
 export interface HeroSectionProps {
-    title: string;
-    subtitle: string;
+    title?: string;
+    subtitle?: string;
     imageSrc: string;
     altText: string;
     children?: React.ReactNode;
@@ -75,4 +75,158 @@ export interface TestimonialsBannerProps {
     buttonLabel2Mobile: string;
     buttonLabel2Desktop: string;
     buttonLink2: string;
+}
+
+export interface Testimonial {
+    id: number;
+    name: string;
+    position: string;
+    avatar?: string;
+    initials: string;
+    rating: number;
+    content: string;
+    bgColor: string;
+}
+
+interface BannerProps {
+    subtitle: string;
+    title: string;
+    buttons: Array<{
+        text: string;
+        onClick: () => void;
+        className?: string;
+    }>;
+}
+
+interface SellCardProps {
+    stats: Array<{
+        icon: string;
+        value: string;
+        description: string;
+    }>;
+    formTitle: string;
+    formFields: Array<{
+        type: string;
+        name: string;
+        placeholder: string;
+        icon?: string;
+    }>;
+    selectOptions: Array<{
+        value: string;
+        label: string;
+    }>;
+    privacyPolicyLink: string;
+    onSubmit: (data: any) => void;
+}
+
+export interface CustomizableComponentProps {
+    banner: BannerProps;
+    sellCard: SellCardProps;
+}
+
+export interface HeroSectionButtonsProps {
+    title: string;
+    subtitle?: string;
+    description?: string;
+    imgSrc: string;
+    primaryButtonText?: string;
+    secondaryButtonText?: string;
+    primaryButtonLink?: string;
+    secondaryButtonLink?: string;
+    stats: { icon: string; value: string; label: string }[];
+    children?: React.ReactNode;
+}
+
+export interface FormProps {
+    namePlaceholder: string;
+    phonePlaceholder: string;
+    emailPlaceholder: string;
+    messagePlaceholder: string;
+    options: string[];
+    sellSection?: boolean;
+}
+
+export interface HeroFormProps {
+    id?: string;
+    heading: string;
+    subHeading: string;
+    strongSubHeading: string;
+    children?: React.ReactNode;
+    otherChildren?: React.ReactNode;
+    sellSection?: boolean;
+    cols2?: boolean;
+}
+
+export interface AccordionProps {
+    items: {
+        title: string;
+        content: string;
+    }[];
+}
+
+export interface HeroImageProps {
+    src: string;
+    heading: string;
+    subHeading: string;
+    linkText: string;
+    linkHref: string;
+}
+
+export interface HeroVideoProps {
+    src: string;
+    fallbackImage: string;
+    heading: string;
+    subHeading: string;
+    linkText: string;
+    linkHref: string;
+}
+
+interface ImageProps {
+    src: string;
+    alt: string;
+}
+
+export interface ImagesProps {
+    images: ImageProps[];
+}
+
+export interface StaticHeroSectionImagesProps {
+    title?: string;
+    subtitle?: string;
+    images: ImageProps[];
+    children?: React.ReactNode;
+    imagePosition?: "left" | "right";
+}
+
+export interface StatItemProps {
+    icon: React.ReactNode;
+    value: number;
+    title: string;
+    duration?: number;
+}
+
+export interface StatsProps {
+    stats: StatItemProps[];
+}
+
+export interface ImageSectionProps {
+    imageSrc: string;
+    title: string;
+    subtitle: string;
+    buttonText?: string;
+    buttonLink?: string;
+}
+
+export interface VideoTestimonial {
+    id: number;
+    name: string;
+    position: string;
+    youtubeId: string;
+}
+
+export interface StickyFormSectionProps {
+    id?: string;
+    children?: React.ReactNode;
+    sellSection?: boolean;
+    cols2?: boolean;
 }

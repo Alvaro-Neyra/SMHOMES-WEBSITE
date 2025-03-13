@@ -1,28 +1,24 @@
-import { FaArrowRight } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 import Button from "../atoms/Button";
-import { VideoSectionProps } from "@/app/utils/interfaces";
+import { ImageSectionProps } from "@/app/utils/interfaces";
+import Image from "next/image";
 
 
-export default function VideoSection({
-    videoSrc,
-    fallbackImage,
+export default function ImageSection({
+    imageSrc,
     title,
     subtitle,
     buttonText,
     buttonLink,
-}: Readonly<VideoSectionProps>) {
+}: Readonly<ImageSectionProps>) {
     return (
         <section className="relative h-screen overflow-hidden">
-            <video
-                autoPlay
-                loop
-                muted
-                playsInline
+            <Image
+                src={imageSrc}
+                alt={`${title} - ${subtitle} image`}
                 className="absolute top-0 left-0 w-full h-full object-cover grayscale-[30%] sepia-[50%] contrast-[120%] brightness-[90%] scale-[105%]"
-            >
-                <source src={videoSrc} type="video/mp4" />
-                <img src={fallbackImage} alt="Fallback" className="w-full h-full object-cover" />
-            </video>
+                layout="fill"
+            />
 
             <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center text-white p-4 gap-6 xl:gap-[4vw]">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[6vw] font-bold mb-4 drop-shadow-md text-primaryColor">
@@ -35,7 +31,7 @@ export default function VideoSection({
                     <Button
                         type="button"
                         title={buttonText}
-                        icon={<FaArrowRight />}
+                        icon={<FaPhoneAlt />}
                         variant="bg-primaryColor text-white transition-all duration-300 p-5 group"
                         full={false}
                         blobColor="var(--primary-background-color)"

@@ -27,7 +27,6 @@ export default function StaticNavbar({position, active}: Readonly<NavbarProps>) 
                     </Link>
                 </div>
 
-                {/* Enlaces principales (visible en pantallas grandes) */}
                 <ul className="hidden h-full gap-12 lg:flex">
                     {NAV_LINKS.map((link) => (
                         <li key={link.key}>

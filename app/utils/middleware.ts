@@ -9,10 +9,10 @@ export async function middleware(req: NextRequest) {
         position: "static"
     }
 
-    if (pathname === "/" || pathname.startsWith("/portfolio") || pathname === "/servicios") {
+    if (pathname === "/" || pathname === '/contacto') {
         navBarConfig.active = false;
         navBarConfig.position = "fixed";
-    } else if (pathname.startsWith("/nosotros") || pathname.startsWith("/contacto") || pathname.startsWith("/servicios")) {
+    } else if (pathname.startsWith("/vender") || pathname.startsWith("/comprar") || pathname.startsWith("/privacidad") || pathname.startsWith("/nosotros") || pathname.startsWith("/testimonios") || pathname.startsWith("/propiedades")) {
         navBarConfig.active = true;
         navBarConfig.position = "static";
     }

@@ -1,13 +1,13 @@
-import { HeroSectionProps } from "@/app/utils/interfaces";
+import { StaticHeroSectionImagesProps } from "@/app/utils/interfaces";
+import Images from "../organisms/Images";
 
-const StaticHeroSection = ({
+const StaticHeroSectionImages = ({
     title,
     subtitle,
-    imageSrc,
-    altText,
+    images,
     children,
     imagePosition = "right",
-}: HeroSectionProps) => {
+}: StaticHeroSectionImagesProps) => {
     const textOrder = imagePosition === "left" ? "order-1 lg:order-2" : "order-1 lg:order-1";
     const imageOrder = imagePosition === "left" ? "order-2 lg:order-1" : "order-2 lg:order-2";
 
@@ -19,8 +19,7 @@ const StaticHeroSection = ({
                     className={`text-center p-[5vw] lg:p-0 lg:text-left ${textOrder}`}
                 >
                     {title && (
-
-                        <h1 className="text-[8vw] sm:text-5xl lg:text-6xl xl:text-[3vw] font-bold text-primaryColor mb-4">
+                        <h1 className="text-[8vw] sm:text-5xl lg:text-5xl xl:text-[3vw] font-bold text-primaryColor mb-4">
                             {title}
                         </h1>
                     )}
@@ -37,16 +36,11 @@ const StaticHeroSection = ({
                 <div
                     className={`relative ${imageOrder}`}
                 >
-                    <img
-                        src={imageSrc}
-                        alt={altText}
-                        className="w-full h-auto rounded-3xl shadow-lg"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blackSoftColor via-transparent to-transparent opacity-50 rounded-3xl"></div>
+                    <Images images={images}/>
                 </div>
             </div>
         </div>
     );
 };
 
-export default StaticHeroSection;
+export default StaticHeroSectionImages;

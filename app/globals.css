@@ -8,10 +8,6 @@
   box-sizing: border-box;
 }
 
-body {
-  overflow-x: hidden;
-}
-
 *::selection {
   background-color: var(--primary-background-color);
   color: var(--white-color);
@@ -19,8 +15,8 @@ body {
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
   width: 100%;
+  overflow-x: hidden;
 }
 
 #root {
@@ -325,6 +321,45 @@ html {
   background-size: 2vw 2vw;
   padding-left: 2.5vw;
   line-height: 2vw;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--primary-background-color) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--primary-background-color) !important;
+}
+
+.testimonial-swiper .swiper-slide {
+  height: auto !important;
+}
+
+.testimonial-swiper {
+  padding-bottom: 8vw !important;
+}
+
+.swiper-pagination-bullet {
+  width: 2vw !important;
+  height: 2vw !important;
+}
+
+@media only screen and (min-width: 1280px) {
+  .swiper-pagination-bullet {
+    width: .8vw !important;
+    height: .8vw !important;
+  }
+  .testimonial-swiper {
+    padding-bottom: 5vw !important;
+  }  
+}
+
+@media only screen and (min-width: 1024px) {
+  .swiper-pagination-bullet {
+    width: 1vw !important;
+    height: 1vw !important;
+  }
 }
 
 @media only screen and (max-width: 1024px) and (orientation: portrait) {
