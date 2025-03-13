@@ -129,7 +129,7 @@ const FormComponent: React.FC<FormProps> = ({
             </button>
 
             <div className="text-xs text-gray-10 mt-4 block leading-5 overflow-auto h-[15vw] lg:h-[5vw] xl:text-[1vw] xl:h-[8vw] xl:leading-[1.5vw]">
-                <b>Responsable del tratamiento:</b> SM Homes Servicios Inmobiliarios, SL,
+                <b>Responsable del tratamiento:</b> SM Home&apos;s Servicios Inmobiliarios, SL,
                 <b>Finalidad del tratamiento:</b> Gestión y control de los servicios ofrecidos a través de la página Web de Servicios inmobiliarios, Envío de información a traves de newsletter y otros,
                 <b>Legitimación:</b> Por consentimiento,
                 <b>Destinatarios:</b> No se cederan los datos, salvo para elaborar contabilidad,

@@ -29,7 +29,11 @@ export default {
         yellow: {
           50: '#FEC601',
         },
-        blackSoftColor: 'var(--black-soft-color)'
+        blackSoftColor: 'var(--black-soft-color)',
+        primaryBackground: 'var(--primary-background-color)',
+        blackSoft: 'var(--black-color)',
+        secondaryBackground: 'var(--shiny-yellow-leaf-gold-foil-texture-2)',
+        blackSoft30: 'var(--black-soft-color)',
       },
       backgroundImage: {
         'bg-img-1': "url('/img-1.png')",

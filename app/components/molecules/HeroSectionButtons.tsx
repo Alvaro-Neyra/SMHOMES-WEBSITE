@@ -51,7 +51,7 @@ const HeroSection: React.FC<HeroSectionButtonsProps> = ({
                     <div className="flex justify-between mt-[4vw] lg:mt-[2vw]">
                         {stats.map((stat, index) => (
                             <div key={index} className="flex items-center space-x-2">
-                                <img src={stat.icon} alt={`${stat.label} icon`} className="w-[8vw] h-[8vw] sm:w-[4vw] sm:h-[4vw] lg:w-6 lg:h-6 xl:w-[2.5vw] xl:h-[2.5vw]" />
+                                <Image src={stat.icon} alt={`${stat.label} icon`} className="w-[8vw] h-[8vw] sm:w-[4vw] sm:h-[4vw] lg:w-6 lg:h-6 xl:w-[2.5vw] xl:h-[2.5vw]" width={50} height={50}/>
                                 <div>
                                     <span className="font-bold text-[4vw] sm:text-[3vw] lg:text-[2vw]">{stat.value}</span>
                                     <p className="text-[3vw] lg:text-[1.2vw] font-bold text-gray-200">{stat.label}</p>

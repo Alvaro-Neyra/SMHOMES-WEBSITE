@@ -59,7 +59,7 @@ const DynamicTestimonialCarousel: React.FC = () => {
                         <div className="flex mb-4">
                             {renderStars(testimonial.rating)}
                         </div>
-                        <p className="text-white flex-grow xl:text-[2vw]">"{testimonial.content}"</p>
+                        <p className="text-white flex-grow xl:text-[2vw]">{testimonial.content}</p>
                     </div>
                 </SwiperSlide>
             ))}

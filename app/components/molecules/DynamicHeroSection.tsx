@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HeroSectionProps } from "@/app/utils/interfaces";
 import { useRef } from "react";
+import Image from "next/image";
 
 const DynamicHeroSection = ({
     title,
@@ -54,10 +55,12 @@ const DynamicHeroSection = ({
                     transition={{ duration: 0.3, delay: 0.4 }}
                     viewport={{ once: true }}
                 >
-                    <img
+                    <Image
                         src={imageSrc}
                         alt={altText}
                         className="w-full h-auto rounded-3xl shadow-lg"
+                        width={1920}
+                        height={1080}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-blackSoftColor via-transparent to-transparent opacity-50 rounded-3xl"></div>
                 </motion.div>

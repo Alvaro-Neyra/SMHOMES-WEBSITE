@@ -83,7 +83,7 @@ export default function SellPage() {
         <section>
             <HeroSection
                 title="¿Quieres vender tu casa en Torrevieja o alrededores?"
-                subtitle="SM HOME'S"
+                subtitle="SM HOME&apos;S"
                 description="Vende tu casa rápidamente con nosotros."
                 imgSrc="/torrevieja3.jpg"
                 primaryButtonText="Más información"
@@ -101,7 +101,7 @@ export default function SellPage() {
                     sellSection={true}
                 />
             </HeroSection>
-            <HeroForm id="sell-reasons-section" heading="En SM HOME'S, eliminamos el estrés del proceso y te ofrecemos el servicio inmobiliario más completo para vender tu propiedad de forma rápida, cómoda y al mejor precio." subHeading="¿Qué hacemos para vender tu casa en tiempo record?" strongSubHeading="vender tu casa en tiempo record" otherChildren={<Faq />} sellSection={true}>
+            <HeroForm id="sell-reasons-section" heading="En SM HOME&apos;S, eliminamos el estrés del proceso y te ofrecemos el servicio inmobiliario más completo para vender tu propiedad de forma rápida, cómoda y al mejor precio." subHeading="¿Qué hacemos para vender tu casa en tiempo record?" strongSubHeading="vender tu casa en tiempo record" otherChildren={<Faq />} sellSection={true}>
                 <section>
                     <div className="px-4 space-y-[2vw] xl:space-y-[3vw]">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4">

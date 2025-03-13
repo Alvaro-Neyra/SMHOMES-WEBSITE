@@ -1,4 +1,5 @@
 import { HeroVideoProps } from "@/app/utils/interfaces";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function HeroVideo({ src, fallbackImage, heading, subHeading, linkText, linkHref }: Readonly<HeroVideoProps>) {
@@ -14,7 +15,7 @@ export default function HeroVideo({ src, fallbackImage, heading, subHeading, lin
                 >
                     <source src={src} type="video/mp4" />
                     Tu navegador no soporta videos.
-                    <img src={fallbackImage} alt="Fallback" className="w-full h-full object-cover" />
+                    <Image src={fallbackImage} alt="Fallback" className="w-full h-full object-cover" width={1920} height={1080}/>
                 </video>
             </div>
 

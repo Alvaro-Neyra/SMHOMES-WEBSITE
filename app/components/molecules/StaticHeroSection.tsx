@@ -1,4 +1,5 @@
 import { HeroSectionProps } from "@/app/utils/interfaces";
+import Image from "next/image";
 
 const StaticHeroSection = ({
     title,
@@ -37,10 +38,12 @@ const StaticHeroSection = ({
                 <div
                     className={`relative ${imageOrder}`}
                 >
-                    <img
+                    <Image
                         src={imageSrc}
                         alt={altText}
                         className="w-full h-auto rounded-3xl shadow-lg"
+                        width={1920}
+                        height={1080}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-blackSoftColor via-transparent to-transparent opacity-50 rounded-3xl"></div>
                 </div>

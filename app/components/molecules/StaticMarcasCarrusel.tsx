@@ -1,4 +1,5 @@
 import { marcas } from '@/app/utils/constants';
+import Image from 'next/image';
 
 const StaticMarcasCarrusel: React.FC = () => {
     return (
@@ -10,10 +11,12 @@ const StaticMarcasCarrusel: React.FC = () => {
                     <div key={index} className="swiper-slide">
                         <div className="bg-blackSoft30 rounded-lg shadow-md h-44 flex flex-col justify-center items-center p-5 transition-all duration-300 hover:translate-y-[-5px] hover:shadow-lg">
                             <div className="w-28 h-20 flex items-center justify-center mb-4">
-                                <img
+                                <Image
                                     src={marca.logoUrl || `/api/placeholder/120/80`}
                                     alt={marca.nombre}
                                     className="max-w-full max-h-full object-contain object-center"
+                                    width={1920}
+                                    height={1080}
                                 />
                             </div>
                             <h3 className="font-semibold text-gray-100 text-center">{marca.nombre}</h3>

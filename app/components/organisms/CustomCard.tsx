@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface CardProps {
@@ -66,7 +67,7 @@ const CustomCard: React.FC<CardProps> = ({
                     <div className="flex justify-between mb-6">
                         {stats.map((stat, index) => (
                             <div key={index} className="flex items-center space-x-2">
-                                <img src={stat.icon} alt={`${stat.label} icon`} className="w-6 h-6" />
+                                <Image src={stat.icon} alt={`${stat.label} icon`} className="w-6 h-6" width={50} height={50}/>
                                 <div>
                                     <span className="font-bold text-lg">{stat.value}</span>
                                     <p className="text-sm text-gray-600">{stat.label}</p>

@@ -1,6 +1,7 @@
 import { FaArrowRight } from "react-icons/fa";
 import Button from "../atoms/Button";
 import { VideoSectionProps } from "@/app/utils/interfaces";
+import Image from "next/image";
 
 
 export default function VideoSection({
@@ -21,7 +22,7 @@ export default function VideoSection({
                 className="absolute top-0 left-0 w-full h-full object-cover grayscale-[30%] sepia-[50%] contrast-[120%] brightness-[90%] scale-[105%]"
             >
                 <source src={videoSrc} type="video/mp4" />
-                <img src={fallbackImage} alt="Fallback" className="w-full h-full object-cover" />
+                <Image src={fallbackImage} alt="Fallback" className="w-full h-full object-cover" width={1920} height={1080}/>
             </video>
 
             <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-center text-white p-4 gap-6 xl:gap-[4vw]">

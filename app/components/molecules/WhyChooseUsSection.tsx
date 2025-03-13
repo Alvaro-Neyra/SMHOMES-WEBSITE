@@ -21,7 +21,7 @@ export default function WhyChooseUsSection() {
                     >
                         ¿
                     </motion.span>
-                    Por qué elegir SM Home's
+                    Por qué elegir SM Home&apos;s
                     <motion.span
                         className="text-primaryColor absolute -bottom-[4vw] sm:-bottom-[2vw] right-[3vw] sm:right-[4vw] xl:right-[10vw] transform rotate-[15deg] text-[2em] sm:text-[1.5em]"
                         initial={{ rotate: 30 }}

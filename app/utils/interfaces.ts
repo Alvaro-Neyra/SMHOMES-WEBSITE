@@ -88,42 +88,6 @@ export interface Testimonial {
     bgColor: string;
 }
 
-interface BannerProps {
-    subtitle: string;
-    title: string;
-    buttons: Array<{
-        text: string;
-        onClick: () => void;
-        className?: string;
-    }>;
-}
-
-interface SellCardProps {
-    stats: Array<{
-        icon: string;
-        value: string;
-        description: string;
-    }>;
-    formTitle: string;
-    formFields: Array<{
-        type: string;
-        name: string;
-        placeholder: string;
-        icon?: string;
-    }>;
-    selectOptions: Array<{
-        value: string;
-        label: string;
-    }>;
-    privacyPolicyLink: string;
-    onSubmit: (data: any) => void;
-}
-
-export interface CustomizableComponentProps {
-    banner: BannerProps;
-    sellCard: SellCardProps;
-}
-
 export interface HeroSectionButtonsProps {
     title: string;
     subtitle?: string;

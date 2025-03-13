@@ -14,7 +14,7 @@ export default function TestimonialsBanner({
     buttonLabel2Mobile,
     buttonLabel2Desktop,
     buttonLink2,
-}: TestimonialsBannerProps) {
+}: Readonly<TestimonialsBannerProps>) {
     return (
         <div className="banners" id="banners-section">
             <div className="row g-0">

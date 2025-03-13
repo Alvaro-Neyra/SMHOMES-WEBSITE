@@ -1,7 +1,6 @@
 import HeroImage from "../components/molecules/HeroImage";
 import PropertyPagination from "../components/molecules/PropertyPagination";
 import StickyHeroForm from "../components/molecules/StickyFormComponent";
-import StickyForm from "../components/molecules/StickyFormComponent";
 
 export default function PropiedadesPage() {
     const exampleProperties = [

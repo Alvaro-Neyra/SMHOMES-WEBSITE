@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
@@ -8,31 +8,31 @@ import { SlidesProps } from "@/app/utils/interfaces";
 export default function DynamicCarrusel({ slides }: { readonly slides: SlidesProps[] }) {
     const [current, setCurrent] = useState(0);
     const [autoPlay, setAutoPlay] = useState(true);
-    let timeOut: NodeJS.Timeout;
+    const timeOutRef = useRef<NodeJS.Timeout | null>(null);
 
+    const slideRight = useCallback(() => {
+        setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, [slides.length]);
+    
     useEffect(() => {
         if (autoPlay) {
-            timeOut = setTimeout(() => {
+            timeOutRef.current = setTimeout(() => {
                 slideRight();
             }, 2500);
         }
         return () => {
-            if (timeOut) {
-                clearTimeout(timeOut);
+            if (timeOutRef.current) {
+                clearTimeout(timeOutRef.current);
             }
         };
-    }, [current, autoPlay]);
-
-    const slideRight = () => {
-        setCurrent(current === slides.length - 1 ? 0 : current + 1);
-    };
+    }, [current, autoPlay, slideRight]);
 
     return (
         <section
             className="flex h-screen w-screen relative overflow-hidden shadow-lg"
             onMouseEnter={() => {
                 setAutoPlay(false);
-                if (timeOut) clearTimeout(timeOut);
+                if (timeOutRef.current) clearTimeout(timeOutRef.current);
             }}
             onMouseLeave={() => setAutoPlay(true)}
         >
@@ -106,12 +106,13 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
 
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
                     {slides.map((_, index) => (
-                        <span
-                            key={index}
+                        <button
+                            key={_.titleSmall}
                             className={`w-2 h-2 xl:w-[1vw] xl:h-[1vw] rounded-full cursor-pointer transition-transform duration-300 ${index === current ? "bg-primaryBackground" : "bg-gray-300"
                                 } hover:scale-125`}
                             onClick={() => setCurrent(index)}
-                        ></span>
+                            aria-label={`Slide ${index + 1}`}
+                        ></button>
                     ))}
                 </div>
             </div>

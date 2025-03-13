@@ -9,12 +9,9 @@ export default function TestimoniosClientContent() {
     const [currentVideoPage, setCurrentVideoPage] = useState(1);
     const [testimonialsPerPage, setTestimonialsPerPage] = useState(3);
     const [videosPerPage, setVideosPerPage] = useState(2);
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
     useEffect(() => {
         const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-
             if (window.innerWidth < 640) {
                 setTestimonialsPerPage(1);
                 setVideosPerPage(1);
@@ -89,7 +86,7 @@ export default function TestimoniosClientContent() {
                                 <div className="flex mb-4">
                                     {renderStars(testimonial.rating)}
                                 </div>
-                                <p className="text-white text-sm sm:text-base flex-grow xl:text-[1vw] xl:leading-[1.5vw]">"{testimonial.content}"</p>
+                                <p className="text-white text-sm sm:text-base flex-grow xl:text-[1vw] xl:leading-[1.5vw]">{testimonial.content}</p>
                             </div>
                         </div>))}
                 </div>

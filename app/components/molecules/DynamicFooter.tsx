@@ -1,5 +1,6 @@
 "use client";
 import { NAV_LINKS } from "@/app/utils/constants";
+import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -21,50 +22,58 @@ const Footer = () => {
                         />
                         <h6 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg xl:text-[2vw] mb-2">Síguenos</h6>
                         <div className="flex justify-center md:justify-start gap-3 sm:gap-4 mb-4">
-                            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-                                <img
+                            <Link href="https://www.youtube.com/" target="_blank">
+                                <Image
                                     src="/youtube.svg"
                                     alt="YouTube"
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
+                                    width={50}
+                                    height={50}
                                 />
-                            </a>
-                            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-                                <img
+                            </Link>
+                            <Link href="https://www.facebook.com/" target="_blank">
+                                <Image
                                     src="/facebook.svg"
                                     alt="Facebook"
+                                    width={50}
+                                    height={50} 
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
-                            </a>
-                            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                                <img
+                            </Link>
+                            <Link href="https://www.instagram.com/" target="_blank">
+                                <Image
                                     src="/instagram.svg"
                                     alt="Instagram"
+                                    width={50}
+                                    height={50} 
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
-                            </a>
-                            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-                                <img
+                            </Link>
+                            <Link href="https://www.linkedin.com/" target="_blank">
+                                <Image
                                     src="/linkedin.svg"
                                     alt="LinkedIn"
+                                    width={50}
+                                    height={50} 
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
                     <div className="text-center md:text-left xl:flex xl:flex-col xl:gap-[2vw]">
                         <h5 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg mb-2 xl:text-[2vw]">Menú</h5>
                         <ul className="space-y-2 sm:space-y-3 xl:space-y-[1vw]">
-                            {NAV_LINKS.map((link, key) => (
+                            {NAV_LINKS.map((link) => (
                                 <li key={link.key}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className={`hover:text-primaryColor transition-colors ${
                                             link.href === pathname ? "font-bold text-primaryColor" : ""
                                         } text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.5vw]`}
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -75,30 +84,30 @@ const Footer = () => {
                         <div className="space-y-2 sm:space-y-3 xl:flex xl:flex-col xl:gap-[1.5vw]">
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Teléfono fijo</h6>
-                                <a
+                                <Link
                                     href="tel:+34965714261"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
                                 >
                                     +34 965 714 261
-                                </a>
+                                </Link>
                             </div>
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Móvil y WhatsApp</h6>
-                                <a
+                                <Link
                                     href="tel:+34629581574"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
                                 >
                                     +34 629 581 574
-                                </a>
+                                </Link>
                             </div>
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Email</h6>
-                                <a
+                                <Link
                                     href="mailto:contactos@smhomes.com"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
                                 >
                                     contactos@smhomes.com
-                                </a>
+                                </Link>
                             </div>
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Dirección</h6>
@@ -113,13 +122,13 @@ const Footer = () => {
 
                 <div className="mt-6 xl:mt-[5vw] md:mt-8 text-center text-[4vw] sm:text-[3vw] md:text-base xl:text-[2vw]">
                     © {new Date().getFullYear()} Todos los derechos reservados | Diseñado por{" "}
-                    <a
+                    <Link
                         href="https://github.com/Alvaro-Neyra"
                         className="hover:text-primaryColor transition-colors"
                         target="_blank"
                     >
                         Alvaro Neyra
-                    </a>
+                    </Link>
                 </div>
             </div>
         </footer>

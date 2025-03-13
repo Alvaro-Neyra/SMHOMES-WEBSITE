@@ -1,4 +1,3 @@
-import Faq from "../components/molecules/FAQ";
 import FAQBuy from "../components/molecules/FAQBuy";
 import FormComponent from "../components/molecules/FormComponent";
 import HeroSection from "../components/molecules/HeroSectionButtons";
@@ -84,7 +83,7 @@ export default function BuyPage() {
         <section>
             <HeroSection
                 title="¿Quieres comprar tu casa en Torrevieja o alrededores?"
-                subtitle="SM HOME'S"
+                subtitle="SM HOME&apos;S"
                 description="Compra tu casa rápidamente con nosotros."
                 imgSrc="/torrevieja3.jpg"
                 primaryButtonText="Ver todas las propiedades"
@@ -104,7 +103,7 @@ export default function BuyPage() {
 
             <HeroForm
                 id="buy-reasons-section"
-                heading="En SM HOME'S, eliminamos el estrés del proceso y te ofrecemos el servicio inmobiliario más completo para comprar tu propiedad de forma rápida, cómoda y al mejor precio."
+                heading="En SM HOME&apos;S, eliminamos el estrés del proceso y te ofrecemos el servicio inmobiliario más completo para comprar tu propiedad de forma rápida, cómoda y al mejor precio."
                 subHeading="¿Qué hacemos para comprar tu casa en tiempo record?"
                 strongSubHeading="comprar tu casa en tiempo record"
                 otherChildren={<FAQBuy />}
@@ -144,7 +143,6 @@ export default function BuyPage() {
                 </Link>
             </HeroForm>
 
-            {/* Testimonios */}
             <section id="testimonials">
                 <h1 className="text-[8vw] sm:text-4xl lg:text-5xl xl:text-[3.5vw] font-bold text-primaryColor text-center bg-blackSoftColor pt-[2vw]">
                     Nuestros Testimonios

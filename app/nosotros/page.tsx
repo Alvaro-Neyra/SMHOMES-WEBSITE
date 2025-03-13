@@ -19,19 +19,19 @@ export default function NosotrosPage() {
         <>
             <HeroImage
                 src="/torrevieja5.jpg"
-                heading="SM Home's"
+                heading="SM Home&apos;s"
                 subHeading="Todo lo que tienes que saber sobre nuestra empresa"
                 linkText="Contacto"
                 linkHref="/contacto"
             />
             <StaticHeroSectionImages
-                title="Acerca de SM Home's"
+                title="Acerca de SM Home&apos;s"
                 subtitle="Conoce más sobre nosotros"
                 images={imageData}
                 imagePosition="left"
             >
                 <p className="text-gray-100 text-lg sm:text-xl lg:text-xl xl:text-[1.5vw] xl:leading-[2vw] mb-[4vw] xl:mb-[2vw]">
-                    <strong className="text-inherit font-bold">SM Home's</strong> es una empresa dedicada a ofrecer servicios inmobiliarios de alta calidad en la Costa Blanca Sur.
+                    <strong className="text-inherit font-bold">SM Home&apos;s</strong> es una empresa dedicada a ofrecer servicios inmobiliarios de alta calidad en la Costa Blanca Sur.
                 </p>
                 <p className="text-gray-100 text-lg sm:text-xl lg:text-xl xl:text-[1.5vw] xl:leading-[2vw] mb-[4vw] xl:mb-[2vw]">
                     Nos especializamos en la venta y alquiler de propiedades, brindando un servicio personalizado y profesional a cada uno de nuestros clientes. Nuestro objetivo es ayudarte a encontrar la propiedad perfecta que se ajuste a tus necesidades y presupuesto. Contamos con un equipo de expertos que te guiarán en cada paso del proceso, asegurando una experiencia sin complicaciones y satisfactoria.

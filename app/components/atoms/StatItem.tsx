@@ -17,13 +17,13 @@ const StatItem: React.FC<StatItemProps> = ({ icon, value, title, duration = 2000
             { threshold: 0.1 }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        const node = ref.current;
+        if (node) {
+            observer.observe(node);
         }
-
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (node) {
+                observer.unobserve(node);
             }
         };
     }, []);

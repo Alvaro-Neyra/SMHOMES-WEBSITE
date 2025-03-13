@@ -16,7 +16,7 @@ export const useScrollToggle = ((ref: React.RefObject<HTMLElement | null>, activ
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [ref, activeClass, active]);
+    }, [ref, activeClass, active, enabled]);
 });
 
 export default useScrollToggle;

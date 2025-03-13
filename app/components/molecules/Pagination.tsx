@@ -8,7 +8,7 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, setPage }) => {
     const maxVisibleButtons = 5;
-    let buttons = [];
+    const buttons = [];
 
     buttons.push(
         <button

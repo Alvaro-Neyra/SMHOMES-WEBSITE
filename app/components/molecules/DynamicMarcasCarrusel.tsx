@@ -5,6 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { marcas } from '@/app/utils/constants';
+import Image from 'next/image';
 
 const DynamicMarcasCarrusel: React.FC = () => {
     return (
@@ -34,10 +35,12 @@ const DynamicMarcasCarrusel: React.FC = () => {
                     <div key={index} className="swiper-slide">
                         <div className="bg-blackSoft30 rounded-lg shadow-md h-44 flex flex-col justify-center items-center p-5 xl:p-[6vw] xl:py-[10vw] transition-all duration-300 hover:translate-y-[-5px] hover:shadow-lg">
                             <div className="w-28 h-20 flex items-center justify-center mb-4 xl:w-[10vw] xl:h-[10vw]">
-                                <img
+                                <Image
                                     src={marca.logoUrl}
                                     alt={marca.nombre}
                                     className="max-w-full max-h-full object-contain object-center"
+                                    width={112}
+                                    height={80}
                                 />
                             </div>
                             <h3 className="font-semibold text-gray-100 text-center xl:text-[2vw]">{marca.nombre}</h3>
