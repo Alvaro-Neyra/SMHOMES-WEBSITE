@@ -12,7 +12,7 @@ const Footer = () => {
         <footer className="bg-blackSoftColor text-white py-8 md:py-10">
             <div className="px-[4vw] py-[2vw]">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                    <div className="text-center md:text-left xl:flex xl:flex-col xl:gap-[2vw]">
+                    <div className="text-center md:text-left 2xl:flex 2xl:flex-col 2xl:gap-[2vw]">
                         <Image
                             src="/logo.png"
                             alt="Logo"
@@ -20,7 +20,7 @@ const Footer = () => {
                             height={50}
                             className="mx-auto md:mx-0 mb-4 w-[40vw] sm:w-[30vw] md:w-[20vw] lg:w-[12vw]"
                         />
-                        <h6 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg xl:text-[2vw] mb-2">Síguenos</h6>
+                        <h6 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg 2xl:text-[2vw] mb-2">Síguenos</h6>
                         <div className="flex justify-center md:justify-start gap-3 sm:gap-4 mb-4">
                             <Link href="https://www.youtube.com/" target="_blank">
                                 <Image
@@ -61,16 +61,16 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="text-center md:text-left xl:flex xl:flex-col xl:gap-[2vw]">
-                        <h5 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg mb-2 xl:text-[2vw]">Menú</h5>
-                        <ul className="space-y-2 sm:space-y-3 xl:space-y-[1vw]">
+                    <div className="text-center md:text-left 2xl:flex 2xl:flex-col 2xl:gap-[2vw]">
+                        <h5 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg mb-2 2xl:text-[2vw]">Menú</h5>
+                        <ul className="space-y-2 sm:space-y-3 2xl:space-y-[1vw]">
                             {NAV_LINKS.map((link) => (
                                 <li key={link.key}>
                                     <Link
                                         href={link.href}
                                         className={`hover:text-primaryColor transition-colors ${
                                             link.href === pathname ? "font-bold text-primaryColor" : ""
-                                        } text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.5vw]`}
+                                        } text-[4vw] sm:text-[3vw] md:text-base 2xl:text-[1.5vw]`}
                                     >
                                         {link.label}
                                     </Link>
@@ -79,11 +79,11 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="text-center md:text-left xl:flex xl:flex-col xl:gap-[2vw]">
-                        <h5 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg mb-2 xl:text-[2vw]">Contacto</h5>
-                        <div className="space-y-2 sm:space-y-3 xl:flex xl:flex-col xl:gap-[1.5vw]">
-                            <div className="xl:flex xl:flex-col xl:gap-[1vw]">
-                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Teléfono fijo</h6>
+                    <div className="text-center md:text-left 2xl:flex 2xl:flex-col 2xl:gap-[2vw]">
+                        <h5 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg mb-2 2xl:text-[2vw]">Contacto</h5>
+                        <div className="space-y-2 sm:space-y-3 2xl:flex 2xl:flex-col 2xl:gap-[1.5vw]">
+                            <div className="2xl:flex 2xl:flex-col 2xl:gap-[1vw]">
+                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base 2xl:text-[1.5vw]">Teléfono fijo</h6>
                                 <Link
                                     href="tel:+34965714261"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
@@ -91,8 +91,8 @@ const Footer = () => {
                                     +34 965 714 261
                                 </Link>
                             </div>
-                            <div className="xl:flex xl:flex-col xl:gap-[1vw]">
-                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Móvil y WhatsApp</h6>
+                            <div className="2xl:flex 2xl:flex-col 2xl:gap-[1vw]">
+                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base 2xl:text-[1.5vw]">Móvil y WhatsApp</h6>
                                 <Link
                                     href="tel:+34629581574"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
@@ -100,8 +100,8 @@ const Footer = () => {
                                     +34 629 581 574
                                 </Link>
                             </div>
-                            <div className="xl:flex xl:flex-col xl:gap-[1vw]">
-                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Email</h6>
+                            <div className="2xl:flex 2xl:flex-col 2xl:gap-[1vw]">
+                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base 2xl:text-[1.5vw]">Email</h6>
                                 <Link
                                     href="mailto:contactos@smhomes.com"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
@@ -109,9 +109,9 @@ const Footer = () => {
                                     contactos@smhomes.com
                                 </Link>
                             </div>
-                            <div className="xl:flex xl:flex-col xl:gap-[1vw]">
-                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Dirección</h6>
-                                <p className="text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]">
+                            <div className="2xl:flex 2xl:flex-col 2xl:gap-[1vw]">
+                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base 2xl:text-[1.5vw]">Dirección</h6>
+                                <p className="text-[4vw] sm:text-[3vw] md:text-base 2xl:text-[1.2vw]">
                                     <FaLocationDot className="inline-block mr-2 text-primaryColor" />
                                     Avda. Habaneras X · Torrevieja (Alicante) 03182
                                 </p>
@@ -120,7 +120,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="mt-6 xl:mt-[5vw] md:mt-8 text-center text-[4vw] sm:text-[3vw] md:text-base xl:text-[2vw]">
+                <div className="mt-6 2xl:mt-[5vw] md:mt-8 text-center text-[4vw] sm:text-[3vw] md:text-base 2xl:text-[2vw]">
                     © {new Date().getFullYear()} Todos los derechos reservados | Diseñado por{" "}
                     <Link
                         href="https://github.com/Alvaro-Neyra"

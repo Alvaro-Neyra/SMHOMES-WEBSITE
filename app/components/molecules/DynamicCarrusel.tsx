@@ -53,9 +53,9 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                             width={1600}
                             height={900}
                         />
-                        <article className="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center items-start p-10 text-left xl:gap-[2vw]">
+                        <article className="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center items-start p-10 text-left 2xl:gap-[2vw]">
                             <motion.h2
-                                className="text-white text-4xl sm:text-5xl lg:text-7xl xl:text-[6vw] ml-4 sm:ml-10"
+                                className="text-white text-4xl sm:text-5xl lg:text-7xl 2xl:text-[6vw] ml-4 sm:ml-10"
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -63,7 +63,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                                 {slides[current].titleLarge}
                             </motion.h2>
                             <motion.p
-                                className="text-gray-300 text-base sm:text-lg lg:text-xl xl:text-[2.5vw] xl:leading-[2.5vw] ml-4 sm:ml-10 mt-2"
+                                className="text-gray-300 text-base sm:text-lg lg:text-xl 2xl:text-[2.5vw] 2xl:leading-[2.5vw] ml-4 sm:ml-10 mt-2"
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -79,7 +79,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                             >
                                 <Link
                                     href={slides[current].buttonLink}
-                                    className="bg-primaryBackground text-mainColor border-transparent xl:text-[1.5vw] xl:px-[2vw] xl:py-[1vw] border-2 px-4 py-2 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
+                                    className="bg-primaryBackground text-mainColor border-transparent 2xl:text-[1.5vw] 2xl:px-[2vw] 2xl:py-[1vw] border-2 px-4 py-2 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
                                 >
                                     {slides[current].buttonText}
                                 </Link>
@@ -91,7 +91,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                             >
                                 <Link
                                     href="/contacto"
-                                    className="border-primaryBackground border-2 text-white px-4 py-2 xl:text-[1.5vw] xl:px-[2vw] xl:py-[1vw] rounded hover:bg-blackSoft30 transition-all duration-300"
+                                    className="border-primaryBackground border-2 text-white px-4 py-2 2xl:text-[1.5vw] 2xl:px-[2vw] 2xl:py-[1vw] rounded hover:bg-blackSoft30 transition-all duration-300"
                                 >
                                     Contáctenos
                                 </Link>
@@ -108,7 +108,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                     {slides.map((_, index) => (
                         <button
                             key={_.titleSmall}
-                            className={`w-2 h-2 xl:w-[1vw] xl:h-[1vw] rounded-full cursor-pointer transition-transform duration-300 ${index === current ? "bg-primaryBackground" : "bg-gray-300"
+                            className={`w-2 h-2 2xl:w-[1vw] 2xl:h-[1vw] rounded-full cursor-pointer transition-transform duration-300 ${index === current ? "bg-primaryBackground" : "bg-gray-300"
                                 } hover:scale-125`}
                             onClick={() => setCurrent(index)}
                             aria-label={`Slide ${index + 1}`}

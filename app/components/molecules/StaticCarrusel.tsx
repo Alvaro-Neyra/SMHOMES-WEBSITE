@@ -19,24 +19,24 @@ export default function StaticCarrusel({ slides }: { readonly slides: SlidesProp
                             width={1600}
                             height={900}
                         />
-                        <article className="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center items-start p-10 text-left xl:gap-[2vw]">
-                            <h2 className="text-white text-4xl sm:text-5xl lg:text-7xl xl:text-[6vw] ml-4 sm:ml-10">
+                        <article className="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center items-start p-10 text-left 2xl:gap-[2vw]">
+                            <h2 className="text-white text-4xl sm:text-5xl lg:text-7xl 2xl:text-[6vw] ml-4 sm:ml-10">
                                 {slide.titleLarge}
                             </h2>
-                            <p className="text-gray-300 text-base sm:text-lg lg:text-xl xl:text-[2.5vw] xl:leading-[2.5vw] ml-4 sm:ml-10 mt-2">
+                            <p className="text-gray-300 text-base sm:text-lg lg:text-xl 2xl:text-[2.5vw] 2xl:leading-[2.5vw] ml-4 sm:ml-10 mt-2">
                                 {slide.subtitle}
                             </p>
                         </article>
                         <section className="absolute bottom-20 left-0 right-0 flex justify-center gap-4 px-10 xl:bottom-[5vw]">
                             <Link
                                 href={slide.buttonLink}
-                                className="bg-primaryBackground text-mainColor border-transparent xl:text-[1.5vw] xl:px-[2vw] xl:py-[1vw] border-2 px-4 py-2 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
+                                className="bg-primaryBackground text-mainColor border-transparent 2xl:text-[1.5vw] 2xl:px-[2vw] 2xl:py-[1vw] border-2 px-4 py-2 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
                             >
                                 {slide.buttonText}
                             </Link>
                             <Link
                                 href="/contacto"
-                                className="border-primaryBackground border-2 text-white px-4 py-2 xl:text-[1.5vw] xl:px-[2vw] xl:py-[1vw] rounded hover:bg-blackSoft30 transition-all duration-300"
+                                className="border-primaryBackground border-2 text-white px-4 py-2 2xl:text-[1.5vw] 2xl:px-[2vw] 2xl:py-[1vw] rounded hover:bg-blackSoft30 transition-all duration-300"
                             >
                                 Contáctenos
                             </Link>
@@ -52,7 +52,7 @@ export default function StaticCarrusel({ slides }: { readonly slides: SlidesProp
                     {slides.map((_, index) => (
                         <span
                             key={index}
-                            className={`w-2 h-2 xl:w-[1vw] xl:h-[1vw] rounded-full cursor-pointer transition-transform duration-300 ${index === 0 ? "bg-primaryBackground" : "bg-gray-300"
+                            className={`w-2 h-2 2xl:w-[1vw] 2xl:h-[1vw] rounded-full cursor-pointer transition-transform duration-300 ${index === 0 ? "bg-primaryBackground" : "bg-gray-300"
                                 } hover:scale-125`}
                         ></span>
                     ))}
