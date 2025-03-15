@@ -14,7 +14,7 @@ const Button = ({
 }: ButtonProps) => {
     return (
         <Link href={href}
-            className={`relative overflow-hidden flex items-center justify-center gap-3 rounded-full border sm:text-lg lg:text-xl 2xl:text-[1.5vw] 2xl:gap-[2vw] 2xl:p-[2vw] ${variant} ${full && 'w-full'} transition-all duration-300 group active:scale-95`}
+            className={`relative overflow-hidden flex items-center justify-center gap-3 rounded-full border sm:text-lg lg:text-xl xl:text-[1.5vw] 2xl:text-[1.5vw] 2xl:gap-[2vw] 2xl:p-[2vw] ${variant} ${full && 'w-full'} transition-all duration-300 group active:scale-95`}
             type={type}
         >
             <span
@@ -26,7 +26,7 @@ const Button = ({
 
             {icon && (
                 <span
-                    className={`transition-transform duration-300 2xl:text-[3vw] ${
+                    className={`transition-transform duration-300 xl:text-[1.5vw] 2xl:text-[3vw] ${
                         animationDirection === "right"
                             ? "animate-moveRight"
                             : animationDirection === "left"
@@ -39,7 +39,7 @@ const Button = ({
                     {icon}
                 </span>
             )}
-            <label className="bold-16 whitespace-nowrap cursor-pointer z-10 sm:text-lg lg:text-xl 2xl:text-[3vw]">{title}</label>
+            <label className="bold-16 whitespace-nowrap cursor-pointer z-10 sm:text-lg lg:text-xl xl:text-[1.5vw] 2xl:text-[3vw]">{title}</label>
         </Link>
     );
 };

@@ -29,23 +29,46 @@ export default function DynamicNavbar() {
         if (pathname === "/" || pathname === '/contacto') {
             setPosition("fixed");
             setActive(false);
-        } else if (pathname.startsWith("/vender") || pathname.startsWith("/comprar") || pathname.startsWith("/nosotros") || pathname.startsWith("/privacidad") || pathname.startsWith("/testimonios") || pathname.startsWith("/propiedades")) { 
+        } else if (pathname.startsWith("/vender") || pathname.startsWith("/comprar") || pathname.startsWith("/nosotros") || pathname.startsWith("/privacidad") || pathname.startsWith("/testimonios") || pathname.startsWith("/propiedades")) {
             setPosition("relative");
             setActive(true);
         }
+
+        // Cerrar el menú cuando cambia la ruta
+        closeMenu();
     }, [pathname]);
 
     const isScrollToggleEnabled = ["/", "/contacto"].includes(pathname);
 
     useScrollToggle(navBarRef, active, "navbar-active", isScrollToggleEnabled);
 
+    // Animación para los íconos de redes sociales
+    const socialIconVariants = {
+        hidden: { opacity: 0, x: 20 },
+        visible: (i: number) => ({
+            opacity: 1,
+            x: 0,
+            transition: {
+                delay: 0.2 * i,
+                duration: 0.3
+            }
+        })
+    };
+
+    // Array de redes sociales
+    const socialLinks = [
+        { href: "https://www.youtube.com/", src: "/youtube.svg", alt: "YouTube" },
+        { href: "https://www.facebook.com/", src: "/facebook.svg", alt: "Facebook" },
+        { href: "https://www.instagram.com/", src: "/instagram.svg", alt: "Instagram" },
+        { href: "https://www.linkedin.com/", src: "/linkedin.svg", alt: "LinkedIn" }
+    ];
+
     return (
         <nav
-            className={`z-30 py-[2vw] px-[4vw] items-center transition-all duration-300 bg-black bg-opacity-50 ${
-                position === "fixed"
+            className={`z-30 py-[2vw] px-[4vw] transition-all duration-300 bg-black bg-opacity-50 ${position === "fixed"
                     ? "fixed top-0 left-0 w-full"
                     : ""
-            } ${active ? "navbar-active" : ""} ${position === "relative" ? "relative" : ""}`}
+                } ${active ? "navbar-active" : ""} ${position === "relative" ? "relative" : ""}`}
             ref={navBarRef}
         >
             <div className="flex justify-between items-center w-full">
@@ -132,7 +155,7 @@ export default function DynamicNavbar() {
                                     spanVariant="nav-link"
                                     full={true}
                                     active={pathname === link.href}
-                                    onClick={toggleMenu}
+                                    onClick={closeMenu}
                                 >
                                     {link.label}
                                 </LinkNav>
@@ -152,11 +175,43 @@ export default function DynamicNavbar() {
                                 spanVariant="nav-link"
                                 full={true}
                                 active={pathname === "/contacto"}
-                                onClick={toggleMenu}
+                                onClick={closeMenu}
                             >
                                 Contáctenos
                             </LinkNav>
                         </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
+                            transition={{ delay: 0.1 / 2 * (NAV_LINKS.length + 1), duration: 0.1 }}
+                            className="mt-8 w-full"
+                        >
+                            <div className="flex items-center gap-[2vw]">
+                                {socialLinks.map((social, index) => (
+                                    <motion.div
+                                        key={social.alt}
+                                        custom={index}
+                                        initial="hidden"
+                                        animate="visible"
+                                        variants={socialIconVariants}
+                                        className="w-full flex justify-center"
+                                    >
+                                        <Link href={social.href} target="_blank">
+                                            <Image
+                                                src={social.src}
+                                                alt={social.alt}
+                                                width={50}
+                                                height={50}
+                                                className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
+                                            />
+                                        </Link>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+
                         <div
                             className="lg:hidden absolute right-4 top-[10vw] md:top-[6vw] transform -translate-y-1/2 cursor-pointer"
                             onClick={toggleMenu}

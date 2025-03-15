@@ -55,7 +55,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                         />
                         <article className="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center items-start p-10 text-left 2xl:gap-[2vw]">
                             <motion.h2
-                                className="text-white text-4xl sm:text-5xl lg:text-7xl 2xl:text-[6vw] ml-4 sm:ml-10"
+                                className="text-white text-4xl sm:text-5xl lg:text-6xl 2xl:text-[6vw] ml-4 sm:ml-10"
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -79,7 +79,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                             >
                                 <Link
                                     href={slides[current].buttonLink}
-                                    className="bg-primaryBackground text-mainColor border-transparent 2xl:text-[1.5vw] 2xl:px-[2vw] 2xl:py-[1vw] border-2 px-4 py-2 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
+                                    className="bg-primaryBackground text-mainColor border-transparent xl:text-[1vw] xl:px-[1.5vw] xl:py-[1vw] 2xl:text-[1.5vw] 2xl:px-[2vw] 2xl:py-[1vw] border-2 px-4 py-2 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
                                 >
                                     {slides[current].buttonText}
                                 </Link>
