@@ -32,7 +32,7 @@ export default function ImageSection({
                         type="button"
                         title={buttonText}
                         icon={<FaPhoneAlt />}
-                        variant="bg-primaryColor text-white transition-all duration-300 p-5 group"
+                        className="bg-primaryColor text-white transition-all duration-300 p-5 group"
                         full={false}
                         blobColor="var(--primary-background-color)"
                         animationDirection="right"

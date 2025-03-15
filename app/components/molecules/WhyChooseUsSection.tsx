@@ -92,10 +92,10 @@ export default function WhyChooseUsSection() {
                         type="button"
                         title="Contacte con nosotros"
                         icon={<FaPhoneAlt />}
-                        variant="bg-primaryColor text-white transition-all duration-300 p-5 group"
+                        className="bg-primaryColor text-white transition-all duration-300 p-5 group"
                         full={false}
                         blobColor="var(--primary-background-color)"
-                        animationDirection="up"
+                        animationDirection="right"
                         href="/contacto"
                     />
                 </div>

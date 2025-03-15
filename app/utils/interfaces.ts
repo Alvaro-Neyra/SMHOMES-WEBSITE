@@ -1,14 +1,17 @@
+import { ReactNode } from "react";
+
 export interface ButtonProps {
-    type: "button" | "submit" | "reset";
+    type?: "button" | "submit" | "link";
     title: string;
-    icon?: React.ReactNode;
-    variant: string;
+    icon?: ReactNode;
+    variant?: "primary" | "secondary" | "outline" | "ghost" | "dark";
     full?: boolean;
     blobColor?: string;
-    animationDirection?: "right" | "left" | "up" | "down";
+    animationDirection?: "right" | "left";
     href?: string;
     onClick?: () => void;
-    children?: React.ReactNode;
+    disabled?: boolean;
+    className?: string;
 }
 
 
