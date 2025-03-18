@@ -9,7 +9,7 @@ export default function ContactPage() {
         <section>
             <HeroVideo
                 src="/videoprueba.mp4"
-                fallbackImage="/torrevieja_fallback.jpg"
+                fallbackImage="/videoprueba_fallback.png"
                 heading="Contacto"
                 subHeading="¿Tienes alguna pregunta? ¡Contáctanos!"
                 linkHref="#contacto-form"

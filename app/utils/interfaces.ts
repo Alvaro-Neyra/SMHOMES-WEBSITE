@@ -197,3 +197,72 @@ export interface StickyFormSectionProps {
     sellSection?: boolean;
     cols2?: boolean;
 }
+
+export interface PropertyImage {
+    id: string;
+    url: string;
+    alt: string;
+}
+
+interface Coordinates {
+    lat: number;
+    lng: number;
+}
+
+export interface PropertyMapProps {
+    coordinates?: Coordinates;
+    address?: string;
+}
+
+export interface Property {
+    id: string;
+    type: "casa" | "departamento" | "terreno" | "local" | "oficina";
+    address: string;
+    constructionArea: number;
+    landArea?: number;
+    bedrooms: number;
+    bathrooms: number;
+    hasPool: boolean;
+    price: number;
+    currency: "USD" | "MXN" | "EUR";
+    images: PropertyImage[];
+    description?: string;
+    features?: string[];
+    location?: string;
+    city?: string;
+    distanceToBeach?: number;
+    elevator?: boolean;
+    usableArea?: number;
+    coordinates?: Coordinates;
+}
+
+export interface PropertyPaginationProps {
+    properties: Property[];
+    itemsPerPage?: number;
+}
+
+interface Breadcrumb {
+    label: string;
+    href?: string;
+}
+
+export interface BreadcrumbsProps {
+    items: Breadcrumb[];
+}
+
+export interface PropertyImageCarouselProps {
+    property: Property;
+}
+
+export interface PropertyInterestFormProps {
+    namePlaceholder: string;
+    phonePlaceholder: string;
+    emailPlaceholder: string;
+    messagePlaceholder: string;
+    propertyId: string;
+    propertyAddress: string;
+}
+
+export interface PageProps {
+    params: Promise<{ propertyId: string }>;
+}
