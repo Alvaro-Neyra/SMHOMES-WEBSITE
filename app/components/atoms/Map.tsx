@@ -16,7 +16,7 @@ const PropertyMap: React.FC<PropertyMapProps> = ({ coordinates, address }) => {
 
         const map = L.map("property-map").setView([coordinates.lat, coordinates.lng], 15);
 
-        L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png", {
+        L.tileLayer(`https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=${process.env.NEXT_PUBLIC_STADIA_API_KEY}`, {
             maxZoom: 19,
             attribution:
                 '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>',

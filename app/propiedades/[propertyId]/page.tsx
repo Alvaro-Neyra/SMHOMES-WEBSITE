@@ -34,9 +34,6 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function PropertyPage({ params }: PageProps) {
     const resolvedParams = await params;
 
-    console.log("Tipo de params:", typeof resolvedParams);
-    console.log("Es promesa?", resolvedParams instanceof Promise);
-
     const property = await getPropertyById(resolvedParams.propertyId);
 
     if (!property) {
