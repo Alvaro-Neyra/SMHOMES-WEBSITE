@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "./components/organisms/NavBar";
 import { headers } from "next/headers";
 import Footer from "./components/organisms/Footer";
+import FixedElements from "./components/molecules/FixedElements";
 
 const merriweather = Merriweather({
   variable: "--font-merriweather",
@@ -32,6 +33,7 @@ export default async function RootLayout({
         <NavBar active={active} position={position} />
         {children}
         <Footer />
+        <FixedElements />
       </body>
     </html>
   );

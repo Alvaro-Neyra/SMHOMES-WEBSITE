@@ -21,7 +21,7 @@ const HeroSection: React.FC<HeroSectionButtonsProps> = ({
                 <Image src={imgSrc} alt="Torrevieja" layout="fill" objectFit="cover" className="absolute inset-0 -z-10" />
                 <div className="flex flex-col justify-center xl:gap-[2vw]">
                     {subtitle && (
-                        <h2 className="text-[5vw] sm:text-3xl xl:text-[2vw] xl:leading-[1vw] font-semibold text-gray-300 mb-6">
+                        <h2 className="text-[5vw] sm:text-3xl xl:text-[2vw] xl:leading-[1.5vw] font-semibold text-gray-300 mb-6">
                             {subtitle}
                         </h2>
                     )}
