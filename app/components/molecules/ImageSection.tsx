@@ -29,7 +29,7 @@ export default function ImageSection({
                 </p>
                 {buttonText && buttonLink && (
                     <Button
-                        type="button"
+                        type="link"
                         title={buttonText}
                         icon={<FaPhoneAlt />}
                         className="bg-primaryColor text-white transition-all duration-300 p-5 group"

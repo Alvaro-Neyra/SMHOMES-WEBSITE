@@ -89,7 +89,7 @@ export default function WhyChooseUsSection() {
                 </div>
                 <div className="flex justify-center items-center mt-8">
                     <Button
-                        type="button"
+                        type="link"
                         title="Contacte con nosotros"
                         icon={<FaPhoneAlt />}
                         className="bg-primaryColor text-white transition-all duration-300 p-5 group"

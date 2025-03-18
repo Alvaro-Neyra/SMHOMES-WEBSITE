@@ -14,7 +14,6 @@ export default function HeroVideo({ src, fallbackImage, heading, subHeading, lin
                     className="w-full h-full object-cover"
                 >
                     <source src={src} type="video/mp4" />
-                    Tu navegador no soporta videos.
                     <Image src={fallbackImage} alt="Fallback" className="w-full h-full object-cover" width={1920} height={1080}/>
                 </video>
             </div>

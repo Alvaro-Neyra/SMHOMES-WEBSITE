@@ -34,7 +34,7 @@ export default function VideoSection({
                 </p>
                 {buttonText && buttonLink && (
                     <Button
-                        type="button"
+                        type="link"
                         title={buttonText}
                         icon={<FaArrowRight />}
                         className="bg-primaryColor text-white transition-all duration-300 p-5 group"
