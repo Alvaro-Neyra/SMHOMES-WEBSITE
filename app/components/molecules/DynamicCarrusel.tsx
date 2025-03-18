@@ -55,7 +55,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                         />
                         <article className="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-center items-start p-10 text-left gap-4">
                             <motion.h2
-                                className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl ml-4 sm:ml-10"
+                                className="text-white text-4xl sm:text-5xl lg:text-6xl ml-4 sm:ml-10"
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -63,7 +63,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                                 {slides[current].titleLarge}
                             </motion.h2>
                             <motion.p
-                                className="text-gray-300 text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl ml-4 sm:ml-10 mt-2"
+                                className="text-gray-300 text-base sm:text-lg lg:text-xl ml-4 sm:ml-10 mt-2"
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -71,7 +71,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                                 {slides[current].subtitle}
                             </motion.p>
                         </article>
-                        <section className="absolute bottom-20 left-0 right-0 flex justify-center gap-4 px-10 xl:bottom-24 2xl:bottom-32">
+                        <section className="absolute bottom-20 left-0 right-0 flex justify-center gap-4 px-10">
                             <motion.div
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                             >
                                 <Link
                                     href={slides[current].buttonLink}
-                                    className="bg-primaryBackground text-mainColor border-transparent text-sm sm:text-base md:text-lg xl:text-xl 2xl:text-2xl border-2 px-4 py-2 xl:px-6 xl:py-3 2xl:px-8 2xl:py-4 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
+                                    className="bg-primaryBackground text-mainColor border-transparent text-sm sm:text-base md:text-lg border-2 px-4 py-2 rounded hover:bg-mainColor hover:bg-blackSoft30 hover:border-primaryBackground transition-all duration-300"
                                 >
                                     {slides[current].buttonText}
                                 </Link>
@@ -91,7 +91,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                             >
                                 <Link
                                     href="/contacto"
-                                    className="border-primaryBackground border-2 text-white text-sm sm:text-base md:text-lg xl:text-xl 2xl:text-2xl px-4 py-2 xl:px-6 xl:py-3 2xl:px-8 2xl:py-4 rounded hover:bg-blackSoft30 transition-all duration-300"
+                                    className="border-primaryBackground border-2 text-white text-sm sm:text-base md:text-lg px-4 py-2 rounded hover:bg-blackSoft30 transition-all duration-300"
                                 >
                                     Contáctenos
                                 </Link>
@@ -108,7 +108,7 @@ export default function DynamicCarrusel({ slides }: { readonly slides: SlidesPro
                     {slides.map((_, index) => (
                         <button
                             key={_.titleSmall}
-                            className={`w-2 h-2 md:w-3 md:h-3 xl:w-4 xl:h-4 rounded-full cursor-pointer transition-transform duration-300 ${
+                            className={`w-2 h-2 md:w-2 md:h-2 rounded-full cursor-pointer transition-transform duration-300 ${
                                 index === current ? "bg-primaryBackground" : "bg-gray-300"
                             } hover:scale-125`}
                             onClick={() => setCurrent(index)}

@@ -74,28 +74,28 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                     ))}
                 </div>
 
-                <div className="absolute top-4 left-4 bg-primaryBackground text-white text-base px-3 py-1 rounded z-10 2xl:text-lg 2xl:px-5 2xl:py-2">
+                <div className="absolute top-4 left-4 bg-primaryBackground text-white text-base px-3 py-1 rounded z-10">
                     {property.type === "casa" ? "Casa" : "Departamento"}
                 </div>
 
                 <button 
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10  rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 2xl:w-16 2xl:h-16"
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10  rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
                     onClick={slideLeft}
                     disabled={isTransitioning}
                     aria-label="Imagen anterior"
                 >
-                    <ChevronLeft className="text-primaryBackground w-6 h-6 2xl:w-10 2xl:h-10" />
+                    <ChevronLeft className="text-primaryBackground w-6 h-6" />
                 </button>
                 <button 
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 2xl:w-16 2xl:h-16"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
                     onClick={slideRight}
                     disabled={isTransitioning}
                     aria-label="Imagen siguiente"
                 >
-                    <ChevronRight className="text-primaryBackground w-6 h-6 2xl:w-10 2xl:h-10" />
+                    <ChevronRight className="text-primaryBackground w-6 h-6" />
                 </button>
 
-                <div className="absolute bottom-4 right-4 bg-black bg-opacity-60 text-white px-3 py-1 rounded-full text-sm z-10 2xl:text-lg 2xl:px-5 2xl:py-2">
+                <div className="absolute bottom-4 right-4 bg-black bg-opacity-60 text-white px-3 py-1 rounded-full text-sm z-10">
                     {current + 1} / {property.images.length}
                 </div>
             </div>
@@ -112,7 +112,7 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                                 current === index 
                                 ? 'ring-2 ring-primaryBackground scale-105 shadow-lg' 
                                 : 'opacity-60 hover:opacity-90'
-                            } 2xl:w-24 2xl:h-24`}
+                            }`}
                         >
                             <Image
                                 src={image.url}

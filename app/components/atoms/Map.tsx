@@ -33,7 +33,7 @@ const PropertyMap: React.FC<PropertyMapProps> = ({ coordinates, address }) => {
 
         if (address) {
             marker.bindPopup(
-                `<b class="2xl:text-3xl">${address}</b>`,
+                `<b class="2xl:text-xl">${address}</b>`,
                 {
                     className: "custom-popup",
                 }

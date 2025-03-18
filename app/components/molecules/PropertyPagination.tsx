@@ -39,7 +39,7 @@ const PropertyPagination: React.FC<PropertyPaginationProps> = ({ properties, ite
                     <button
                         onClick={prevPage}
                         disabled={currentPage === 1}
-                        className={`px-4 py-2 rounded-md 2xl:text-3xl 2xl:px-8 2xl:py-6 ${currentPage === 1
+                        className={`px-4 py-2 rounded-md ${currentPage === 1
                             ? 'bg-gray-600 cursor-not-allowed'
                             : 'bg-primaryBackground hover:bg-secondaryBackground'
                             } text-white transition-colors duration-300`}
@@ -59,7 +59,7 @@ const PropertyPagination: React.FC<PropertyPaginationProps> = ({ properties, ite
                                     <button
                                         key={pageNumber}
                                         onClick={() => paginate(pageNumber)}
-                                        className={`w-10 h-10 rounded-md 2xl:text-3xl flex justify-center items-center 2xl:px-8 2xl:py-10 ${currentPage === pageNumber
+                                        className={`w-10 h-10 rounded-md flex justify-center items-center ${currentPage === pageNumber
                                             ? 'bg-primaryBackground text-white'
                                             : 'bg-blackSoft30 text-gray-300 hover:bg-gray-700'
                                             } transition-colors duration-300`}
@@ -75,7 +75,7 @@ const PropertyPagination: React.FC<PropertyPaginationProps> = ({ properties, ite
                                 return (
                                     <span
                                         key={pageNumber}
-                                        className="w-10 h-10 flex items-center justify-center text-gray-300 2xl:text-3xl 2xl:px-8 2xl:py-6"
+                                        className="w-10 h-10 flex items-center justify-center text-gray-300"
                                     >
                                         ...
                                     </span>
@@ -88,7 +88,7 @@ const PropertyPagination: React.FC<PropertyPaginationProps> = ({ properties, ite
                     <button
                         onClick={nextPage}
                         disabled={currentPage === totalPages}
-                        className={`px-4 py-2 rounded-md 2xl:text-3xl 2xl:px-8 2xl:py-6 ${currentPage === totalPages
+                        className={`px-4 py-2 rounded-md ${currentPage === totalPages
                             ? 'bg-gray-600 cursor-not-allowed'
                             : 'bg-primaryBackground hover:bg-secondaryBackground'
                             } text-white transition-colors duration-300`}
@@ -98,7 +98,7 @@ const PropertyPagination: React.FC<PropertyPaginationProps> = ({ properties, ite
                 </div>
             )}
 
-            <div className="text-center text-gray-400 2xl:text-3xl">
+            <div className="text-center text-gray-400">
                 Mostrando {indexOfFirstProperty + 1}-{Math.min(indexOfLastProperty, properties.length)} de {properties.length} propiedades
             </div>
         </div>

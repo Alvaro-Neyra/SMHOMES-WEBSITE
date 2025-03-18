@@ -48,7 +48,7 @@ const Button = ({
     ${className}
 `;
 
-    const sizeClasses = "text-sm sm:text-base 2xl:text-3xl 2lx:px-6 2xl:py-8 px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3";
+    const sizeClasses = "text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3";
 
     const renderBlob = () => {
         if (variant === "ghost" || variant === "outline") return null;

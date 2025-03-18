@@ -135,7 +135,7 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
 
                 <Link
                     href={`/propiedades/${property.id}`}
-                    className="block w-full bg-primaryBackground text-white 2xl:p-4 2xl:text-3xl text-center py-2 rounded hover:bg-secondaryBackground transition duration-300"
+                    className="block w-full bg-primaryBackground text-white 2xl:p-4 text-center py-2 rounded hover:bg-secondaryBackground transition duration-300"
                 >
                     Ver detalle
                 </Link>

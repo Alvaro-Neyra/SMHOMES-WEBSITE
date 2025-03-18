@@ -28,7 +28,7 @@ const Footer = () => {
                                 <Image
                                     src="/youtube.svg"
                                     alt="YouTube"
-                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 2xl:w-14 2xl:h-14 transition-all duration-300 hover:scale-125 hover:brightness-125"
+                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                     width={50}
                                     height={50}
                                 />
@@ -39,7 +39,7 @@ const Footer = () => {
                                     alt="Facebook"
                                     width={50}
                                     height={50} 
-                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 2xl:w-14 2xl:h-14 transition-all duration-300 hover:scale-125 hover:brightness-125"
+                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
                             <Link href="https://www.instagram.com/" target="_blank">
@@ -48,7 +48,7 @@ const Footer = () => {
                                     alt="Instagram"
                                     width={50}
                                     height={50} 
-                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 2xl:w-14 2xl:h-14 transition-all duration-300 hover:scale-125 hover:brightness-125"
+                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
                             <Link href="https://www.linkedin.com/" target="_blank">
@@ -57,7 +57,7 @@ const Footer = () => {
                                     alt="LinkedIn"
                                     width={50}
                                     height={50} 
-                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 2xl:w-14 2xl:h-14 transition-all duration-300 hover:scale-125 hover:brightness-125"
+                                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
                         </div>
