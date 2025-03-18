@@ -26,7 +26,7 @@ export default function HeroImage({ src, heading, subHeading, linkText, linkHref
                     </p>
                     <Link
                         href={linkHref}
-                        className="bg-primaryBackground border-[.2vw] border-primaryBackground text-white xl:text-[1vw] px-6 py-3 rounded-lg xl:rounded-[1vw] font-semibold hover:bg-blackSoftColor transition-colors duration-300"
+                        className="bg-primaryBackground border-[.2vw] border-primaryBackground text-white xl:text-[1.5vw] px-6 py-3 rounded-lg xl:rounded-[1vw] font-semibold hover:bg-blackSoftColor transition-colors duration-300"
                     >
                         {linkText}
                     </Link>

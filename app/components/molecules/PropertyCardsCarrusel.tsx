@@ -41,7 +41,7 @@ const PropertyCardsCarousel: React.FC<PropertyCarouselProps> = ({ properties }) 
             </Swiper>
 
             <div className="flex justify-center mt-8">
-                <Link href="/propiedades" className="bg-primaryBackground text-white py-2 px-4 rounded hover:bg-secondaryBackground transition duration-300">
+                <Link href="/propiedades" className="bg-primaryBackground text-white text-lg py-2 px-4 rounded hover:bg-secondaryBackground transition duration-300">
                     Ver todas las propiedades
                 </Link>
             </div>

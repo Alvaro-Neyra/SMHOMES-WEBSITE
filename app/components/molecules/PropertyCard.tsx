@@ -45,7 +45,7 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
 
     return (
         <div className={`bg-blackSoft30 rounded-lg overflow-hidden transition-transform duration-300 ${scale ? "hover:scale-[1.01]" : ""} border border-primaryBackground border-opacity-30`}>
-            <div className="relative w-full h-64 md:h-72 lg:h-80 2xl:h-96">
+            <div className="relative w-full h-64 md:h-72 lg:h-80">
                 <Image
                     src={property.images[displayedImageIndex].url}
                     alt={property.images[displayedImageIndex].alt}
@@ -64,7 +64,7 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                     aria-label="Previous image"
                     disabled={isAnimating}
                 >
-                    <ArrowLeftIcon className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />
+                    <ArrowLeftIcon className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
 
                 <button
@@ -76,26 +76,26 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                     aria-label="Next image"
                     disabled={isAnimating}
                 >
-                    <ArrowRightIcon className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />
+                    <ArrowRightIcon className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
 
-                <div className="absolute bottom-2 right-2 bg-blackSoft30 bg-opacity-70 px-2 py-1 rounded text-xs md:text-sm lg:text-base 2xl:text-lg text-white z-10">
+                <div className="absolute bottom-2 right-2 bg-blackSoft30 bg-opacity-70 px-2 py-1 rounded text-xs md:text-sm lg:text-basetext-white z-10">
                     {currentImageIndex + 1}/{property.images.length}
                 </div>
 
-                <div className="absolute top-2 left-2 bg-primaryBackground text-white text-xs md:text-sm lg:text-base 2xl:text-lg px-2 py-1 rounded z-10">
+                <div className="absolute top-2 left-2 bg-primaryBackground text-white text-xs md:text-sm lg:text-base px-2 py-1 rounded z-10">
                     {property.type.charAt(0).toUpperCase() + property.type.slice(1)}
                 </div>
             </div>
 
             <div className="p-4">
                 <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-semibold text-white truncate">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white truncate">
                         {property.address}
                     </h3>
                 </div>
 
-                <div className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-bold text-primaryBackground mb-3">
+                <div className="text-xl md:text-2xl lg:text-3xl font-bold text-primaryBackground mb-3">
                     {property.currency === 'USD' && '$'}
                     {property.currency === 'EUR' && '€'}
                     {property.currency === 'MXN' && '$'}
@@ -105,37 +105,37 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
 
                 <div className="grid grid-cols-2 gap-2 mb-3">
                     <div className="flex items-center space-x-1 text-gray-200">
-                        <HouseIcon className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />
-                        <span className="text-sm md:text-base lg:text-lg 2xl:text-xl">
+                        <HouseIcon className="w-5 h-5 md:w-6 md:h-6" />
+                        <span className="text-sm md:text-base lg:text-lg">
                             {property.constructionArea} m²
                         </span>
                     </div>
 
                     <div className="flex items-center space-x-1 text-gray-200">
-                        <BedIcon className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />
-                        <span className="text-sm md:text-base lg:text-lg 2xl:text-xl">
+                        <BedIcon className="w-5 h-5 md:w-6 md:h-6" />
+                        <span className="text-sm md:text-base lg:text-lg">
                             {property.bedrooms} hab.
                         </span>
                     </div>
 
                     <div className="flex items-center space-x-1 text-gray-200">
-                        <BathIcon className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />
-                        <span className="text-sm md:text-base lg:text-lg 2xl:text-xl">
+                        <BathIcon className="w-5 h-5 md:w-6 md:h-6" />
+                        <span className="text-sm md:text-base lg:text-lg">
                             {property.bathrooms} baños
                         </span>
                     </div>
 
                     {property.hasPool && (
                         <div className="flex items-center space-x-1 text-gray-200">
-                            <SwimmingPoolIcon className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />
-                            <span className="text-sm md:text-base lg:text-lg 2xl:text-2xl">Piscina</span>
+                            <SwimmingPoolIcon className="w-5 h-5 md:w-6 md:h-6" />
+                            <span className="text-sm md:text-base lg:text-lg">Piscina</span>
                         </div>
                     )}
                 </div>
 
                 <Link
                     href={`/propiedades/${property.id}`}
-                    className="block w-full bg-primaryBackground text-white 2xl:p-4 text-center py-2 rounded hover:bg-secondaryBackground transition duration-300"
+                    className="block w-full bg-primaryBackground text-white text-center py-2 rounded hover:bg-secondaryBackground transition duration-300"
                 >
                     Ver detalle
                 </Link>
