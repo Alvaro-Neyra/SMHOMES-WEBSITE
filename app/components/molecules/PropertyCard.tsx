@@ -28,7 +28,7 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
     }, [currentImageIndex, displayedImageIndex]);
 
     const nextImage = () => {
-        if (!isAnimating) {
+        if (!isAnimating && property.images && property.images.length > 1) {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === property.images.length - 1 ? 0 : prevIndex + 1
             );
@@ -36,52 +36,70 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
     };
 
     const prevImage = () => {
-        if (!isAnimating) {
+        if (!isAnimating && property.images && property.images.length > 1) {
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === 0 ? property.images.length - 1 : prevIndex - 1
             );
         }
     };
 
+    const hasImages = property.images && property.images.length > 0;
+
     return (
         <div className={`bg-blackSoft30 rounded-lg overflow-hidden transition-transform duration-300 ${scale ? "hover:scale-[1.01]" : ""} border border-primaryBackground border-opacity-30`}>
             <div className="relative w-full h-64 md:h-72 lg:h-80">
-                <Image
-                    src={property.images[displayedImageIndex].url}
-                    alt={property.images[displayedImageIndex].alt}
-                    fill
-                    className={`object-cover transition-opacity duration-300 ${
-                        isAnimating ? "opacity-0" : "opacity-100"
-                    }`}
-                />
+                {hasImages ? (
+                    <>
+                        <Image
+                            src={property.images[displayedImageIndex].url}
+                            alt={property.images[displayedImageIndex].alt}
+                            fill
+                            className={`object-cover transition-opacity duration-300 ${
+                                isAnimating ? "opacity-0" : "opacity-100"
+                            }`}
+                        />
 
-                <button
-                    onClick={(e) => {
-                        e.preventDefault();
-                        prevImage();
-                    }}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-blackSoft30 bg-opacity-70 rounded-full p-2 text-white z-10 disabled:opacity-50"
-                    aria-label="Previous image"
-                    disabled={isAnimating}
-                >
-                    <ArrowLeftIcon className="w-5 h-5 md:w-6 md:h-6" />
-                </button>
+                        {property.images.length > 1 && (
+                            <>
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        prevImage();
+                                    }}
+                                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-blackSoft30 bg-opacity-70 rounded-full p-2 text-white z-10 disabled:opacity-50"
+                                    aria-label="Previous image"
+                                    disabled={isAnimating}
+                                >
+                                    <ArrowLeftIcon className="w-5 h-5 md:w-6 md:h-6" />
+                                </button>
 
-                <button
-                    onClick={(e) => {
-                        e.preventDefault();
-                        nextImage();
-                    }}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-blackSoft30 bg-opacity-70 rounded-full p-2 text-white z-10 disabled:opacity-50"
-                    aria-label="Next image"
-                    disabled={isAnimating}
-                >
-                    <ArrowRightIcon className="w-5 h-5 md:w-6 md:h-6" />
-                </button>
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        nextImage();
+                                    }}
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-blackSoft30 bg-opacity-70 rounded-full p-2 text-white z-10 disabled:opacity-50"
+                                    aria-label="Next image"
+                                    disabled={isAnimating}
+                                >
+                                    <ArrowRightIcon className="w-5 h-5 md:w-6 md:h-6" />
+                                </button>
 
-                <div className="absolute bottom-2 right-2 bg-blackSoft30 bg-opacity-70 px-2 py-1 rounded text-xs md:text-sm lg:text-basetext-white z-10">
-                    {currentImageIndex + 1}/{property.images.length}
-                </div>
+                                <div className="absolute bottom-2 right-2 bg-blackSoft30 bg-opacity-70 px-2 py-1 rounded text-xs md:text-sm lg:text-basetext-white z-10">
+                                    {currentImageIndex + 1}/{property.images.length}
+                                </div>
+                            </>
+                        )}
+                    </>
+                ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-r from-blackSoft30 to-blackSoft30 p-4">
+                        <HouseIcon className="w-16 h-16 md:w-20 md:h-20 mb-2" />
+                        <div className="text-white text-center">
+                            <p className="font-semibold text-lg md:text-xl">Propiedad exclusiva</p>
+                            <p className="text-sm md:text-base opacity-80">Imágenes próximamente</p>
+                        </div>
+                    </div>
+                )}
 
                 <div className="absolute top-2 left-2 bg-primaryBackground text-white text-xs md:text-sm lg:text-base px-2 py-1 rounded z-10">
                     {property.type.charAt(0).toUpperCase() + property.type.slice(1)}
@@ -89,10 +107,16 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
             </div>
 
             <div className="p-4">
-                <div className="flex justify-between items-start mb-2">
+                <div className="flex flex-col mb-2">
                     <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white truncate">
-                        {property.address}
+                        {property.name}
                     </h3>
+                    <p className="text-sm md:text-base text-gray-300 truncate">
+                        {property.address}
+                    </p>
+                    <p className="text-sm md:text-base text-gray-300 truncate">
+                        {property.city}, {property.state}
+                    </p>
                 </div>
 
                 <div className="text-xl md:text-2xl lg:text-3xl font-bold text-primaryBackground mb-3">

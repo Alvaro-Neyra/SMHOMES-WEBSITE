@@ -38,7 +38,7 @@ const Footer = () => {
                                     src="/facebook.svg"
                                     alt="Facebook"
                                     width={50}
-                                    height={50} 
+                                    height={50}
                                     className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
@@ -47,7 +47,7 @@ const Footer = () => {
                                     src="/instagram.svg"
                                     alt="Instagram"
                                     width={50}
-                                    height={50} 
+                                    height={50}
                                     className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
@@ -56,7 +56,7 @@ const Footer = () => {
                                     src="/linkedin.svg"
                                     alt="LinkedIn"
                                     width={50}
-                                    height={50} 
+                                    height={50}
                                     className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
@@ -72,9 +72,8 @@ const Footer = () => {
                                 <li key={link.key}>
                                     <Link
                                         href={link.href}
-                                        className={`hover:text-primaryColor transition-colors ${
-                                            link.href === pathname ? "font-bold text-primaryColor" : ""
-                                        } text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl`}
+                                        className={`hover:text-primaryColor transition-colors ${link.href === pathname ? "font-bold text-primaryColor" : ""
+                                            } text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl`}
                                     >
                                         {link.label}
                                     </Link>
@@ -90,24 +89,13 @@ const Footer = () => {
                         <div className="space-y-3 sm:space-y-4 lg:space-y-5 2xl:space-y-8">
                             <div className="flex flex-col gap-1">
                                 <h6 className="font-semibold text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl">
-                                    Teléfono fijo
-                                </h6>
-                                <Link
-                                    href="tel:+34965714261"
-                                    className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl"
-                                >
-                                    +34 965 714 261
-                                </Link>
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <h6 className="font-semibold text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl">
                                     Móvil y WhatsApp
                                 </h6>
                                 <Link
-                                    href="tel:+34629581574"
+                                    href="tel:+34691344647"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl"
                                 >
-                                    +34 629 581 574
+                                    +34 691 344 647
                                 </Link>
                             </div>
                             <div className="flex flex-col gap-1">

@@ -23,7 +23,7 @@ const StaticFooter = () => {
                                     src="/youtube.svg"
                                     alt="YouTube"
                                     width={50}
-                                    height={50} 
+                                    height={50}
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
@@ -32,7 +32,7 @@ const StaticFooter = () => {
                                     src="/facebook.svg"
                                     alt="Facebook"
                                     width={50}
-                                    height={50} 
+                                    height={50}
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
@@ -41,7 +41,7 @@ const StaticFooter = () => {
                                     src="/instagram.svg"
                                     alt="Instagram"
                                     width={50}
-                                    height={50} 
+                                    height={50}
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
@@ -50,7 +50,7 @@ const StaticFooter = () => {
                                     src="/linkedin.svg"
                                     alt="LinkedIn"
                                     width={50}
-                                    height={50} 
+                                    height={50}
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
@@ -77,21 +77,12 @@ const StaticFooter = () => {
                         <h5 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg mb-2 xl:text-[2vw]">Contacto</h5>
                         <div className="space-y-2 sm:space-y-3 xl:flex xl:flex-col xl:gap-[1.5vw]">
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
-                                <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Teléfono fijo</h6>
-                                <Link
-                                    href="tel:+34965714261"
-                                    className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
-                                >
-                                    +34 965 714 261
-                                </Link>
-                            </div>
-                            <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Móvil y WhatsApp</h6>
                                 <Link
-                                    href="tel:+34629581574"
+                                    href="tel:+34691344647"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
                                 >
-                                    +34 629 581 574
+                                    +34 691 344 647
                                 </Link>
                             </div>
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">

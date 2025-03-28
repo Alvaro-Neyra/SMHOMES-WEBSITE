@@ -1,29 +1,35 @@
 "use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface DropdownProps {
     label: string;
     options: string[];
+    name: string;
+    onChange?: (value: string) => void;
+    className?: string;
+    defaultValue?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ label, options }) => {
+const Dropdown: React.FC<DropdownProps> = ({ label, options, name, onChange, className, defaultValue }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [selectedOption, setSelectedOption] = useState<string | null>(defaultValue ?? null);
 
     const handleSelect = (option: string) => {
         setSelectedOption(option);
         setIsOpen(false);
+        if (onChange) onChange(option);
     };
 
     return (
-        <div className="relative w-full">
+        <div className={`relative w-full`}>
+            <input type="hidden" name={name} value={selectedOption ?? ""} />
+
             <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className={`w-full px-4 py-2 rounded-md xl:px-[1.5vw] xl:py-[.5vw] xl:rounded-[.5vw] xl:text-[1vw] flex justify-between items-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-secondaryBackground bg-blackSoft30`}
+                className={`w-full px-4 py-3 rounded-md bg-blackSoft30 xl:px-4 xl:py-4 xl:rounded-xl xl:text-xl flex justify-between items-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-secondaryBackground ${className}`}
             >
-                <span>{selectedOption || label}</span>
+                <span>{selectedOption ?? label}</span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "transform rotate-180" : ""}`}
@@ -45,7 +51,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, options }) => {
                             <li
                                 key={index}
                                 onClick={() => handleSelect(option)}
-                                className={`px-4 py-2 xl:text-[1vw] text-gray-10 cursor-pointer hover:bg-secondaryBackground hover:text-white transition-colors duration-300 ${selectedOption === option ? "bg-secondaryBackground text-white" : ""
+                                className={`px-4 py-2 xl:text-xl text-gray-10 cursor-pointer hover:bg-secondaryBackground hover:text-white transition-colors duration-300 ${selectedOption === option ? "bg-secondaryBackground text-white" : ""
                                     }`}
                             >
                                 {option}

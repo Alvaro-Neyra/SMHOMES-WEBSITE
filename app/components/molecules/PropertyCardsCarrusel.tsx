@@ -34,7 +34,7 @@ const PropertyCardsCarousel: React.FC<PropertyCarouselProps> = ({ properties }) 
                 }}
             >
                 {properties.map((property) => (
-                    <SwiperSlide key={property.id}>
+                    <SwiperSlide key={`${property.id}-${property.address}`}>
                         <PropertyCard property={property} scale={false}/>
                     </SwiperSlide>
                 ))}

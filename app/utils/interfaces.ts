@@ -202,6 +202,7 @@ export interface PropertyImage {
     id: string;
     url: string;
     alt: string;
+    public_id?: string;
 }
 
 interface Coordinates {
@@ -216,8 +217,11 @@ export interface PropertyMapProps {
 
 export interface Property {
     id: string;
-    type: "casa" | "departamento" | "terreno" | "local" | "oficina";
+    type: "casa" | "departamento" | "terreno" | "local" | "oficina" | "garaje";
+    name: string;
     address: string;
+    city: string;
+    state: string;
     constructionArea: number;
     landArea?: number;
     bedrooms: number;
@@ -226,14 +230,46 @@ export interface Property {
     price: number;
     currency: "USD" | "MXN" | "EUR";
     images: PropertyImage[];
+    floorPlan?: PropertyImage;
     description?: string;
     features?: string[];
-    location?: string;
-    city?: string;
     distanceToBeach?: number;
     elevator?: boolean;
     usableArea?: number;
-    coordinates?: Coordinates;
+    coordinates: Coordinates;
+    googleMapsUrl?: string;
+    selled?: boolean;
+    tour3dUrl?: string;
+    createdAt?: Date;
+}
+
+
+export interface PropertyFormData {
+    id?: string;
+    type: "casa" | "departamento" | "terreno" | "local" | "oficina" | "garaje";
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    constructionArea: number;
+    landArea: number;
+    bedrooms: number;
+    bathrooms: number;
+    hasPool: boolean;
+    price: number;
+    currency: "USD" | "MXN" | "EUR";
+    images: PropertyImage[];
+    floorPlan?: PropertyImage;
+    description: string;
+    features: string[];
+    distanceToBeach: number;
+    elevator: boolean;
+    usableArea: number;
+    coordinates: Coordinates;
+    googleMapsUrl?: string;
+    selled?: boolean;
+    tour3dUrl?: string;
+    createdAt?: Date;
 }
 
 export interface PropertyPaginationProps {

@@ -33,7 +33,11 @@ export default {
         primaryBackground: 'var(--primary-background-color)',
         blackSoft: 'var(--black-color)',
         secondaryBackground: 'var(--shiny-yellow-leaf-gold-foil-texture-2)',
-        blackSoft30: 'var(--black-soft-color)',
+        blackSoft30: {
+          DEFAULT: 'var(--black-soft-color)',
+          light: 'var(--black-soft-color)',
+          dark: 'var(--black-soft-color)',
+        }
       },
       backgroundImage: {
         'bg-img-1': "url('/img-1.png')",

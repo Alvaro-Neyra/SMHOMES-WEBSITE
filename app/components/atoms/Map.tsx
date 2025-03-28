@@ -4,13 +4,16 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapPin } from "lucide-react";
 import { PropertyMapProps } from "@/app/utils/interfaces";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const PropertyMap: React.FC<PropertyMapProps> = ({ coordinates, address }) => {
     useEffect(() => {
         const mapContainer = document.getElementById("property-map");
         if (!mapContainer) return;
 
-        if (!coordinates || !coordinates.lat || !coordinates.lng) {
+        if (!coordinates?.lat || !coordinates?.lng) {
             return;
         }
 

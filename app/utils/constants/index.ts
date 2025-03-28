@@ -181,30 +181,30 @@ export const marcas = [
 ];
 
 export const videoTestimonials: VideoTestimonial[] = [
-    {
-        id: 1,
-        name: 'Elena Martínez',
-        position: 'CEO, TechSolutions',
-        youtubeId: 'C0DPdy98e4c'
-    },
-    {
-        id: 2,
-        name: 'Miguel Fernández',
-        position: 'Director de Operaciones',
-        youtubeId: 'C0DPdy98e4c'
-    },
-    {
-        id: 3,
-        name: 'Sofia López',
-        position: 'Diseñadora UX/UI',
-        youtubeId: 'C0DPdy98e4c'
-    },
-    {
-        id: 4,
-        name: 'Javier Torres',
-        position: 'Desarrollador Full Stack',
-        youtubeId: 'C0DPdy98e4c'
-    }
+    // {
+    //     id: 1,
+    //     name: 'Elena Martínez',
+    //     position: 'CEO, TechSolutions',
+    //     youtubeId: 'C0DPdy98e4c'
+    // },
+    // {
+    //     id: 2,
+    //     name: 'Miguel Fernández',
+    //     position: 'Director de Operaciones',
+    //     youtubeId: 'C0DPdy98e4c'
+    // },
+    // {
+    //     id: 3,
+    //     name: 'Sofia López',
+    //     position: 'Diseñadora UX/UI',
+    //     youtubeId: 'C0DPdy98e4c'
+    // },
+    // {
+    //     id: 4,
+    //     name: 'Javier Torres',
+    //     position: 'Desarrollador Full Stack',
+    //     youtubeId: 'C0DPdy98e4c'
+    // }
 ];
 
 export const stats = [

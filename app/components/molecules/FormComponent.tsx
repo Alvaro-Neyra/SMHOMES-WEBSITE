@@ -1,6 +1,9 @@
+'use client';
 import { FormProps } from "@/app/utils/interfaces";
 import Dropdown from "../atoms/Dropdown";
 import Link from "next/link";
+import { submitGeneralInterest } from "./submitGeneralInterest";
+import { useState } from "react";
 
 const FormComponent: React.FC<FormProps> = ({
     namePlaceholder,
@@ -10,9 +13,28 @@ const FormComponent: React.FC<FormProps> = ({
     options,
     sellSection = false,
 }) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
+
+    const handleSubmit = async (formData: FormData) => {
+        setIsSubmitting(true);
+        setSubmitResult(null);
+
+        try {
+            const result = await submitGeneralInterest(formData);
+            setSubmitResult(result);
+        } catch (error) {
+            setSubmitResult({ 
+                success: false, 
+                message: `Ocurrió un error al enviar el formulario ${error}`
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
-        <form className="space-y-4 xl:space-y-[.8vw]">
+        <form action={handleSubmit} className="space-y-4 xl:space-y-[.8vw]">
             <div className="relative bg-blackSoft30 border-primaryBackground">
                 <label htmlFor="name" aria-label="Nombre Completo">
                     <svg
@@ -25,6 +47,7 @@ const FormComponent: React.FC<FormProps> = ({
                 </label>
                 <input
                     type="text"
+                    name="name"
                     placeholder={namePlaceholder}
                     className="pl-10 pr-4 py-2 xl:pl-[3.5vw] xl:pr-[2vw] xl:py-[1vw] xl:text-[1vw] w-full outline-none border border-primaryBackground rounded focus:ring-secondaryBackground focus:ring-2 bg-transparent transition-all duration-300"
                 />
@@ -60,6 +83,7 @@ const FormComponent: React.FC<FormProps> = ({
                 </label>
                 <input
                     type="email"
+                    name="email"
                     placeholder={emailPlaceholder}
                     className="pl-10 pr-4 py-2 xl:pl-[3.5vw] xl:pr-[2vw] xl:py-[1vw] xl:text-[1vw] w-full outline-none border border-primaryBackground rounded focus:ring-secondaryBackground focus:ring-2 bg-transparent transition-all duration-300"
                 />
@@ -84,6 +108,7 @@ const FormComponent: React.FC<FormProps> = ({
                 </div>
 
                 <textarea
+                    name="message"
                     placeholder={messagePlaceholder}
                     className="pl-10 pr-4 py-3 xl:pl-[3.5vw] xl:pr-[2vw] xl:py-[1vw] xl:text-[1vw] w-full outline-none bg-transparent text-gray-10 placeholder-gray-400 rounded-md  focus:border-transparent transition-all duration-300 resize-none min-h-[6rem]"
                 ></textarea>
@@ -93,6 +118,7 @@ const FormComponent: React.FC<FormProps> = ({
                 <div className="flex flex-col space-y-2 justify-start align-center xl:space-y-[.5vw]">
                     <span className="xl:text-[1vw]">¿Cuándo quieres vender?</span>
                     <Dropdown
+                        name="sellTimeline"
                         label="Selecciona una opción"
                         options={options}
                     />
@@ -105,13 +131,13 @@ const FormComponent: React.FC<FormProps> = ({
                         id="remember"
                         type="checkbox"
                         value=""
-                        className="w-4 h-4 xl:w-[1vw] xl:h-[1vw] border border-primaryBackground rounded-sm bg-gray-50 focus:ring-3 focus:ring-primaryBackground dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primaryBackground dark:ring-offset-gray-800"
+                        className="w-4 h-4 xl:w-[1vw] xl:h-[1vw] border border-primaryBackground rounded-sm bg-gray-700 focus:ring-3 focus:ring-primaryBackground dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primaryBackground dark:ring-offset-gray-800"
                         required
                     />
                 </div>
                 <label
                     htmlFor="remember"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 xl:text-[1vw]"
+                    className="ms-2 text-sm font-medium text-gray-300 xl:text-[1vw]"
                 >
                     Acepto los{" "}
                     <Link href="/privacidad" className="text-primaryBackground hover:underline dark:text-primaryBackground">
@@ -121,12 +147,25 @@ const FormComponent: React.FC<FormProps> = ({
                 </label>
             </div>
 
-            <button
-                type="submit"
-                className="w-full bg-primaryBackground text-white py-2 px-4 rounded hover:bg-secondaryBackground transition duration-300 xl:text-[1.2vw]"
+            <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-primaryBackground text-white py-2 px-4 rounded hover:bg-secondaryBackground transition duration-300 xl:text-[1.2vw] disabled:opacity-50"
             >
-                Enviar
+                {isSubmitting ? 'Enviando...' : 'Enviar'}
             </button>
+
+            {submitResult && (
+                <div className={`
+                    mt-4 p-3 rounded 
+                    ${submitResult.success 
+                        ? 'bg-green-100 text-green-800' 
+                        : 'bg-red-100 text-red-800'
+                    }
+                `}>
+                    {submitResult.message}
+                </div>
+            )}
 
             <div className="text-xs text-gray-10 mt-4 block leading-5 overflow-auto h-[15vw] lg:h-[5vw] xl:text-[1vw] xl:h-[8vw] xl:leading-[1.5vw]">
                 <b>Responsable del tratamiento:</b> SM Home&apos;s Servicios Inmobiliarios, SL,

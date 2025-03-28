@@ -105,32 +105,45 @@ export default function TestimoniosClientContent() {
                     Testimonios en video
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    {currentVideos.map((video) => (
-                        <div key={video.id} className="bg-blackSoft30 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-                            <div className="aspect-w-16 aspect-h-9">
-                                <iframe
-                                    src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    className="w-full h-52 sm:h-64 md:h-56 lg:h-64 xl:h-[20vw] object-cover"
-                                    loading='lazy'
-                                ></iframe>
-                            </div>
-                            <div className="p-4 md:p-6 xl:p-[2vw] xl:space-y-[1.5vw]">
-                                <h3 className="text-base md:text-lg xl:text-[2vw] font-medium text-gray-10">{video.name}</h3>
-                                <p className="text-xs md:text-sm xl:text-[1vw] text-primaryBackground">{video.position}</p>
-                            </div>
+                {currentVideos.length > 0 ? (
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                            {currentVideos.map((video) => (
+                                <div key={video.id} className="bg-blackSoft30 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                                    <div className="aspect-w-16 aspect-h-9">
+                                        <iframe
+                                            src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                            className="w-full h-52 sm:h-64 md:h-56 lg:h-64 xl:h-[20vw] object-cover"
+                                            loading='lazy'
+                                        ></iframe>
+                                    </div>
+                                    <div className="p-4 md:p-6 xl:p-[2vw] xl:space-y-[1.5vw]">
+                                        <h3 className="text-base md:text-lg xl:text-[2vw] font-medium text-gray-10">{video.name}</h3>
+                                        <p className="text-xs md:text-sm xl:text-[1vw] text-primaryBackground">{video.position}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
 
-                {totalVideoPages > 1 && (
-                    <Pagination
-                        currentPage={currentVideoPage}
-                        totalPages={totalVideoPages}
-                        setPage={setCurrentVideoPage}
-                    />
+                        {totalVideoPages > 1 && (
+                            <Pagination
+                                currentPage={currentVideoPage}
+                                totalPages={totalVideoPages}
+                                setPage={setCurrentVideoPage}
+                            />
+                        )}
+                    </>
+                ) : (
+                    <div className="text-center bg-blackSoft30 rounded-xl p-8 xl:p-[2vw]">
+                        <p className="text-base md:text-lg xl:text-[2vw] text-primaryBackground">
+                            No hay testimonios en video por el momento
+                        </p>
+                        <p className="text-sm md:text-base xl:text-[1.5vw] text-gray-400 mt-4">
+                            Próximamente compartiremos más testimonios de nuestros clientes
+                        </p>
+                    </div>
                 )}
             </div>
         </>

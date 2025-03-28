@@ -24,7 +24,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ images }) => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {visibleImages.map((image, index) => (
                     <div
-                        key={image.id}
+                        key={image.id ?? `image-${index}`}
                         className="relative w-full aspect-square rounded overflow-hidden cursor-pointer"
                         onClick={() => {
                             setCurrentImageIndex(index);
@@ -76,7 +76,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ images }) => {
                             className="w-full h-full"
                         >
                             {images.map((image) => (
-                                <SwiperSlide key={image.id}>
+                                <SwiperSlide key={image.id ?? image.url}>
                                     <div className="relative w-full h-full">
                                         <Image
                                             src={image.url}

@@ -57,7 +57,7 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                 <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[3/2] overflow-hidden bg-blackSoft30">
                     {property.images.map((image, index) => (
                         <div
-                            key={image.id}
+                            key={image.id ?? `image-${index}`}
                             className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${
                                 index === current ? 'opacity-100' : 'opacity-0 pointer-events-none'
                             }`}
@@ -100,12 +100,11 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                 </div>
             </div>
 
-            {/* Miniaturas (solo en pantallas grandes) */}
             <div className="bg-blackSoft30 p-3 hidden lg:block">
                 <div className="flex justify-center space-x-2 overflow-x-auto py-2">
                     {property.images.map((image, index) => (
                         <button
-                            key={image.id}
+                            key={image.id ?? `image-${index}`}
                             onClick={() => goToSlide(index)}
                             disabled={isTransitioning}
                             className={`relative w-16 h-16 rounded-md overflow-hidden transition-all duration-300 flex-shrink-0 ${

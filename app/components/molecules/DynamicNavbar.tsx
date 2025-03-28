@@ -34,7 +34,6 @@ export default function DynamicNavbar() {
             setActive(true);
         }
 
-        // Cerrar el menú cuando cambia la ruta
         closeMenu();
     }, [pathname]);
 
@@ -42,7 +41,6 @@ export default function DynamicNavbar() {
 
     useScrollToggle(navBarRef, active, "navbar-active", isScrollToggleEnabled);
 
-    // Animación para los íconos de redes sociales
     const socialIconVariants = {
         hidden: { opacity: 0, x: 20 },
         visible: (i: number) => ({

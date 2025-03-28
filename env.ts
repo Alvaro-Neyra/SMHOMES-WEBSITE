@@ -1,0 +1,1 @@
+export const ADMIN_ACCESS_KEY = process.env.ADMIN_ACCESS_KEY;
