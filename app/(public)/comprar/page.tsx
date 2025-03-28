@@ -13,7 +13,7 @@ export default function BuyPage() {
                 title="¿Quieres comprar tu casa en Torrevieja o alrededores?"
                 subtitle="SM HOME&apos;S"
                 description="Compra tu casa rápidamente con nosotros."
-                imgSrc="/torrevieja3.jpg"
+                imgSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194909/torrevieja6_wcoudm.jpg"
                 primaryButtonText="Ver todas las propiedades"
                 secondaryButtonText="Más información"
                 primaryButtonLink="/propiedades"

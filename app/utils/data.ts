@@ -21,9 +21,9 @@ const exampleProperties = [
         price: 450000,
         currency: 'USD' as const,
         images: [
-            { id: 'img-1', url: '/torrevieja1.jpg', alt: 'Fachada casa', public_id: 'img-1' },
-            { id: 'img-2', url: '/torrevieja2.jpg', alt: 'Sala de estar', public_id: 'img-2' },
-            { id: 'img-3', url: '/torrevieja3.jpg', alt: 'Cocina', public_id: 'img-3' },
+            { id: 'img-1', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg', alt: 'Fachada casa', public_id: 'img-1' },
+            { id: 'img-2', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja2_idsahz.jpg', alt: 'Sala de estar', public_id: 'img-2' },
+            { id: 'img-3', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja3_oxg5bd.jpg', alt: 'Cocina', public_id: 'img-3' },
         ],
         description: 'Hermosa casa familiar en una zona tranquila...',
         features: [
@@ -39,7 +39,7 @@ const exampleProperties = [
         distanceToBeach: 800,
         elevator: false,
         usableArea: 200,
-        floorPlan: { id: 'img-16', url: '/torrevieja4.jpg', alt: 'Plano de la casa' },
+        floorPlan: { id: 'img-16', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja4_lmgiwr.jpg', alt: 'Plano de la casa' },
         selled: false,
         createdAt: new Date()
     },
@@ -62,9 +62,9 @@ const exampleProperties = [
         price: 280000,
         currency: 'USD' as const,
         images: [
-            { id: 'img-4', url: '/torrevieja4.jpg', alt: 'Vista departamento', public_id: 'img-4' },
-            { id: 'img-5', url: '/torrevieja5.jpg', alt: 'Dormitorio principal', public_id: 'img-5' },
-            { id: 'img-6', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'img-6' },
+            { id: 'img-4', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja4_lmgiwr.jpg', alt: 'Vista departamento', public_id: 'img-4' },
+            { id: 'img-5', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja5_hksdku.jpg', alt: 'Dormitorio principal', public_id: 'img-5' },
+            { id: 'img-6', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194909/torrevieja6_wcoudm.jpg', alt: 'Baño', public_id: 'img-6' },
         ],
     },
     {
@@ -86,9 +86,9 @@ const exampleProperties = [
             lng: -122.4194,
         },
         images: [
-            { id: 'img-7', url: '/torrevieja1.jpg', alt: 'Fachada casa', public_id: 'torrevieja1' },
-            { id: 'img-8', url: '/torrevieja2.jpg', alt: 'Sala de estar', public_id: 'torrevieja2' },
-            { id: 'img-9', url: '/torrevieja3.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
+            { id: 'img-7', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg', alt: 'Fachada casa', public_id: 'torrevieja1' },
+            { id: 'img-8', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja2_idsahz.jpg', alt: 'Sala de estar', public_id: 'torrevieja2' },
+            { id: 'img-9', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja3_oxg5bd.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
         ],
         selled: false,
         createdAt: new Date()
@@ -112,9 +112,9 @@ const exampleProperties = [
             lng: -122.4194,
         },
         images: [
-            { id: 'img-10', url: '/torrevieja4.jpg', alt: 'Vista departamento', public_id: 'torrevieja4' },
-            { id: 'img-11', url: '/torrevieja5.jpg', alt: 'Dormitorio principal', public_id: 'torrevieja5' },
-            { id: 'img-12', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'torrevieja6' },
+            { id: 'img-10', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja4_lmgiwr.jpg', alt: 'Vista departamento', public_id: 'torrevieja4' },
+            { id: 'img-11', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja5_hksdku.jpg', alt: 'Dormitorio principal', public_id: 'torrevieja5' },
+            { id: 'img-12', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194909/torrevieja6_wcoudm.jpg', alt: 'Baño', public_id: 'torrevieja6' },
         ],
         selled: false,
         createdAt: new Date()
@@ -138,9 +138,9 @@ const exampleProperties = [
             lng: -122.4194,
         },
         images: [
-            { id: 'img-13', url: '/torrevieja1.jpg', alt: 'Fachada casa', public_id: 'torrevieja1' },
-            { id: 'img-14', url: '/torrevieja2.jpg', alt: 'Sala de estar', public_id: 'torrevieja2' },
-            { id: 'img-15', url: '/torrevieja3.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
+            { id: 'img-13', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg', alt: 'Fachada casa', public_id: 'torrevieja1' },
+            { id: 'img-14', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja2_idsahz.jpg', alt: 'Sala de estar', public_id: 'torrevieja2' },
+            { id: 'img-15', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja3_oxg5bd.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
         ],
         selled: false,
         createdAt: new Date()
@@ -160,9 +160,9 @@ const exampleProperties = [
         price: 280000,
         currency: 'USD' as const,
         images: [
-            { id: 'img-16', url: '/torrevieja4.jpg', alt: 'Vista departamento', public_id: 'torrevieja4' },
-            { id: 'img-17', url: '/torrevieja5.jpg', alt: 'Dormitorio principal', public_id: 'torrevieja5' },
-            { id: 'img-18', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'torrevieja6' },
+            { id: 'img-16', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja4_lmgiwr.jpg', alt: 'Vista departamento', public_id: 'torrevieja4' },
+            { id: 'img-17', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja5_hksdku.jpg', alt: 'Dormitorio principal', public_id: 'torrevieja5' },
+            { id: 'img-18', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194909/torrevieja6_wcoudm.jpg', alt: 'Baño', public_id: 'torrevieja6' },
         ],
         coordinates: {
             lat: 37.7749,
@@ -190,9 +190,9 @@ const exampleProperties = [
             lng: -122.4194,
         },
         images: [
-            { id: 'img-19', url: '/torrevieja1.jpg', alt: 'Fachada casa', public_id: 'torrevieja1' },
-            { id: 'img-20', url: '/torrevieja2.jpg', alt: 'Sala de estar', public_id: 'torrevieja2' },
-            { id: 'img-21', url: '/torrevieja3.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
+            { id: 'img-19', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg', alt: 'Fachada casa', public_id: 'torrevieja1' },
+            { id: 'img-20', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja2_idsahz.jpg', alt: 'Sala de estar', public_id: 'torrevieja2' },
+            { id: 'img-21', url: 'https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja3_oxg5bd.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
         ],
         selled: false,
         createdAt: new Date()

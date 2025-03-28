@@ -8,7 +8,7 @@ export default function ContactPage() {
     return (
         <section>
             <HeroVideo
-                src="/videoprueba.mp4"
+                src="https://res.cloudinary.com/dbp2p2kwh/video/upload/v1743193270/videoprueba_bizcjy.mp4"
                 fallbackImage="/videoprueba_fallback.png"
                 heading="Contacto"
                 subHeading="¿Tienes alguna pregunta? ¡Contáctanos!"
@@ -50,7 +50,7 @@ export default function ContactPage() {
                                         Email
                                     </h3>
                                     <p className="text-primaryColor text-sm lg:text-[1vw]">
-                                        contactos@casasymar.es
+                                        contacto@smhomesrealstate.com
                                     </p>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
                                         Dirección
                                     </h3>
                                     <p className="text-primaryColor text-sm lg:text-[1vw] xl:leading-[1.5vw]">
-                                        Avda. Habaneras 121 · Torrevieja (Alicante) 03182
+                                        C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
                                     </p>
                                 </div>
 

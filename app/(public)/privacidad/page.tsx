@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
                         <br />
                         <strong>CIF:</strong> B-42629113
                         <br />
-                        <strong>Domicilio:</strong> Avenida de Las Habaneras 121, de Torrevieja, Alicante
+                        <strong>Domicilio:</strong> C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
                         <br />
                         <strong>Teléfono:</strong> 609656952
                         <br />

@@ -10,7 +10,7 @@ const StaticFooter = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div className="text-center md:text-left xl:flex xl:flex-col xl:gap-[2vw]">
                         <Image
-                            src="/logo.png"
+                            src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
                             alt="Logo"
                             width={120}
                             height={50}
@@ -20,7 +20,7 @@ const StaticFooter = () => {
                         <div className="flex justify-center md:justify-start gap-3 sm:gap-4 mb-4">
                             <Link href="https://www.youtube.com/" target="_blank">
                                 <Image
-                                    src="/youtube.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194910/youtube_nbkzdv.svg"
                                     alt="YouTube"
                                     width={50}
                                     height={50}
@@ -29,7 +29,7 @@ const StaticFooter = () => {
                             </Link>
                             <Link href="https://www.facebook.com/" target="_blank">
                                 <Image
-                                    src="/facebook.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194776/facebook_izyhaa.svg"
                                     alt="Facebook"
                                     width={50}
                                     height={50}
@@ -38,7 +38,7 @@ const StaticFooter = () => {
                             </Link>
                             <Link href="https://www.instagram.com/" target="_blank">
                                 <Image
-                                    src="/instagram.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194901/instagram_gk8yz2.svg"
                                     alt="Instagram"
                                     width={50}
                                     height={50}
@@ -47,7 +47,7 @@ const StaticFooter = () => {
                             </Link>
                             <Link href="https://www.linkedin.com/" target="_blank">
                                 <Image
-                                    src="/linkedin.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194902/linkedin_pkryrl.svg"
                                     alt="LinkedIn"
                                     width={50}
                                     height={50}
@@ -88,17 +88,17 @@ const StaticFooter = () => {
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Email</h6>
                                 <Link
-                                    href="mailto:contactos@smhomes.com"
+                                    href="mailto:contacto@smhomesrealstate.com"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
                                 >
-                                    contactos@smhomes.com
+                                    contacto@smhomesrealstate.com
                                 </Link>
                             </div>
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Dirección</h6>
                                 <p className="text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]">
                                     <FaLocationDot className="inline-block mr-2 text-primaryColor" />
-                                    Avda. Habaneras X · Torrevieja (Alicante) 03182
+                                    C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
                                 </p>
                             </div>
                         </div>

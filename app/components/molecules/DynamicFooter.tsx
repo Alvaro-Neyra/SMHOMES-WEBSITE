@@ -14,7 +14,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10 2xl:gap-16">
                     <div className="text-center md:text-left flex flex-col gap-3">
                         <Image
-                            src="/logo.png"
+                            src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
                             alt="Logo"
                             width={120}
                             height={50}
@@ -26,7 +26,7 @@ const Footer = () => {
                         <div className="flex justify-center md:justify-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 mb-4">
                             <Link href="https://www.youtube.com/" target="_blank">
                                 <Image
-                                    src="/youtube.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194910/youtube_nbkzdv.svg"
                                     alt="YouTube"
                                     className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                     width={50}
@@ -35,7 +35,7 @@ const Footer = () => {
                             </Link>
                             <Link href="https://www.facebook.com/" target="_blank">
                                 <Image
-                                    src="/facebook.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194776/facebook_izyhaa.svg"
                                     alt="Facebook"
                                     width={50}
                                     height={50}
@@ -44,7 +44,7 @@ const Footer = () => {
                             </Link>
                             <Link href="https://www.instagram.com/" target="_blank">
                                 <Image
-                                    src="/instagram.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194901/instagram_gk8yz2.svg"
                                     alt="Instagram"
                                     width={50}
                                     height={50}
@@ -53,7 +53,7 @@ const Footer = () => {
                             </Link>
                             <Link href="https://www.linkedin.com/" target="_blank">
                                 <Image
-                                    src="/linkedin.svg"
+                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194902/linkedin_pkryrl.svg"
                                     alt="LinkedIn"
                                     width={50}
                                     height={50}
@@ -103,10 +103,10 @@ const Footer = () => {
                                     Email
                                 </h6>
                                 <Link
-                                    href="mailto:contactos@smhomes.com"
+                                    href="mailto:contacto@smhomesrealstate.com"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl"
                                 >
-                                    contactos@smhomes.com
+                                    contacto@smhomesrealstate.com
                                 </Link>
                             </div>
                             <div className="flex flex-col gap-1">
@@ -115,7 +115,7 @@ const Footer = () => {
                                 </h6>
                                 <p className="text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl">
                                     <FaLocationDot className="inline-block mr-2 text-primaryColor" />
-                                    Avda. Habaneras X · Torrevieja (Alicante) 03182
+                                    C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
                                 </p>
                             </div>
                         </div>

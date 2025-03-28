@@ -223,19 +223,19 @@ export default function PropertyForm({
                     </div>
                     <div>
                         <label htmlFor="type" className="block text-gray-200 mb-2">Tipo de Propiedad</label>
-                        <select
+                        <Dropdown
+                            label="Seleccionar Tipo"
                             name="type"
-                            value={formData.type}
-                            onChange={handleChange}
+                            options={["Casa", "Departamento", "Terreno", "Local Comercial", "Oficina"]}
+                            defaultValue={formData.type === "casa" ? "Casa" : formData.type === "departamento" ? "Departamento" : formData.type === "terreno" ? "Terreno" : formData.type === "local" ? "Local Comercial" : "Oficina"}
+                            onChange={(value) => {
+                                setFormData({
+                                    ...formData,
+                                    type: value === "Casa" ? "casa" : value === "Departamento" ? "departamento" : value === "Terreno" ? "terreno" : value === "Local Comercial" ? "local" : "oficina"
+                                });
+                            }}
                             className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
-                            required
-                        >
-                            <option value="casa">Casa</option>
-                            <option value="departamento">Departamento</option>
-                            <option value="terreno">Terreno</option>
-                            <option value="local">Local Comercial</option>
-                            <option value="oficina">Oficina</option>
-                        </select>
+                        />
                     </div>
 
                     <div>

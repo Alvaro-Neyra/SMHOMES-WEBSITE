@@ -53,12 +53,11 @@ export default function DynamicNavbar() {
         })
     };
 
-    // Array de redes sociales
     const socialLinks = [
-        { href: "https://www.youtube.com/", src: "/youtube.svg", alt: "YouTube" },
-        { href: "https://www.facebook.com/", src: "/facebook.svg", alt: "Facebook" },
-        { href: "https://www.instagram.com/", src: "/instagram.svg", alt: "Instagram" },
-        { href: "https://www.linkedin.com/", src: "/linkedin.svg", alt: "LinkedIn" }
+        { href: "https://www.youtube.com/", src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194910/youtube_nbkzdv.svg", alt: "YouTube" },
+        { href: "https://www.facebook.com/", src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194776/facebook_izyhaa.svg", alt: "Facebook" },
+        { href: "https://www.instagram.com/", src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194901/instagram_gk8yz2.svg", alt: "Instagram" },
+        { href: "https://www.linkedin.com/", src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194902/linkedin_pkryrl.svg", alt: "LinkedIn" }
     ];
 
     return (
@@ -73,7 +72,7 @@ export default function DynamicNavbar() {
                 <div className="flex justify-center lg:justify-start w-full lg:w-auto">
                     <Link href={"/"}>
                         <Image
-                            src="/logo.png"
+                            src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
                             alt="Logo"
                             width={120}
                             height={50}

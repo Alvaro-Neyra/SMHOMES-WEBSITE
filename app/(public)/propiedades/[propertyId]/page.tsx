@@ -248,10 +248,10 @@ export default async function PropertyPage({ params }: Readonly<PageProps>) {
                             <div className="flex items-center">
                                 <Mail className="w-5 h-5 mr-2 text-primaryBackground" />
                                 <Link
-                                    href="mailto:contactos@smhomes.com"
+                                    href="mailto:contacto@smhomesrealstate.com"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300"
                                 >
-                                    contactos@smhomes.com
+                                    contacto@smhomesrealstate.com
                                 </Link>
                             </div>
                         </div>

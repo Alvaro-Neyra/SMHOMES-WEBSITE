@@ -44,7 +44,7 @@ ${rawFormData.message}
         `;
 
         await sendEmail(
-            process.env.COMPANY_CONTACT_EMAIL ?? 'contactos@smhomes.com',
+            process.env.COMPANY_CONTACT_EMAIL ?? 'contacto@smhomesrealstate.com',
             emailSubject,
             emailText
         );

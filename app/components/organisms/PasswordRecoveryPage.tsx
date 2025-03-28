@@ -189,7 +189,7 @@ export default function PasswordRecoveryPageComponent() {
                     variants={itemVariants}
                 >
                     <Image 
-                        src="/torrevieja1.jpg"
+                        src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg"
                         alt="Recovery"
                         layout="fill"
                         objectFit="cover"
@@ -202,7 +202,7 @@ export default function PasswordRecoveryPageComponent() {
                             whileTap={{ scale: 0.95 }}
                         >
                             <Image 
-                                src="/logo.png"
+                                src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
                                 alt="Logo"
                                 width={64}
                                 height={64}
@@ -250,7 +250,7 @@ export default function PasswordRecoveryPageComponent() {
                                     placeholder="Correo electrónico"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
+                                    className="w-full p-3 pl-10 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
                                     required
                                 />
                             </motion.div>
@@ -291,7 +291,7 @@ export default function PasswordRecoveryPageComponent() {
                                     placeholder="Código de verificación"
                                     value={otp}
                                     onChange={(e) => setOtp(e.target.value)}
-                                    className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
+                                    className="w-full p-3 pl-10 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
                                     maxLength={6}
                                     required
                                 />
@@ -340,7 +340,7 @@ export default function PasswordRecoveryPageComponent() {
                                     placeholder="Nueva contraseña"
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
-                                    className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
+                                    className="w-full p-3 pl-10 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
                                     required
                                     minLength={6}
                                 />
@@ -353,7 +353,7 @@ export default function PasswordRecoveryPageComponent() {
                                     placeholder="Confirmar contraseña"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
+                                    className="w-full p-3 pl-10 text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent transition"
                                     required
                                 />
                             </motion.div>
@@ -421,7 +421,7 @@ export default function PasswordRecoveryPageComponent() {
                             placeholder="Clave de acceso"
                             value={accessKey}
                             onChange={(e) => setAccessKey(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-md mb-4"
+                            className="w-full p-3 text-black border border-gray-300 rounded-md mb-4"
                         />
 
                         <div className="flex justify-between">

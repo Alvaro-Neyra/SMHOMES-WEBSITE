@@ -18,7 +18,7 @@ export default function StaticNavbar({position, active}: Readonly<NavbarProps>) 
                 <div className="flex justify-center lg:justify-start w-full lg:w-auto">
                     <Link href={"/"}>
                         <Image
-                            src="/logo.png"
+                            src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
                             alt="Logo"
                             width={120}
                             height={50}

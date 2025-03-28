@@ -9,16 +9,16 @@ import ImageSection from "../../components/molecules/ImageSection";
 
 export default function NosotrosPage() {
     const imageData = [
-        { src: "/torrevieja1.jpg", alt: "Descripción imagen 1" },
-        { src: "/torrevieja2.jpg", alt: "Descripción imagen 2" },
-        { src: "/torrevieja3.jpg", alt: "Descripción imagen 3" },
-        { src: "/torrevieja4.jpg", alt: "Descripción imagen 4" }
+        { src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg", alt: "Descripción imagen 1" },
+        { src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja2_idsahz.jpg", alt: "Descripción imagen 2" },
+        { src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja3_oxg5bd.jpg", alt: "Descripción imagen 3" },
+        { src: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja4_lmgiwr.jpg", alt: "Descripción imagen 4" }
     ];
 
     return (
         <>
             <HeroImage
-                src="/torrevieja5.jpg"
+                src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194907/torrevieja5_hksdku.jpg"
                 heading="SM Home&apos;s"
                 subHeading="Hacemos de tu hogar una realidad"
                 linkText="Contacto"
@@ -40,7 +40,7 @@ export default function NosotrosPage() {
             </StaticHeroSectionImages>
             <StatsSection />
             <StaticHeroSection
-                imageSrc="/torrevieja6.jpg"
+                imageSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194909/torrevieja6_wcoudm.jpg"
                 altText="Nosotros image 1"
             >
                 <p className="text-gray-100 text-lg sm:text-xl lg:text-xl xl:text-[1.5vw] xl:leading-[2vw] mb-[4vw] xl:mb-[2vw]">
@@ -51,7 +51,7 @@ export default function NosotrosPage() {
                 </p>
             </StaticHeroSection>
             <StaticHeroSection
-                imageSrc="/torrevieja7.jpg"
+                imageSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194909/torrevieja7_ndsmp9.jpg"
                 altText="Nosotros image 2"
                 imagePosition="left"
             >
@@ -65,7 +65,7 @@ export default function NosotrosPage() {
             </StaticHeroSection>
             <RealEstateServices />
             <ImageSection
-                imageSrc="/torrevieja7.jpg"
+                imageSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194909/torrevieja7_ndsmp9.jpg"
                 title="Contacta con nosotros"
                 subtitle="Estamos aquí para ayudarte"
                 buttonText="Contacto"

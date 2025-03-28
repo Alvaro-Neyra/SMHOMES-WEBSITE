@@ -95,7 +95,7 @@ export default function LoginPage() {
                     variants={itemVariants}
                 >
                     <Image
-                        src="/torrevieja1.jpg"
+                        src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg"
                         alt="Login"
                         layout="fill"
                         objectFit="cover"
@@ -108,7 +108,7 @@ export default function LoginPage() {
                             whileTap={{ scale: 0.95 }}
                         >
                             <Image
-                                src="/logo.png"
+                                src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
                                 alt="Logo"
                                 width={64}
                                 height={64}
@@ -213,7 +213,7 @@ export default function LoginPage() {
                             placeholder="Clave de acceso"
                             value={accessKey}
                             onChange={(e) => setAccessKey(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-md mb-4"
+                            className="w-full p-3 border border-gray-300 rounded-md mb-4 text-black"
                         />
 
                         <div className="flex justify-between">
