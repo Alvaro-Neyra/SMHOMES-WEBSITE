@@ -151,7 +151,7 @@ html {
 }
 
 .custom-list li {
-  background: url(https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194775/check-mark_xmkvdy.svg) no-repeat left center;
+  background: url("/check-mark.svg") no-repeat left center;
   background-size: 2vw 2vw;
   padding-left: 2.5vw;
   line-height: 2vw;

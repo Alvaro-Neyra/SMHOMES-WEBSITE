@@ -11,7 +11,7 @@ export const NAV_LINKS = [
 
 export const slides: SlidesProps[] = [
     {
-        imageUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/slide1_xd7t7r.jpg",
+        imageUrl: "/slide1.jpg",
         titleSmall: "¡ENCUENTRA TU HOGAR IDEAL!",
         titleLarge: "CONFIANZA Y SEGURIDAD",
         subtitle: "Descubre propiedades exclusivas con nosotros. Tu satisfacción es nuestra prioridad.",
@@ -19,7 +19,7 @@ export const slides: SlidesProps[] = [
         buttonLink: "/propiedades",
     },
     {
-        imageUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194904/slide2_a8ylrx.jpg",
+        imageUrl: "/slide2.jpg",
         titleSmall: "¡LA CASA DE TUS SUEÑOS TE ESPERA!",
         titleLarge: "EXPERIENCIA Y CALIDAD",
         subtitle: "Ofrecemos las mejores opciones del mercado. Encuentra tu hogar perfecto hoy.",
@@ -27,7 +27,7 @@ export const slides: SlidesProps[] = [
         buttonLink: "/vender",
     },
     {
-        imageUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194904/slide3_cm93kh.jpg",
+        imageUrl: "/slide3.jpg",
         titleSmall: "¡HACEMOS TUS SUEÑOS REALIDAD!",
         titleLarge: "COMPROMISO Y DEDICACIÓN",
         subtitle: "Nuestro equipo está aquí para ayudarte en cada paso del camino. Contáctanos para más información.",
@@ -134,49 +134,49 @@ export const marcas = [
         id: 1,
         nombre: "Idealista",
         descripcion: "El portal inmobiliario líder en España",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194818/idealista-logo_jvkp4w.svg"
+        logoUrl: "/idealista-logo.svg"
     },
     {
         id: 2,
         nombre: "Fotocasa",
         descripcion: "Expertos en compra y alquiler de viviendas",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194777/fotocasa-logo_xynead.png"
+        logoUrl: "/fotocasa-logo.png"
     },
     {
         id: 3,
         nombre: "BBVA Inmobiliaria",
         descripcion: "Soluciones financieras para tu hogar",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194775/bbva-logo_mhrvym.png"
+        logoUrl: "/bbva-logo.png"
     },
     {
         id: 4,
         nombre: "CaixaBank Real Estate",
         descripcion: "Seguridad en tu inversión inmobiliaria",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194775/caixabank-logo_sjpvvv.png"
+        logoUrl: "/caixabank-logo.png"
     },
     {
         id: 5,
         nombre: "Solvia",
         descripcion: "Especialistas en activos inmobiliarios",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194904/solvia-logo_ssqj1r.png"
+        logoUrl: "/solvia-logo.png"
     },
     {
         id: 6,
         nombre: "Grupo Insur",
         descripcion: "Promotora inmobiliaria desde 1945",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194902/insur-logo_ahp13w.png"
+        logoUrl: "/insur-logo.png"
     },
     {
         id: 7,
         nombre: "Engel & Völkers",
         descripcion: "Inmuebles de lujo en toda España",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194776/engels-logo_zcckpp.svg"
+        logoUrl: "/engels-logo.svg"
     },
     {
         id: 8,
         nombre: "Metrovacesa",
         descripcion: "Proyectos inmobiliarios de calidad",
-        logoUrl: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/metrovacesa-logo_epihlq.png"
+        logoUrl: "/metrovacesa-logo.png"
     }
 ];
 
@@ -209,12 +209,12 @@ export const videoTestimonials: VideoTestimonial[] = [
 
 export const stats = [
     {
-        icon: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194777/home-icon_nrqsxa.svg",
+        icon: "/home-icon.svg",
         value: "+100",
         label: "casas vendidas al año",
     },
     {
-        icon: "https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194905/star_gsq8jv.svg",
+        icon: "/star.svg",
         value: "4,9",
         label: "sobre 5 en Google",
     },

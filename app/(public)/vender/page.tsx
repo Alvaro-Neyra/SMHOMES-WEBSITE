@@ -13,7 +13,7 @@ export default function SellPage() {
                 title="¿Quieres vender tu casa en Torrevieja o alrededores?"
                 subtitle="SM HOME&apos;S"
                 description="Vende tu casa rápidamente con nosotros."
-                imgSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja3_oxg5bd.jpg"
+                imgSrc="/torrevieja3.jpg"
                 primaryButtonText="Más información"
                 secondaryButtonText="Conoce nuestro servicio HOME"
                 primaryButtonLink="#sell-reasons-section"

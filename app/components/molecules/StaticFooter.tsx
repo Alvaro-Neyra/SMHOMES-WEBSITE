@@ -10,7 +10,7 @@ const StaticFooter = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <div className="text-center md:text-left xl:flex xl:flex-col xl:gap-[2vw]">
                         <Image
-                            src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
+                            src="/logo.png"
                             alt="Logo"
                             width={120}
                             height={50}
@@ -20,7 +20,7 @@ const StaticFooter = () => {
                         <div className="flex justify-center md:justify-start gap-3 sm:gap-4 mb-4">
                             <Link href="https://www.youtube.com/" target="_blank">
                                 <Image
-                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194910/youtube_nbkzdv.svg"
+                                    src="/youtube.svg"
                                     alt="YouTube"
                                     width={50}
                                     height={50}
@@ -29,7 +29,7 @@ const StaticFooter = () => {
                             </Link>
                             <Link href="https://www.facebook.com/" target="_blank">
                                 <Image
-                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194776/facebook_izyhaa.svg"
+                                    src="/facebook.svg"
                                     alt="Facebook"
                                     width={50}
                                     height={50}
@@ -38,7 +38,7 @@ const StaticFooter = () => {
                             </Link>
                             <Link href="https://www.instagram.com/" target="_blank">
                                 <Image
-                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194901/instagram_gk8yz2.svg"
+                                    src="/instagram.svg"
                                     alt="Instagram"
                                     width={50}
                                     height={50}
@@ -47,7 +47,7 @@ const StaticFooter = () => {
                             </Link>
                             <Link href="https://www.linkedin.com/" target="_blank">
                                 <Image
-                                    src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194902/linkedin_pkryrl.svg"
+                                    src="/linkedin.svg"
                                     alt="LinkedIn"
                                     width={50}
                                     height={50}

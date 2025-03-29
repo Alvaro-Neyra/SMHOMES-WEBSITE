@@ -71,9 +71,7 @@ export default function ContactPage() {
                                         Horario
                                     </h3>
                                     <p className="text-primaryColor text-sm lg:text-[1vw] xl:leading-[1.5vw]">
-                                        Lunes a viernes: 09:00 a 18:00 <br />
-                                        Sábados: 11:00 - 13:00 <br />
-                                        Domingo: Cerrado
+                                        24 horas al día, 7 días a la semana
                                     </p>
                                 </div>
                                 <Link

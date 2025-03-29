@@ -7,7 +7,7 @@ export default function HousesSectionDynamic() {
         <HeroSection
             title="Casas en venta en Torrevieja, La Mata, Orihuela Costa"
             subtitle="Abre las puertas a un estilo de vida único en el corazón del Mediterráneo"
-            imageSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja2_idsahz.jpg"
+            imageSrc="/torrevieja2.jpg"
             altText="Propiedades en la Costa Blanca Sur"
             imagePosition="right"
         >

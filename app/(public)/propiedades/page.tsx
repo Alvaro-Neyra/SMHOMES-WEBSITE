@@ -9,7 +9,7 @@ export default async function PropiedadesPage() {
     return (
         <>
             <HeroImage
-                src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194910/torrevieja8_mxwgtn.jpg"
+                src="/torrevieja8.jpg"
                 heading="Propiedades"
                 subHeading="Encuentra la propiedad de tus sueños"
                 linkText="Más información sobre comprar"

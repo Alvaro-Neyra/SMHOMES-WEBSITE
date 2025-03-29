@@ -189,7 +189,7 @@ export default function PasswordRecoveryPageComponent() {
                     variants={itemVariants}
                 >
                     <Image 
-                        src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg"
+                        src="/torrevieja1.jpg"
                         alt="Recovery"
                         layout="fill"
                         objectFit="cover"
@@ -202,7 +202,7 @@ export default function PasswordRecoveryPageComponent() {
                             whileTap={{ scale: 0.95 }}
                         >
                             <Image 
-                                src="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194903/logo_et12m2.png"
+                                src="/logo.png"
                                 alt="Logo"
                                 width={64}
                                 height={64}

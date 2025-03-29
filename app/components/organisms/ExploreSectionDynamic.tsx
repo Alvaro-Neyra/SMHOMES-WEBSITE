@@ -7,7 +7,7 @@ export default function ExploreSectionDynamic() {
         <HeroSection
             title="Despierta en el corazón del Mediterráneo"
             subtitle="Descubre la casa de tus sueños en España"
-            imageSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194906/torrevieja1_aybbba.jpg"
+            imageSrc="/torrevieja1.jpg"
             altText="Propiedad en el Mediterráneo"
             imagePosition="left"
         >

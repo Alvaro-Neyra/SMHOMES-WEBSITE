@@ -12,7 +12,7 @@ export default function ServicioHomePage() {
                 title="Servicio Home"
                 subtitle="Nuestro servicio estrella para vender tu casa en tiempo record"
                 description="Conoce nuestro servicio HOME y descubre cómo podemos ayudarte!"
-                imgSrc="https://res.cloudinary.com/dbp2p2kwh/image/upload/v1743194910/torrevieja8_mxwgtn.jpg"
+                imgSrc="/torrevieja8.jpg"
                 primaryButtonText="Como vender?"
                 secondaryButtonText="Nuestro servicio HOME"
                 primaryButtonLink="/vender"
