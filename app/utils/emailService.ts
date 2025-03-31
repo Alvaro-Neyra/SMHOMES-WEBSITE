@@ -1,43 +1,40 @@
-import nodemailer from "nodemailer";
-import { OAuth2Client } from "google-auth-library";
-import dotenv from "dotenv";
+interface EmailOptions {
+    to: string;
+    subject: string;
+    text: string;
+    html?: string;
+    replyTo?: string;
+    senderName?: string;
+}
 
-dotenv.config();
-
-const oAuth2Client = new OAuth2Client(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground"
-);
-oAuth2Client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
-
-export async function sendEmail(to: string, subject: string, text: string) {
+export async function sendEmail(options: EmailOptions) {
     try {
-        const { token } = await oAuth2Client.getAccessToken();
-
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                type: "OAuth2",
-                user: process.env.GOOGLE_USER_EMAIL,
-                clientId: process.env.GOOGLE_CLIENT_ID,
-                clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-                refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-                accessToken: token as string, 
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const response = await fetch(`${baseUrl}/api/send-email`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
+            body: JSON.stringify(options),
         });
 
-        const mailOptions = {
-            from: `"SMHomes Admin" <${process.env.GOOGLE_USER_EMAIL}>`,
-            to,
-            subject,
-            text,
-        };
+        const data = await response.json();
 
-        const result = await transporter.sendMail(mailOptions);
-        return result;
+        if (!data.success) {
+            throw new Error(data.error || 'No se pudo enviar el correo');
+        }
+
+        return data.result;
     } catch (error) {
         console.error("Error enviando email:", error);
         throw new Error("No se pudo enviar el correo");
     }
+}
+
+export async function sendEmailLegacy(to: string, subject: string, text: string) {
+    return sendEmail({
+        to,
+        subject,
+        text
+    });
 }

@@ -49,7 +49,8 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
 
     return (
         <div 
-            className="bg-blackSoft30 rounded-lg overflow-hidden mb-8 shadow-xl"
+            className="bg-blackSoft30 rounded-lg overflow-hidden mb-8 shadow-xl mx-auto 
+                    w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-10/12"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -67,7 +68,7 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                                 alt={image.alt}
                                 fill
                                 priority={index === 0}
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                                sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 75vw, 640px"
                                 className="object-contain sm:object-cover bg-blackSoft"
                             />
                         </div>
@@ -79,7 +80,7 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                 </div>
 
                 <button 
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10  rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
                     onClick={slideLeft}
                     disabled={isTransitioning}
                     aria-label="Imagen anterior"

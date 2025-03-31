@@ -239,14 +239,14 @@ export const highlights = [
         number: 3,
         title: "Experiencia y resultados probados",
         description:
-            "En Casas y Mar combinamos la tecnología más avanzada con un sistema de venta probado y eficaz, respaldado por más de 25 años de experiencia en el sector inmobiliario de Torrevieja y la Costa Blanca Sur. Contamos con una red de más de 400 colaboradores a nivel local, nacional e internacional.",
+            "En SM HOME'S combinamos la tecnología más avanzada con un sistema de venta probado y eficaz, respaldado por más de 25 años de experiencia en el sector inmobiliario de Torrevieja y la Costa Blanca Sur. Contamos con una red de más de 400 colaboradores a nivel local, nacional e internacional.",
         highlight: "¡Vendemos más de 100 viviendas de media al año!",
     },
     {
         number: 4,
         title: "Confianza y tranquilidad en la venta",
         description:
-            "Con Casas y Mar, puedes estar seguro de que tu propiedad está en buenas manos. Tenemos más de 500 reseñas sobre nosotros en “Google”, con una valoración de 4,9 sobre 5, lo que significa que el grado de satisfacción de los clientes con nuestro servicio es muy alto. Búscanos y descúbrelo por ti mismo lo que otros clientes opinan de nosotros.",
+            "Con SM HOME'S, puedes estar seguro de que tu propiedad está en buenas manos. Tenemos más de 500 reseñas sobre nosotros en “Google”, con una valoración de 4,9 sobre 5, lo que significa que el grado de satisfacción de los clientes con nuestro servicio es muy alto. Búscanos y descúbrelo por ti mismo lo que otros clientes opinan de nosotros.",
         highlight: "¡Nuestra valoración es de 4,9 sobre 5 en “Google”!",
     },
     {

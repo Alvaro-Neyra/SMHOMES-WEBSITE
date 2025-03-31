@@ -219,7 +219,7 @@ export default function PasswordRecoveryPageComponent() {
                         {getStepTitle()}
                     </motion.h2>
                     
-                    {error && (
+                    {typeof error === "string" && error && (
                         <motion.div 
                             className="mb-4 p-3 bg-red-100 text-red-700 rounded-md text-sm"
                             initial={{ opacity: 0, y: -10 }}
