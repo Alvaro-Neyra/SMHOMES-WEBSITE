@@ -14,7 +14,7 @@ export default function Home() {
       <ExploreSection />
       <WhyChooseUsSection />
       <VideoSection
-        videoSrc="https://res.cloudinary.com/dbp2p2kwh/video/upload/v1743193266/torrevieja_meiusj.mp4"
+        videoSrc="https://res.cloudinary.com/dbp2p2kwh/video/upload/v1743632450/torrevieja_mbxmyv.mp4"
         fallbackImage="/torrevieja_fallback.jpg"
         title="Encuentra tu Hogar Perfecto"
         subtitle="Descubre las mejores propiedades en venta y alquiler con nuestra inmobiliaria. ¡Tu sueño hecho realidad!"

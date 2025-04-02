@@ -8,7 +8,7 @@ export default function ContactPage() {
     return (
         <section>
             <HeroVideo
-                src="https://res.cloudinary.com/dbp2p2kwh/video/upload/v1743193270/videoprueba_bizcjy.mp4"
+                src="https://res.cloudinary.com/dbp2p2kwh/video/upload/v1743632448/videoprueba_wqqizn.mp4"
                 fallbackImage="/videoprueba_fallback.png"
                 heading="Contacto"
                 subHeading="¿Tienes alguna pregunta? ¡Contáctanos!"
