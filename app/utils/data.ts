@@ -41,6 +41,7 @@ const exampleProperties = [
         usableArea: 200,
         floorPlan: { id: 'img-16', url: '/torrevieja4.jpg', alt: 'Plano de la casa' },
         selled: false,
+        transactionType: ['venta'],
         createdAt: new Date()
     },
     {
@@ -61,11 +62,13 @@ const exampleProperties = [
         hasPool: false,
         price: 280000,
         currency: 'USD' as const,
+        selled: false,
         images: [
             { id: 'img-4', url: '/torrevieja4.jpg', alt: 'Vista departamento', public_id: 'img-4' },
             { id: 'img-5', url: '/torrevieja5.jpg', alt: 'Dormitorio principal', public_id: 'img-5' },
             { id: 'img-6', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'img-6' },
         ],
+        transactionType: ['venta'],
     },
     {
         id: 'prop-3',
@@ -91,6 +94,7 @@ const exampleProperties = [
             { id: 'img-9', url: '/torrevieja3.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
         ],
         selled: false,
+        transactionType: ['venta'],
         createdAt: new Date()
     },
     {
@@ -117,6 +121,7 @@ const exampleProperties = [
             { id: 'img-12', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'torrevieja6' },
         ],
         selled: false,
+        transactionType: ['venta'],
         createdAt: new Date()
     },
     {
@@ -143,6 +148,7 @@ const exampleProperties = [
             { id: 'img-15', url: '/torrevieja3.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
         ],
         selled: false,
+        transactionType: ['venta'],
         createdAt: new Date()
     },
     {
@@ -169,6 +175,7 @@ const exampleProperties = [
             lng: -122.4194,
         },
         selled: false,
+        transactionType: ['venta'],
         createdAt: new Date()
     },
     {
@@ -195,6 +202,7 @@ const exampleProperties = [
             { id: 'img-21', url: '/torrevieja3.jpg', alt: 'Cocina', public_id: 'torrevieja3' },
         ],
         selled: false,
+        transactionType: ['venta'],
         createdAt: new Date()
     }
 ];
@@ -207,34 +215,36 @@ function getBaseUrl() {
     }
 }
 
-async function fetchWithRetry<T>(url: string, retries = 3, delay = 1000): Promise<T> {
-    for (let i = 0; i < retries; i++) {
-        try {
-            const res = await axios.get<T>(url);
-            return res.data;
-        } catch (error) {
-            console.error(`Error en intento ${i + 1}:`, error);
-            if (i < retries - 1) {
-                await new Promise((resolve) => setTimeout(resolve, delay));
-            }
-        }
-    }
-    throw new Error(`No se pudo obtener datos de ${url} después de ${retries} intentos.`);
-}
-
-
 export async function getAllProperties(): Promise<Property[]> {
     try {
-        return await fetchWithRetry<Property[]>(`${getBaseUrl()}/api/properties`);
+        const response = await axios.get<Property[]>(`${getBaseUrl()}/api/properties`);
+        const properties = response.data.map((property) => ({
+            ...property,
+            transactionType: property.transactionType.filter((type: string) =>
+                type === "venta" || type === "renta"
+            ),
+        }));
+        return properties;
     } catch (error) {
         console.error("Error obteniendo propiedades, usando datos locales:", error);
-        return exampleProperties;
+        return exampleProperties.map((property) => ({
+            ...property,
+            transactionType: property.transactionType.filter((type: string) =>
+                type === "venta" || type === "renta"
+            ),
+        }));
     }
 }
 
 export async function getPropertyById(propertyId: string): Promise<Property | undefined> {
+    if (!propertyId || propertyId === "undefined") {
+        console.error("Invalid property ID:", propertyId);
+        return undefined;
+    }
+    
     try {
-        return await fetchWithRetry<Property>(`${getBaseUrl()}/api/properties/${propertyId}`);
+        const response = await axios.get<Property>(`${getBaseUrl()}/api/properties/${propertyId}`);
+        return response.data;
     } catch (error) {
         console.error(`Error obteniendo propiedad ${propertyId}, usando datos locales:`, error);
         return undefined;
@@ -243,7 +253,8 @@ export async function getPropertyById(propertyId: string): Promise<Property | un
 
 export const fetchRandomProperties = async (): Promise<Property[]> => {
     try {
-        return await fetchWithRetry<Property[]>(`${getBaseUrl()}/api/properties/random-top`);
+        const response = await axios.get<Property[]>(`${getBaseUrl()}/api/properties/random-top`);
+        return response.data;
     } catch (error) {
         console.error("Error al obtener propiedades aleatorias:", error);
         return [];

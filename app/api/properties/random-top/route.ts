@@ -12,7 +12,14 @@ export async function GET() {
             return NextResponse.json({ error: "No hay propiedades disponibles" }, { status: 404 });
         }
 
-        const shuffledProperties = properties.toSorted(() => 0.5 - Math.random()).slice(0, 6);
+        const transformedProperties = properties.map((property) => ({
+            ...property,
+            id: (property._id as string).toString(),
+        }));
+
+        const shuffledProperties = transformedProperties
+            .toSorted(() => 0.5 - Math.random())
+            .slice(0, 6);
 
         return NextResponse.json(shuffledProperties, { status: 200 });
     } catch (error) {

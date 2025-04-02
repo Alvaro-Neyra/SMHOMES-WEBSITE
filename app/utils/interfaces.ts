@@ -222,27 +222,27 @@ export interface Property {
     address: string;
     city: string;
     state: string;
-    constructionArea: number;
+    constructionArea?: number;
     landArea?: number;
-    bedrooms: number;
-    bathrooms: number;
-    hasPool: boolean;
+    bedrooms?: number;
+    bathrooms?: number;
+    hasPool?: boolean;
     price: number;
     currency: "USD" | "MXN" | "EUR";
     images: PropertyImage[];
-    floorPlan?: PropertyImage;
+    floorPlan?: PropertyImage | string | null;
     description?: string;
     features?: string[];
     distanceToBeach?: number;
     elevator?: boolean;
     usableArea?: number;
-    coordinates: Coordinates;
+    coordinates?: Coordinates;
     googleMapsUrl?: string;
     selled?: boolean;
+    transactionType: ("venta" | "renta")[];
     tour3dUrl?: string;
     createdAt?: Date;
 }
-
 
 export interface PropertyFormData {
     id?: string;
@@ -251,23 +251,24 @@ export interface PropertyFormData {
     address: string;
     city: string;
     state: string;
-    constructionArea: number;
-    landArea: number;
-    bedrooms: number;
-    bathrooms: number;
-    hasPool: boolean;
+    constructionArea?: number;
+    landArea?: number;
+    bedrooms?: number;
+    bathrooms?: number;
+    hasPool?: boolean;
     price: number;
     currency: "USD" | "MXN" | "EUR";
     images: PropertyImage[];
-    floorPlan?: PropertyImage;
-    description: string;
-    features: string[];
-    distanceToBeach: number;
-    elevator: boolean;
-    usableArea: number;
-    coordinates: Coordinates;
+    floorPlan?: PropertyImage | string | null;
+    description?: string;
+    features?: string[];
+    distanceToBeach?: number;
+    elevator?: boolean;
+    usableArea?: number;
+    coordinates?: Coordinates;
     googleMapsUrl?: string;
     selled?: boolean;
+    transactionType: ("venta" | "renta")[];
     tour3dUrl?: string;
     createdAt?: Date;
 }
@@ -297,8 +298,4 @@ export interface PropertyInterestFormProps {
     messagePlaceholder: string;
     propertyId: string;
     propertyAddress: string;
-}
-
-export interface PageProps {
-    params: Promise<{ propertyId: string }>;
 }

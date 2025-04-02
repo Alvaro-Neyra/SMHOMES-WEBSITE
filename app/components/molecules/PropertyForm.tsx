@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, ChangeEvent } from "react";
 import Link from "next/link";
-import { PlusCircle, Upload, X, Image as ImageIcon, Save } from "lucide-react";
+import { PlusCircle, Upload, X, Image as ImageIcon, Save, GripVertical } from "lucide-react";
 import { PropertyFormData, PropertyImage } from "@/app/utils/interfaces";
 import Dropdown from "../atoms/Dropdown";
 import Image from "next/image";
@@ -34,6 +34,7 @@ export default function PropertyForm({
     const [previewImages, setPreviewImages] = useState<PropertyImage[]>(initialData.images || []);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const floorPlanInputRef = useRef<HTMLInputElement>(null);
+    const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
     const handleChange = (
         e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -140,15 +141,21 @@ export default function PropertyForm({
 
         const coordsRegex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
         const coordsMatch = coordsRegex.exec(googleMapsUrl);
+
         if (coordsMatch) {
-            const [lat, lng] = coordsMatch;
+            const lat = parseFloat(coordsMatch[1]);
+            const lng = parseFloat(coordsMatch[2]);
+
             setFormData(prev => ({
                 ...prev,
                 coordinates: {
-                    lat: parseFloat(lat),
-                    lng: parseFloat(lng)
-                }
+                    lat: lat,
+                    lng: lng
+                },
+                googleMapsUrl: googleMapsUrl
             }));
+
+            console.log("Coordinates extracted:", { lat, lng });
             return;
         }
 
@@ -162,15 +169,15 @@ export default function PropertyForm({
 
     const handleMatterportUrlSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         const cleanUrl = matterportUrl.trim();
-        
+
         const fullUrlRegex = /https:\/\/my\.matterport\.com\/show\/\?m=([\w-]+)/;
         const fullUrlMatch = fullUrlRegex.exec(cleanUrl);
-        
+
         const modelCodeRegex = /^[\w-]+$/;
         const modelCodeMatch = modelCodeRegex.exec(cleanUrl);
-    
+
         let normalizedUrl;
         if (fullUrlMatch) {
             normalizedUrl = cleanUrl;
@@ -180,7 +187,7 @@ export default function PropertyForm({
             alert('Invalid Matterport URL or model code');
             return;
         }
-    
+
         setFormData(prev => ({
             ...prev,
             tour3dUrl: normalizedUrl,
@@ -199,6 +206,52 @@ export default function PropertyForm({
         console.log("Datos cargados en el formulario:", updatedFormData);
 
         await onSubmit(updatedFormData);
+    };
+
+    // Drag-and-drop reordering functions
+    const handleDragStart = (e: React.DragEvent, index: number) => {
+        setDraggedIndex(index);
+        // Make the drag preview transparent
+        if (e.dataTransfer.setDragImage) {
+            const dragElement = document.createElement('div');
+            dragElement.style.opacity = '0';
+            document.body.appendChild(dragElement);
+            e.dataTransfer.setDragImage(dragElement, 0, 0);
+            setTimeout(() => {
+                document.body.removeChild(dragElement);
+            }, 0);
+        }
+        e.dataTransfer.effectAllowed = 'move';
+    };
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+    };
+
+    const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+        e.preventDefault();
+        if (draggedIndex === null || draggedIndex === dropIndex) return;
+
+        // Create new image arrays with reordered images
+        const newImages = [...previewImages];
+        const draggedImage = newImages[draggedIndex];
+
+        newImages.splice(draggedIndex, 1);
+
+        newImages.splice(dropIndex, 0, draggedImage);
+
+        setPreviewImages(newImages);
+        setFormData(prev => ({
+            ...prev,
+            images: newImages
+        }));
+
+        setDraggedIndex(null);
+    };
+
+    const handleDragEnd = () => {
+        setDraggedIndex(null);
     };
 
     return (
@@ -226,12 +279,22 @@ export default function PropertyForm({
                         <Dropdown
                             label="Seleccionar Tipo"
                             name="type"
-                            options={["Casa", "Departamento", "Terreno", "Local Comercial", "Oficina"]}
-                            defaultValue={formData.type === "casa" ? "Casa" : formData.type === "departamento" ? "Departamento" : formData.type === "terreno" ? "Terreno" : formData.type === "local" ? "Local Comercial" : "Oficina"}
+                            options={["Casa", "Departamento", "Terreno", "Local Comercial", "Oficina", "Garaje"]}
+                            defaultValue={
+                                formData.type === "casa" ? "Casa" :
+                                    formData.type === "departamento" ? "Departamento" :
+                                        formData.type === "terreno" ? "Terreno" :
+                                            formData.type === "local" ? "Local Comercial" :
+                                                formData.type === "garaje" ? "Garaje" : "Oficina"
+                            }
                             onChange={(value) => {
                                 setFormData({
                                     ...formData,
-                                    type: value === "Casa" ? "casa" : value === "Departamento" ? "departamento" : value === "Terreno" ? "terreno" : value === "Local Comercial" ? "local" : "oficina"
+                                    type: value === "Casa" ? "casa" :
+                                        value === "Departamento" ? "departamento" :
+                                            value === "Terreno" ? "terreno" :
+                                                value === "Local Comercial" ? "local" :
+                                                    value === "Garaje" ? "garaje" : "oficina"
                                 });
                             }}
                             className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
@@ -284,6 +347,33 @@ export default function PropertyForm({
                                     ...formData,
                                     selled: value === "Vendida"
                                 });
+                            }}
+                            className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="transactionType" className="block text-gray-200 mb-2">
+                            Tipo de Transacción
+                        </label>
+                        <Dropdown
+                            label="Seleccionar Tipo"
+                            name="transactionType"
+                            options={["Venta", "Alquiler", "Ambos"]}
+                            defaultValue={
+                                formData.transactionType?.includes("venta") && formData.transactionType?.includes("renta")
+                                    ? "Ambos"
+                                    : formData.transactionType?.includes("venta")
+                                        ? "Venta"
+                                        : "Alquiler"
+                            }
+                            onChange={(value) => {
+                                if (value === "Ambos") {
+                                    setFormData({ ...formData, transactionType: ["renta", "venta"] });
+                                } else if (value === "Venta") {
+                                    setFormData({ ...formData, transactionType: ["venta"] });
+                                } else {
+                                    setFormData({ ...formData, transactionType: ["renta"] });
+                                }
                             }}
                             className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
                         />
@@ -553,14 +643,14 @@ export default function PropertyForm({
                             <input
                                 type="number"
                                 name="lat"
-                                value={formData.coordinates?.lat || 0}
+                                value={formData.coordinates?.lat ?? 0}
                                 onChange={(e) => {
                                     const newLat = parseFloat(e.target.value) || 0;
                                     setFormData(prev => ({
                                         ...prev,
                                         coordinates: {
                                             lat: newLat,
-                                            lng: prev.coordinates?.lng || 0
+                                            lng: prev.coordinates?.lng ?? 0
                                         }
                                     }));
                                 }}
@@ -574,13 +664,13 @@ export default function PropertyForm({
                             <input
                                 type="number"
                                 name="lng"
-                                value={formData.coordinates?.lng || 0}
+                                value={formData.coordinates?.lng ?? 0}
                                 onChange={(e) => {
                                     const newLng = parseFloat(e.target.value) || 0;
                                     setFormData(prev => ({
                                         ...prev,
                                         coordinates: {
-                                            lat: prev.coordinates?.lat || 0,
+                                            lat: prev.coordinates?.lat ?? 0,
                                             lng: newLng
                                         }
                                     }));
@@ -659,15 +749,26 @@ export default function PropertyForm({
                     >
                         <Upload size={40} className="mb-2" />
                         <p>Haz clic para seleccionar imágenes o arrastra y suelta aquí</p>
-                        <p className="text-sm text-gray-400 mt-2">JPG, PNG, GIF hasta 10 MB</p>
+                        <p className="text-sm text-gray-400 mt-2">JPG, PNG, GIF</p>
                     </button>
                 </div>
 
                 {previewImages.length > 0 && (
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {previewImages.map((preview, index) => (
-                            <div key={`${index}-${preview.url}`} className="relative group">
-                                <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg">
+                            <div
+                                key={`${index}-${preview.url}`}
+                                className="relative group cursor-move"
+                                draggable={true}
+                                onDragStart={(e) => handleDragStart(e, index)}
+                                onDragOver={(e) => handleDragOver(e)}
+                                onDrop={(e) => handleDrop(e, index)}
+                                onDragEnd={handleDragEnd}
+                            >
+                                <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg border-2 border-transparent hover:border-primaryBackground">
+                                    <div className="absolute top-2 left-2 bg-black bg-opacity-50 text-white rounded-full p-1 z-10">
+                                        <GripVertical size={16} />
+                                    </div>
                                     <Image
                                         src={preview.url}
                                         alt={preview.alt || `Preview ${index + 1}`}
@@ -721,8 +822,8 @@ export default function PropertyForm({
                 {formData.floorPlan && (
                     <div className="mt-4">
                         <Image
-                            src={formData.floorPlan.url}
-                            alt={formData.floorPlan.alt || "Plano de la propiedad"}
+                            src={typeof formData.floorPlan === 'object' ? formData.floorPlan.url : ''}
+                            alt={typeof formData.floorPlan === 'object' ? formData.floorPlan.alt || "Plano de la propiedad" : "Plano de la propiedad"}
                             className="w-full h-auto rounded-lg border border-primaryBackground border-opacity-30"
                             width={100}
                             height={50}

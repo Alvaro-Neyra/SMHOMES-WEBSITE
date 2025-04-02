@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
 import { Property, PropertyFormData } from "@/app/utils/interfaces";
 import PropertyForm from "@/app/components/molecules/PropertyForm";
+import { deleteImagesFromCloudinary } from "@/app/utils/imageService";
 
 export default function EditPropertyPage() {
     const router = useRouter();
@@ -14,7 +15,8 @@ export default function EditPropertyPage() {
 
     const [loading, setLoading] = useState(false);
     const [fetchingProperty, setFetchingProperty] = useState(true);
-    const [propertyData, setPropertyData] = useState<PropertyFormData | null>(null);
+    const [propertyData, setPropertyData] = useState<PropertyFormData | null>(null as PropertyFormData | null);
+    const [uploadProgress] = useState(0);
 
     const toPropertyFormData = (property: Property): PropertyFormData => {
         return {
@@ -24,10 +26,10 @@ export default function EditPropertyPage() {
             address: property.address || "",
             city: property.city || "",
             state: property.state || "",
-            constructionArea: property.constructionArea || 0,
+            constructionArea: property.constructionArea ?? 0,
             landArea: property.landArea ?? 0,
-            bedrooms: property.bedrooms || 0,
-            bathrooms: property.bathrooms || 0,
+            bedrooms: property.bedrooms ?? 0,
+            bathrooms: property.bathrooms ?? 0,
             hasPool: property.hasPool || false,
             price: property.price || 0,
             currency: property.currency || "USD",
@@ -41,6 +43,7 @@ export default function EditPropertyPage() {
             coordinates: property.coordinates || { lat: 0, lng: 0 },
             googleMapsUrl: property.googleMapsUrl ?? "",
             selled: property.selled || false,
+            transactionType: property.transactionType || ["venta"],
             createdAt: property.createdAt || new Date(),
             tour3dUrl: property.tour3dUrl ?? "",
         };
@@ -67,21 +70,121 @@ export default function EditPropertyPage() {
     }, [propertyId]);
 
     const handleSubmit = async (formData: PropertyFormData) => {
-        setLoading(true);
-
-        console.log("Enviado formulario:", formData);
-
         try {
-            await axios.put(`/api/properties/${propertyId}`, formData, { withCredentials: true });
+            setLoading(true);
+    
+            const existingImages = propertyData?.images || [];
+            const updatedImages = formData.images;
+    
+            const imagesToRemove = existingImages.filter((existingImg) => {
+                return !updatedImages.some(
+                    (updatedImg) =>
+                        typeof updatedImg === "object" &&
+                        updatedImg.url === existingImg.url
+                );
+            });
+    
+            if (imagesToRemove.length > 0) {
+                await deleteImagesFromCloudinary(imagesToRemove.filter(img => img.public_id !== undefined) as { public_id: string }[]);
+            }
+    
+            const base64Images = formData.images.filter((img) =>
+                typeof img === "object" && img.url?.startsWith('data:')
+            );
+    
+            const existingImagesFiltered = formData.images.filter((img) =>
+                typeof img === "object" && img.url && !img.url.startsWith('data:')
+            );
+    
+            let uploadedImages = [];
+            if (base64Images.length > 0) {
+                const imagesForUpload = base64Images.map(img =>
+                    typeof img === "object" ? img.url : img
+                );
+    
+                const uploadResponse = await fetch("/api/upload", {
+                    method: "POST",
+                    body: JSON.stringify({ images: imagesForUpload }),
+                    headers: { "Content-Type": "application/json" },
+                });
+    
+                const uploadData = await uploadResponse.json();
+                uploadedImages = uploadData.images || [];
+            }
+    
+            const formattedImages = [
+                ...existingImagesFiltered.map(img => ({
+                    url: img.url,
+                    public_id: img.public_id ?? `existing-${Math.random().toString(36).substring(2)}`,
+                    alt: img.alt ?? ""
+                })),
+                ...uploadedImages.map((img: { url: string; public_id?: string; alt?: string }) => ({
+                    url: img.url,
+                    public_id: img.public_id ?? `cloud-${Math.random().toString(36).substring(2)}`,
+                    alt: img.alt ?? ""
+                }))
+            ];
+    
+            let formattedFloorPlan = null;
+            if (formData.floorPlan && typeof formData.floorPlan === "object") {
+                if (formData.floorPlan.url.startsWith('data:')) {
+                    const uploadResponse = await fetch("/api/upload", {
+                        method: "POST",
+                        body: JSON.stringify({ images: [formData.floorPlan.url] }),
+                        headers: { "Content-Type": "application/json" },
+                    });
+    
+                    const uploadData = await uploadResponse.json();
+                    const uploadedFloorPlan = uploadData.images?.[0];
+    
+                    if (uploadedFloorPlan) {
+                        formattedFloorPlan = {
+                            url: uploadedFloorPlan.url,
+                            public_id: uploadedFloorPlan.public_id,
+                            alt: formData.floorPlan.alt || "Plano de la propiedad"
+                        };
+                    }
+                } else {
+                    formattedFloorPlan = {
+                        url: formData.floorPlan.url,
+                        public_id: formData.floorPlan.public_id ?? `existing-${Math.random().toString(36).substring(2)}`,
+                        alt: formData.floorPlan.alt || "Plano de la propiedad"
+                    };
+                }
+            }
+    
+            const hasBase64 = formattedImages.some(img => img.url.startsWith('data:'));
+            if (hasBase64) {
+                throw new Error("Aún hay imágenes en base64 que no se procesaron correctamente");
+            }
+    
+            const updatedPropertyData = {
+                ...formData,
+                images: formattedImages,
+                floorPlan: formattedFloorPlan,
+            };
+    
+            const response = await fetch(`/api/properties/${propertyId}`, {
+                method: "PUT",
+                body: JSON.stringify(updatedPropertyData),
+                headers: { "Content-Type": "application/json" },
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Error al actualizar la propiedad");
+            }
+    
             alert("Propiedad actualizada exitosamente");
             router.push("/admin/dashboard");
         } catch (error) {
-            console.error("Error al actualizar la propiedad:", error);
-            alert("Error al actualizar la propiedad. Por favor, intenta de nuevo.");
+            console.error("Error:", error);
+            alert(error instanceof Error ? error.message : "No se pudo actualizar la propiedad.");
         } finally {
             setLoading(false);
         }
     };
+
 
     if (fetchingProperty || !propertyData) {
         return (
@@ -99,6 +202,19 @@ export default function EditPropertyPage() {
                 </Link>
                 <h1 className="text-2xl font-bold">Editar Propiedad</h1>
             </div>
+
+            {uploadProgress > 0 && uploadProgress < 100 && (
+                <div className="mb-4">
+                    <p>Subiendo imágenes: {uploadProgress}%</p>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                        <div
+                            className="bg-blue-600 h-2.5 rounded-full"
+                            style={{ width: `${uploadProgress}%` }}
+                        ></div>
+                    </div>
+                </div>
+            )}
+
             <PropertyForm
                 initialData={propertyData}
                 onSubmit={handleSubmit}

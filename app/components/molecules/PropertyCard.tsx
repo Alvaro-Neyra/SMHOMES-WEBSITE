@@ -9,6 +9,9 @@ import HouseIcon from "../atoms/HouseIcon";
 import BedIcon from "../atoms/BedIcon";
 import SwimmingPoolIcon from "../atoms/SwimmingPoolIcon";
 import BathIcon from "../atoms/BathIcon";
+import { AreaChartIcon, BuildingIcon, LandPlotIcon, StoreIcon, Check } from "lucide-react";
+import { EnterpriseIcon } from "../atoms/EnterpriseIcon";
+import GarageIcon from "../atoms/GarageIcon";
 
 const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ property, scale = true }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -45,14 +48,242 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
 
     const hasImages = property.images && property.images.length > 0;
 
+    const getTypeIcon = () => {
+        switch(property.type) {
+            case 'casa':
+                return <HouseIcon className="w-5 h-5 text-primaryBackground" />;
+            case 'departamento':
+                return <BuildingIcon className="w-5 h-5 text-primaryBackground" />;
+            case 'terreno':
+                return <LandPlotIcon className="w-5 h-5 text-primaryBackground" />;
+            case 'local':
+                return <StoreIcon className="w-5 h-5 text-primaryBackground" />;
+            case 'oficina':
+                return <EnterpriseIcon className="w-5 h-5 text-primaryBackground" />;
+            case 'garaje':
+                return <GarageIcon className="w-5 h-5 text-primaryBackground" />;
+            default:
+                return <HouseIcon className="w-5 h-5 text-primaryBackground" />;
+        }
+    };
+
+    const getPropertyTypeText = () => {
+        const firstLetter = property.type.charAt(0).toUpperCase();
+        const rest = property.type.slice(1);
+        return firstLetter + rest;
+    };
+
+    const getTransactionTypeText = () => {
+        if (property.transactionType?.includes('venta') && property.transactionType?.includes('renta')) {
+            return 'Venta y Renta';
+        } else if (property.transactionType?.includes('venta')) {
+            return 'Venta';
+        } else if (property.transactionType?.includes('renta')) {
+            return 'Renta';
+        }
+        return '';
+    };
+
+    const formatPrice = () => {
+        const mainPrice = property.price || 0;
+        if (!mainPrice) return "Consultar precio";
+    
+        let symbol = "";
+        let suffix = "";
+    
+        switch (property.currency) {
+            case "USD":
+                symbol = "$";
+                break;
+            case "EUR":
+                symbol = "€";
+                break;
+            case "MXN":
+                symbol = "$";
+                suffix = " MXN";
+                break;
+            default:
+                symbol = "";
+        }
+    
+        return (
+            <>
+                {symbol}
+                {mainPrice.toLocaleString()}
+                {suffix}
+                {property.transactionType?.includes("renta") && " /mes"}
+            </>
+        );
+    };
+
+    // Extract featured details based on property type
+    const getPropertyDetails = () => {
+        const details = [];
+        
+        // Common details across property types
+        if (property.constructionArea) {
+            details.push(
+                <div key="constructionArea" className="flex items-center space-x-1 text-gray-200">
+                    <HouseIcon className="w-4 h-4 text-primaryBackground" />
+                    <span className="text-sm whitespace-nowrap">
+                        {property.constructionArea} m²
+                    </span>
+                </div>
+            );
+        } else if (property.usableArea) {
+            details.push(
+                <div key="usableArea" className="flex items-center space-x-1 text-gray-200">
+                    <AreaChartIcon className="w-4 h-4 text-primaryBackground" />
+                    <span className="text-sm whitespace-nowrap">
+                        {property.usableArea} m² útiles
+                    </span>
+                </div>
+            );
+        }
+
+        // Property-specific details
+        switch(property.type) {
+            case 'casa':
+            case 'departamento':
+                if (property.bedrooms) {
+                    details.push(
+                        <div key="bedrooms" className="flex items-center space-x-1 text-gray-200">
+                            <BedIcon className="w-4 h-4 text-primaryBackground" />
+                            <span className="text-sm whitespace-nowrap">
+                                {property.bedrooms} hab.
+                            </span>
+                        </div>
+                    );
+                }
+                
+                if (property.bathrooms) {
+                    details.push(
+                        <div key="bathrooms" className="flex items-center space-x-1 text-gray-200">
+                            <BathIcon className="w-4 h-4 text-primaryBackground" />
+                            <span className="text-sm whitespace-nowrap">
+                                {property.bathrooms} baños
+                            </span>
+                        </div>
+                    );
+                }
+                
+                if (property.hasPool) {
+                    details.push(
+                        <div key="pool" className="flex items-center space-x-1 text-gray-200">
+                            <SwimmingPoolIcon className="w-4 h-4 text-primaryBackground" />
+                            <span className="text-sm whitespace-nowrap">Piscina</span>
+                        </div>
+                    );
+                }
+                break;
+                
+            case 'terreno':
+                if (property.landArea) {
+                    details.push(
+                        <div key="landArea" className="flex items-center space-x-1 text-gray-200">
+                            <LandPlotIcon className="w-4 h-4 text-primaryBackground" />
+                            <span className="text-sm whitespace-nowrap">
+                                {property.landArea} m²
+                            </span>
+                        </div>
+                    );
+                }
+                break;
+                
+            case 'local':
+            case 'oficina':
+            case 'garaje':
+                if (property.elevator) {
+                    details.push(
+                        <div key="elevator" className="flex items-center space-x-1 text-gray-200">
+                            <Check className="w-4 h-4 text-primaryBackground" />
+                            <span className="text-sm whitespace-nowrap">Con elevador</span>
+                        </div>
+                    );
+                }
+                break;
+        }
+        
+        // Beach distance as a feature
+        if (property.distanceToBeach && property.distanceToBeach < 1000) {
+            details.push(
+                <div key="beach" className="flex items-center space-x-1 text-gray-200">
+                    <Check className="w-4 h-4 text-primaryBackground" />
+                    <span className="text-sm whitespace-nowrap">
+                        {property.distanceToBeach}m a la playa
+                    </span>
+                </div>
+            );
+        }
+        
+        // Add one important feature if available
+        if (property.features && property.features.length > 0 && details.length < 4) {
+            const importantFeatures = ['Terraza', 'Garaje', 'Ascensor', 'Aire acondicionado'];
+            const featuredItem = property.features.find(feature => 
+                importantFeatures.some(important => feature.includes(important))
+            );
+            
+            if (featuredItem) {
+                details.push(
+                    <div key="feature" className="flex items-center space-x-1 text-gray-200">
+                        <Check className="w-4 h-4 text-primaryBackground" />
+                        <span className="text-sm whitespace-nowrap">
+                            {featuredItem}
+                        </span>
+                    </div>
+                );
+            }
+        }
+        
+        // Ensure we have at least 2 features for consistency
+        while (details.length < 2) {
+            if (property.transactionType && property.transactionType.length > 0 && !details.some(d => d.key === "transactionType")) {
+                details.push(
+                    <div key="transactionType" className="flex items-center space-x-1 text-gray-200">
+                        <Check className="w-4 h-4 text-primaryBackground" />
+                        <span className="text-sm whitespace-nowrap">
+                            {getTransactionTypeText()}
+                        </span>
+                    </div>
+                );
+            } else if (property.city && !details.some(d => d.key === "location")) {
+                details.push(
+                    <div key="location" className="flex items-center space-x-1 text-gray-200">
+                        <Check className="w-4 h-4 text-primaryBackground" />
+                        <span className="text-sm whitespace-nowrap">
+                            {property.city}
+                        </span>
+                    </div>
+                );
+            } else {
+                break; // Avoid infinite loop if we can't add more details
+            }
+        }
+        
+        return details.slice(0, 4);
+    };
+
+    // Mejorado: Función para manejar nombres largos adaptando el tamaño de fuente
+    const getPropertyNameClass = () => {
+        const nameLength = (property.name || `${getPropertyTypeText()} en ${property.city || ''}`).length;
+        
+        if (nameLength > 50) {
+            return "text-sm font-semibold text-white line-clamp-2";
+        } else if (nameLength > 30) {
+            return "text-base font-semibold text-white line-clamp-2";
+        } else {
+            return "text-lg font-semibold text-white line-clamp-2";
+        }
+    };
+
     return (
-        <div className={`bg-blackSoft30 rounded-lg overflow-hidden transition-transform duration-300 ${scale ? "hover:scale-[1.01]" : ""} border border-primaryBackground border-opacity-30`}>
-            <div className="relative w-full h-64 md:h-72 lg:h-80">
+        <div className={`bg-blackSoft30 rounded-lg overflow-hidden transition-transform duration-300 ${scale ? "hover:scale-[1.01]" : ""} border border-primaryBackground border-opacity-30 flex flex-col h-full`}>
+            <div className="relative w-full h-64">
                 {hasImages ? (
                     <>
                         <Image
                             src={property.images[displayedImageIndex].url}
-                            alt={property.images[displayedImageIndex].alt}
+                            alt={property.images[displayedImageIndex].alt || `Imagen de ${property.name || 'propiedad'}`}
                             fill
                             className={`object-cover transition-opacity duration-300 ${
                                 isAnimating ? "opacity-0" : "opacity-100"
@@ -70,7 +301,7 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                                     aria-label="Previous image"
                                     disabled={isAnimating}
                                 >
-                                    <ArrowLeftIcon className="w-5 h-5 md:w-6 md:h-6" />
+                                    <ArrowLeftIcon className="w-5 h-5 text-primaryBackground" />
                                 </button>
 
                                 <button
@@ -82,10 +313,10 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                                     aria-label="Next image"
                                     disabled={isAnimating}
                                 >
-                                    <ArrowRightIcon className="w-5 h-5 md:w-6 md:h-6" />
+                                    <ArrowRightIcon className="w-5 h-5 text-primaryBackground" />
                                 </button>
 
-                                <div className="absolute bottom-2 right-2 bg-blackSoft30 bg-opacity-70 px-2 py-1 rounded text-xs md:text-sm lg:text-basetext-white z-10">
+                                <div className="absolute bottom-2 right-2 bg-blackSoft30 bg-opacity-70 px-2 py-1 rounded text-xs text-white z-10">
                                     {currentImageIndex + 1}/{property.images.length}
                                 </div>
                             </>
@@ -93,76 +324,65 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                     </>
                 ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-r from-blackSoft30 to-blackSoft30 p-4">
-                        <HouseIcon className="w-16 h-16 md:w-20 md:h-20 mb-2" />
-                        <div className="text-white text-center">
-                            <p className="font-semibold text-lg md:text-xl">Propiedad exclusiva</p>
-                            <p className="text-sm md:text-base opacity-80">Imágenes próximamente</p>
+                        {getTypeIcon()}
+                        <div className="text-white text-center mt-2">
+                            <p className="font-semibold text-lg">Propiedad exclusiva</p>
+                            <p className="text-sm opacity-80">Imágenes próximamente</p>
                         </div>
                     </div>
                 )}
 
-                <div className="absolute top-2 left-2 bg-primaryBackground text-white text-xs md:text-sm lg:text-base px-2 py-1 rounded z-10">
-                    {property.type.charAt(0).toUpperCase() + property.type.slice(1)}
+                <div className="absolute top-2 left-2 bg-primaryBackground text-white text-xs px-2 py-1 rounded z-10">
+                    {getPropertyTypeText()}
                 </div>
+                
+                {property.transactionType && property.transactionType.length > 0 && (
+                    <div className="absolute top-2 right-2 bg-secondaryBackground text-white text-xs px-2 py-1 rounded z-10">
+                        {getTransactionTypeText()}
+                    </div>
+                )}
+                
+                {property.selled && (
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-lg px-4 py-2 rounded-full z-10 rotate-12">
+                        VENDIDO
+                    </div>
+                )}
             </div>
 
-            <div className="p-4">
-                <div className="flex flex-col mb-2">
-                    <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white truncate">
-                        {property.name}
+            <div className="p-4 flex flex-col flex-grow">
+                <div className="flex flex-col mb-3 h-20">
+                    <h3 className={getPropertyNameClass()}>
+                        {property.name || `${getPropertyTypeText()} en ${property.city || ''}`}
                     </h3>
-                    <p className="text-sm md:text-base text-gray-300 truncate">
-                        {property.address}
+                    <p className="text-sm text-gray-300 truncate">
+                        {property.address || ''}
                     </p>
-                    <p className="text-sm md:text-base text-gray-300 truncate">
-                        {property.city}, {property.state}
+                    <p className="text-sm text-gray-300 truncate">
+                        {property.city && property.state ? `${property.city}, ${property.state}` : (property.city || property.state || '')}
                     </p>
                 </div>
 
-                <div className="text-xl md:text-2xl lg:text-3xl font-bold text-primaryBackground mb-3">
-                    {property.currency === 'USD' && '$'}
-                    {property.currency === 'EUR' && '€'}
-                    {property.currency === 'MXN' && '$'}
-                    {property.price.toLocaleString()}
-                    {property.currency === 'MXN' && ' MXN'}
+                <div className="text-xl font-bold text-primaryBackground mb-3 h-8 flex items-center">
+                    {formatPrice()}
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 mb-3">
-                    <div className="flex items-center space-x-1 text-gray-200">
-                        <HouseIcon className="w-5 h-5 md:w-6 md:h-6" />
-                        <span className="text-sm md:text-base lg:text-lg">
-                            {property.constructionArea} m²
-                        </span>
-                    </div>
-
-                    <div className="flex items-center space-x-1 text-gray-200">
-                        <BedIcon className="w-5 h-5 md:w-6 md:h-6" />
-                        <span className="text-sm md:text-base lg:text-lg">
-                            {property.bedrooms} hab.
-                        </span>
-                    </div>
-
-                    <div className="flex items-center space-x-1 text-gray-200">
-                        <BathIcon className="w-5 h-5 md:w-6 md:h-6" />
-                        <span className="text-sm md:text-base lg:text-lg">
-                            {property.bathrooms} baños
-                        </span>
-                    </div>
-
-                    {property.hasPool && (
-                        <div className="flex items-center space-x-1 text-gray-200">
-                            <SwimmingPoolIcon className="w-5 h-5 md:w-6 md:h-6" />
-                            <span className="text-sm md:text-base lg:text-lg">Piscina</span>
-                        </div>
-                    )}
+                <div className="grid grid-cols-2 gap-2 mb-4 h-16">
+                    {getPropertyDetails()}
                 </div>
 
-                <Link
-                    href={`/propiedades/${property.id}`}
-                    className="block w-full bg-primaryBackground text-white text-center py-2 rounded hover:bg-secondaryBackground transition duration-300"
-                >
-                    Ver detalle
-                </Link>
+                <div className="mt-auto flex flex-col space-y-2">
+                    <div className="py-1 px-2 bg-blackSoft30 bg-opacity-50 text-gray-200 text-sm rounded text-center flex items-center justify-center">
+                        {getTypeIcon()}
+                        <span className="ml-2">{getPropertyTypeText()}</span>
+                    </div>
+                    
+                    <Link
+                        href={`/propiedades/${property.id}`}
+                        className="block w-full bg-primaryBackground text-white text-center py-2 rounded hover:bg-secondaryBackground transition duration-300"
+                    >
+                        Ver detalle
+                    </Link>
+                </div>
             </div>
         </div>
     );

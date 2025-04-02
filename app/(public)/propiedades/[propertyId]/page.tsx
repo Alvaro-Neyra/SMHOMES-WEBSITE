@@ -8,38 +8,46 @@ import {
     Phone,
     Mail,
     Check,
+    Building,
+    Ruler,
+    Maximize
 } from "lucide-react";
 import { fetchRandomProperties, getPropertyById } from "@/app/utils/data";
 import Breadcrumbs from "@/app/components/atoms/Breadcrumbs";
 import PropertyImageCarousel from "@/app/components/molecules/PropertyCarrusel";
 import Link from "next/link";
-import { PageProps } from "@/app/utils/interfaces";
 import ImageViewer from "@/app/components/molecules/ImageViewer";
 import PropertyInterestForm from "@/app/components/molecules/PropertyInterestForm";
 import PropertyCardsCarousel from "@/app/components/molecules/PropertyCardsCarrusel";
 import MapWrapper from "@/app/components/atoms/MapWrapper";
 import Description from "@/app/components/atoms/Description";
 import Property3DTour from "@/app/components/atoms/Property3DTour";
-import Image from "next/image";
+import { FloorPlanSection } from "@/app/components/molecules/FloorPlanSection";
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ propertyId: string }>;
+}) {
     const { propertyId } = await params;
     const property = await getPropertyById(propertyId);
     if (!property) {
         return { title: "Propiedad no encontrada" };
     }
     return {
-        title: `${property.address} | Inmobiliaria`,
-        description: `${property.type} con ${property.bedrooms} habitaciones y ${property.bathrooms} baños.`,
+        title: `${property.name || property.address || "Propiedad"} | Inmobiliaria`,
+        description: `${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}.`,
     };
 }
 
-export default async function PropertyPage({ params }: Readonly<PageProps>) {
+export default async function PropertyPage({
+    params,
+}: {
+    params: Promise<{ propertyId: string }>;
+}) {
     const randomProperties = await fetchRandomProperties();
-
-    const resolvedParams = await params;
-
-    const property = await getPropertyById(resolvedParams.propertyId);
+    const { propertyId } = await params;
+    const property = await getPropertyById(propertyId);
 
     if (!property) {
         notFound();
@@ -48,182 +56,228 @@ export default async function PropertyPage({ params }: Readonly<PageProps>) {
     const breadcrumbItems = [
         { label: "Inicio", href: "/" },
         { label: "Propiedades", href: "/propiedades" },
-        { label: property.name },
+        { label: property.name || property.address || "Propiedad" },
     ];
+
+
+    const constructionArea = property.constructionArea ?? 0;
+    const usableArea = property.usableArea ?? 0;
+    const landArea = property.landArea ?? 0;
+    const bedrooms = property.bedrooms ?? 0;
+    const bathrooms = property.bathrooms ?? 0;
+    const distanceToBeach = property.distanceToBeach ?? 0;
+    const hasPool = !!property.hasPool;
+    const features = property.features || [];
+    const price = property.price || 0;
+    const currency = property.currency || "USD";
+    const images = Array.isArray(property.images) ? property.images : [];
 
     return (
         <div className="px-4 py-8 text-gray-100 bg-blackSoft30 min-h-screen space-y-8">
             <Breadcrumbs items={breadcrumbItems} />
 
-            <div className="mb-6 flex flex-col justify-center items-center gap-4 lg:flex-row lg:justify-between">
-                <div className="text-start">
-                    <h1 className="text-3xl font-bold text-white mb-2">{property.name}</h1>
-                    <p className="text-xl text-gray-300">{property.address}</p>
-                    <p className="text-lg text-gray-400">{property.city}, {property.state}</p>
+            <div className="mb-6 flex flex-col justify-center items-center gap-4 lg:flex-row lg:justify-between lg:items-center">
+                <div className="text-center lg:text-start">
+                    {property.name && <h1 className="text-xl font-bold text-white mb-2">{property.name}</h1>}
+                    {property.address && <p className="text-xl text-gray-300">{property.address}</p>}
+                    {(property.city || property.state) && (
+                        <p className="text-lg text-gray-400">
+                            {[property.city, property.state].filter(Boolean).join(", ")}
+                        </p>
+                    )}
                 </div>
-                <div className="flex items-center space-x-5">
-                    <span className="text-2xl font-bold text-amber-200">
-                        {property.currency === "USD" ? "$" : "€"}
-                        {property.price.toLocaleString()}
-                        {property.currency === "MXN" && " MXN"}
-                    </span>
-                    <span className="bg-primaryBackground text-white px-4 py-2 rounded-full text-base">
-                        {property.selled ? 'Vendido' : 'En venta'}
-                    </span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 flex-wrap justify-center">
+                    <div className="flex items-center justify-center gap-3 flex-wrap">
+                        {price > 0 && (
+                            <span className="text-2xl font-bold text-amber-200">
+                                {currency === "USD" ? "$" : "€"}
+                                {price.toLocaleString()}
+                                {currency === "MXN" && " MXN"}
+                            </span>
+                        )}
+                        <span className="bg-primaryBackground text-white px-4 py-2 rounded-full text-base">
+                            {property.selled ? 'Vendido' : 'Disponible'}
+                        </span>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center gap-2">
+                        {property.transactionType?.includes("venta") && (
+                            <span className="text-primaryBackground font-medium text-base">
+                                Venta
+                            </span>
+                        )}
+                        {property.transactionType?.includes("renta") && (
+                            <span className="text-primaryBackground font-medium text-base">
+                                {property.transactionType?.includes("venta") ? ' | ' : ''}
+                                Renta {price > 0 && '/mes'}
+                            </span>
+                        )}
+                    </div>
                 </div>
             </div>
 
             <PropertyImageCarousel property={property} />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-                <div className="lg:col-span-2 space-y-4">
-                    <div className="bg-blackSoft30 rounded-lg p-6 mb-8">
-                        <h3 className="text-xl font-semibold text-white mb-4">Detalles principales</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                                <Home className="w-10 h-10 text-primaryBackground mb-2 2xl:w-20 2xl:h-20" />
-                                <span className="text-gray-300 text-sm ">Área Construida</span>
-                                <span className="text-white font-semibold ">{property.constructionArea} m²</span>
-                            </div>
+                <div className="lg:col-span-2 space-y-8">
+                    {(constructionArea > 0 || usableArea > 0 ||
+                        landArea > 0 || hasPool) && (
+                            <div className="bg-blackSoft30 rounded-lg p-6">
+                                <h3 className="text-xl font-semibold text-white mb-4">Detalles principales</h3>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {constructionArea > 0 && (
+                                        <div className="flex flex-col items-center p-4 bg-blackSoft30 backdrop-blur-sm rounded-lg">
+                                            <Building className="w-8 h-8 text-primaryBackground mb-2 2xl:w-12 2xl:h-12" />
+                                            <span className="text-gray-300 text-sm">Área Construida</span>
+                                            <span className="text-white font-semibold">{constructionArea} m²</span>
+                                        </div>
+                                    )}
 
-                            <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                                <Bed className="w-10 h-10 text-primaryBackground mb-2 2xl:w-20 2xl:h-20" />
-                                <span className="text-gray-300 text-sm ">Habitaciones</span>
-                                <span className="text-white font-semibold ">{property.bedrooms}</span>
-                            </div>
+                                    {usableArea > 0 && (
+                                        <div className="flex flex-col items-center p-4 bg-blackSoft30 backdrop-blur-sm rounded-lg">
+                                            <Maximize className="w-8 h-8 text-primaryBackground mb-2 2xl:w-12 2xl:h-12" />
+                                            <span className="text-gray-300 text-sm">Área de Uso</span>
+                                            <span className="text-white font-semibold">{usableArea} m²</span>
+                                        </div>
+                                    )}
 
-                            <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                                <Bath className="w-10 h-10 text-primaryBackground mb-2 2xl:w-20 2xl:h-20" />
-                                <span className="text-gray-300 text-sm ">Baños</span>
-                                <span className="text-white font-semibold ">{property.bathrooms}</span>
-                            </div>
+                                    {landArea > 0 && (
+                                        <div className="flex flex-col items-center p-4 bg-blackSoft30 backdrop-blur-sm rounded-lg">
+                                            <Ruler className="w-8 h-8 text-primaryBackground mb-2 2xl:w-12 2xl:h-12" />
+                                            <span className="text-gray-300 text-sm">Área de Terreno</span>
+                                            <span className="text-white font-semibold">{landArea} m²</span>
+                                        </div>
+                                    )}
 
-                            {property.hasPool && (
-                                <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                                    <Droplets className="w-10 h-10 text-primaryBackground mb-2 2xl:w-20 2xl:h-20" />
-                                    <span className="text-gray-300 text-sm ">Piscina</span>
-                                    <span className="text-white font-semibold ">Sí</span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="bg-blackSoft30 rounded-lg p-6 mb-8">
-                        <h3 className="text-xl font-semibold text-white mb-4">Características adicionales</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
-                            <div className="flex items-center space-x-2">
-                                <Home className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                <span>Área construida: {property.constructionArea} m²</span>
-                            </div>
-                            {property.landArea && (
-                                <div className="flex items-center space-x-2">
-                                    <Home className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                    <span>Área de terreno: {property.landArea} m²</span>
-                                </div>
-                            )}
-                            {property.usableArea && (
-                                <div className="flex items-center space-x-2">
-                                    <Home className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                    <span>Área de uso: {property.usableArea} m²</span>
-                                </div>
-                            )}
-                            <div className="flex items-center space-x-2">
-                                <Bed className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                <span>Habitaciones: {property.bedrooms}</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Bath className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                <span>Baños: {property.bathrooms}</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Droplets className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                <span>Piscina: {property.hasPool ? "Sí" : "No"}</span>
-                            </div>
-                            {property.distanceToBeach || property.distanceToBeach === 0 && (
-                                <div className="flex items-center space-x-2">
-                                    <MapPin className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                    {property.distanceToBeach === 0 ? (
-                                        <span>Distancia a la playa: No calculado</span>
-                                    ) : (
-                                        <span>Distancia a la playa: {property.distanceToBeach} metros</span>
+                                    {hasPool && (
+                                        <div className="flex flex-col items-center p-4 bg-blackSoft30 backdrop-blur-sm rounded-lg">
+                                            <Droplets className="w-8 h-8 text-primaryBackground mb-2 2xl:w-12 2xl:h-12" />
+                                            <span className="text-gray-300 text-sm">Piscina</span>
+                                            <span className="text-white font-semibold">Sí</span>
+                                        </div>
                                     )}
                                 </div>
-                            )}
-                            {property.elevator !== undefined && (
-                                <div className="flex items-center space-x-2">
-                                    <Home className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                    <span>Ascensor: {property.elevator ? "Sí" : "No"}</span>
-                                </div>
-                            )}
-                            {property.features && property.features.length > 0 && (
-                                property.features.map((feature) => (
-                                    <div key={feature} className="flex items-center space-x-2">
-                                        <Check className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
-                                        <span>{feature}</span>
-                                    </div>
-                                ))
-                            )}
-                        </div>
-                    </div>
-                    <div className="bg-blackSoft30 rounded-lg p-6">
-                        <h3 className="text-xl font-semibold text-white mb-4">Descripción</h3>
-                        <Description description={property.description ?? "Sin descripción disponible."} />
-                    </div>
-                    {property.floorPlan && (
-                        <div className="bg-blackSoft30 rounded-lg p-6 mt-8">
-                            <h3 className="text-xl font-semibold text-white mb-4">Plano de la Propiedad</h3>
-                            <div className="relative">
-                                <Image
-                                    src={property.floorPlan.url}
-                                    alt={property.floorPlan.alt || "Plano de la propiedad"}
-                                    className="w-full h-auto rounded-lg object-contain max-h-[600px]"
-                                    width={800}
-                                    height={600}
-                                />
-                                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm">
-                                    Plano de la Propiedad
+                            </div>
+                        )}
+
+                    {(constructionArea > 0 || landArea > 0 || usableArea > 0 ||
+                        bedrooms > 0 || bathrooms > 0 || property.elevator !== undefined ||
+                        distanceToBeach > 0 || features.length > 0) && (
+                            <div className="bg-blackSoft30 rounded-lg p-6">
+                                <h3 className="text-xl font-semibold text-white mb-4">Características adicionales</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+                                    {constructionArea > 0 && (
+                                        <div className="flex items-center space-x-2">
+                                            <Building className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                            <span>Área construida: {constructionArea} m²</span>
+                                        </div>
+                                    )}
+
+                                    {landArea > 0 && (
+                                        <div className="flex items-center space-x-2">
+                                            <Ruler className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                            <span>Área de terreno: {landArea} m²</span>
+                                        </div>
+                                    )}
+
+                                    {usableArea > 0 && (
+                                        <div className="flex items-center space-x-2">
+                                            <Maximize className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                            <span>Área de uso: {usableArea} m²</span>
+                                        </div>
+                                    )}
+
+                                    {bedrooms > 0 && (
+                                        <div className="flex items-center space-x-2">
+                                            <Bed className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                            <span>Habitaciones: {bedrooms}</span>
+                                        </div>
+                                    )}
+
+                                    {bathrooms > 0 && (
+                                        <div className="flex items-center space-x-2">
+                                            <Bath className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                            <span>Baños: {bathrooms}</span>
+                                        </div>
+                                    )}
+
+                                    {property.elevator !== undefined && (
+                                        <div className="flex items-center space-x-2">
+                                            <Home className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                            <span>Ascensor: {property.elevator ? 'Sí' : 'No'}</span>
+                                        </div>
+                                    )}
+
+                                    {distanceToBeach > 0 && (
+                                        <div className="flex items-center space-x-2">
+                                            <MapPin className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                            <span>Distancia a la playa: {distanceToBeach} metros</span>
+                                        </div>
+                                    )}
+
+                                    {features.length > 0 &&
+                                        features.map((feature) => (
+                                            <div key={feature} className="flex items-center space-x-2">
+                                                <Check className="w-5 h-5 text-primaryBackground 2xl:w-6 2xl:h-6" />
+                                                <span>{feature}</span>
+                                            </div>
+                                        ))
+                                    }
                                 </div>
                             </div>
-                        </div>
+                        )}
+
+                    <div className="bg-blackSoft30 rounded-lg p-6">
+                        <h3 className="text-xl font-semibold text-white mb-4">Descripción</h3>
+                        <Description description={property.description ?? "No hay descripción disponible para esta propiedad."} />
+                    </div>
+
+                    {property.floorPlan && (
+                        <FloorPlanSection floorPlan={property.floorPlan} />
                     )}
-                    <Property3DTour matterportUrl={property.tour3dUrl} />
-                    <ImageViewer images={property.images} />
+
+                    {property.tour3dUrl && <Property3DTour matterportUrl={property.tour3dUrl} />}
+
+                    {images.length > 0 && <ImageViewer images={images} />}
                 </div>
 
                 <div className="space-y-4 lg:sticky lg:top-8 lg:self-start">
                     <div className="p-4 text-gray-100 bg-blackSoft30 rounded">
                         <h3 className="text-xl font-semibold text-white mb-4">Ubicación</h3>
-                        {property.coordinates && (property.coordinates.lat !== 0 || property.coordinates.lng !== 0) ? (
+                        {property.coordinates &&
+                            (property.coordinates.lat !== 0 || property.coordinates.lng !== 0) ? (
                             <div>
-                                <MapWrapper coordinates={property.coordinates} address={property.address} />
+                                <MapWrapper coordinates={property.coordinates} address={property.address || ""} />
 
-                                <div className="mt-4">
-                                    <a
-                                        href={`${property.googleMapsUrl}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center bg-primaryBackground text-white  2xl:py-4 2xl:px-6 py-2 px-4 rounded hover:bg-secondaryBackground transition duration-300"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            className="w-5 h-5 mr-2"
+                                {property.googleMapsUrl && (
+                                    <div className="mt-4">
+                                        <a
+                                            href={property.googleMapsUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center bg-primaryBackground text-white 2xl:py-4 2xl:px-6 py-2 px-4 rounded hover:bg-secondaryBackground transition duration-300"
                                         >
-                                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                                        </svg>
-                                        Ver en Google Maps
-                                    </a>
-                                </div>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="w-5 h-5 mr-2"
+                                            >
+                                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                            </svg>
+                                            Ver en Google Maps
+                                        </a>
+                                    </div>
+                                )}
                             </div>
                         ) : (
-                            <p className="text-gray-300">Sin ubicación disponible.</p>
+                            <p className="text-gray-300">Ubicación no disponible para esta propiedad.</p>
                         )}
                     </div>
+
                     <div className="bg-blackSoft30 rounded-lg p-6">
                         <h3 className="text-xl font-semibold text-white mb-4">¿Interesado en esta propiedad?</h3>
                         <PropertyInterestForm
@@ -231,8 +285,8 @@ export default async function PropertyPage({ params }: Readonly<PageProps>) {
                             emailPlaceholder="Correo electrónico"
                             phonePlaceholder="Teléfono"
                             messagePlaceholder="Quiero más información sobre esta propiedad..."
-                            propertyId={resolvedParams.propertyId}
-                            propertyAddress={property.address}
+                            propertyId={propertyId}
+                            propertyAddress={property.address || "Propiedad seleccionada"}
                         />
                         <div className="mt-6 text-gray-300 space-y-4">
                             <p className="text-gray-300 font-semibold">Si tienes alguna duda o necesitas más información, no dudes en contactarnos:</p>
@@ -258,7 +312,10 @@ export default async function PropertyPage({ params }: Readonly<PageProps>) {
                     </div>
                 </div>
             </div>
-            <PropertyCardsCarousel properties={randomProperties} />
+
+            {randomProperties && randomProperties.length > 0 && (
+                <PropertyCardsCarousel properties={randomProperties} />
+            )}
         </div>
     );
 }

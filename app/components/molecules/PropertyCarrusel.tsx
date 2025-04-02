@@ -9,6 +9,30 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
     const [autoPlay, setAutoPlay] = useState(true);
     const timeOutRef = useRef<NodeJS.Timeout | null>(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const thumbnailsRef = useRef<HTMLDivElement>(null);
+    
+    useEffect(() => {
+        if (thumbnailsRef.current && !isDragging) {
+            const container = thumbnailsRef.current;
+            const thumbnail = container.children[current] as HTMLElement;
+            
+            if (thumbnail) {
+                const containerWidth = container.offsetWidth;
+                const thumbnailLeft = thumbnail.offsetLeft;
+                const thumbnailWidth = thumbnail.offsetWidth;
+                
+                const scrollPosition = thumbnailLeft - (containerWidth / 2) + (thumbnailWidth / 2);
+                
+                container.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }, [current, isDragging]);
 
     const slideRight = useCallback(() => {
         if (isTransitioning) return;
@@ -46,6 +70,57 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
         setCurrent(index);
         setTimeout(() => setIsTransitioning(false), 300);
     };
+    
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (!thumbnailsRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - thumbnailsRef.current.offsetLeft);
+        setScrollLeft(thumbnailsRef.current.scrollLeft);
+    };
+    
+    const handleTouchStart = (e: React.TouchEvent) => {
+        if (!thumbnailsRef.current) return;
+        setIsDragging(true);
+        setStartX(e.touches[0].pageX - thumbnailsRef.current.offsetLeft);
+        setScrollLeft(thumbnailsRef.current.scrollLeft);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging || !thumbnailsRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - thumbnailsRef.current.offsetLeft;
+        const walk = (x - startX) * 2;
+        thumbnailsRef.current.scrollLeft = scrollLeft - walk;
+    };
+    
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (!isDragging || !thumbnailsRef.current) return;
+        const x = e.touches[0].pageX - thumbnailsRef.current.offsetLeft;
+        const walk = (x - startX) * 2;
+        thumbnailsRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleDragEnd = () => {
+        setIsDragging(false);
+    };
+
+    useEffect(() => {
+        const style = document.createElement('style');
+        style.textContent = `
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        return () => {
+            document.head.removeChild(style);
+        };
+    }, []);
 
     return (
         <div 
@@ -76,7 +151,7 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                 </div>
 
                 <div className="absolute top-4 left-4 bg-primaryBackground text-white text-base px-3 py-1 rounded z-10">
-                    {property.type === "casa" ? "Casa" : "Departamento"}
+                    {property.type ? property.type.charAt(0).toUpperCase() + property.type.slice(1) : "Tipo de propiedad no disponible"}
                 </div>
 
                 <button 
@@ -101,8 +176,18 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                 </div>
             </div>
 
-            <div className="bg-blackSoft30 p-3 hidden lg:block">
-                <div className="flex justify-center space-x-2 overflow-x-auto py-2">
+            <div className="bg-blackSoft30 p-3">
+                <div 
+                    ref={thumbnailsRef}
+                    className="flex justify-start space-x-2 overflow-x-auto py-2 cursor-grab hide-scrollbar"
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleDragEnd}
+                    onMouseLeave={handleDragEnd}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleDragEnd}
+                >
                     {property.images.map((image, index) => (
                         <button
                             key={image.id ?? `image-${index}`}
@@ -118,8 +203,9 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                                 src={image.url}
                                 alt={image.alt}
                                 fill
-                                className="object-cover"
+                                className={`object-cover transition-transform duration-300 ${isDragging ? '' : 'pointer-events-none'}`}
                                 sizes="64px"
+                                draggable={false}
                             />
                         </button>
                     ))}
