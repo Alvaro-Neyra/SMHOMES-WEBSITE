@@ -6,6 +6,7 @@ import StatsSection from "../../components/molecules/StatsSection";
 import RealEstateServices from "../../components/organisms/RealStateServices";
 import MarcasCarrusel from "../../components/organisms/MarcasCarrusel";
 import ImageSection from "../../components/molecules/ImageSection";
+import Head from "next/head";
 
 export default function NosotrosPage() {
     const imageData = [
@@ -17,6 +18,34 @@ export default function NosotrosPage() {
 
     return (
         <>
+            <Head>
+                <title>Nosotros - SM HOME&apos;S</title>
+                <meta
+                    name="description"
+                    content="En SM HOME&apos;S somos una inmobiliaria familiar dedicada a ayudar a quienes desean vender su propiedad con confianza, seguridad y el mejor respaldo. Conoce más sobre nuestra historia y lo que hacemos."
+                />
+                <meta name="robots" content="index, follow" />
+                <meta name="keywords" content="SM HOME'S, inmobiliaria familiar, venta de propiedades, Torrevieja, Alicante, servicios inmobiliarios, asesoría inmobiliaria, vender tu propiedad, hogar" />
+                
+                <meta property="og:title" content="Nosotros - SM HOME&apos;S" />
+                <meta
+                    property="og:description"
+                    content="En SM HOME&apos;S somos una inmobiliaria familiar dedicada a ayudar a quienes desean vender su propiedad con confianza, seguridad y el mejor respaldo."
+                />
+                <meta property="og:image" content="/nosotros.png" />
+                <meta property="og:url" content="https://www.smhomesrealstate.com/nosotros" />
+                <meta property="og:type" content="website" />
+
+                <meta name="twitter:title" content="Nosotros - SM HOME&apos;S" />
+                <meta
+                    name="twitter:description"
+                    content="En SM HOME&apos;S somos una inmobiliaria familiar dedicada a ayudar a quienes desean vender su propiedad con confianza, seguridad y el mejor respaldo."
+                />
+                <meta name="twitter:image" content="/nosotros.png" />
+                <meta name="twitter:url" content="https://www.smhomesrealstate.com/nosotros" />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Head>
+
             <HeroImage
                 src="/torrevieja5.jpg"
                 heading="SM Home&apos;s"

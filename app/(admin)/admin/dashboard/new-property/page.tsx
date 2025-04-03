@@ -6,6 +6,7 @@ import { PropertyFormData, PropertyImage } from "@/app/utils/interfaces";
 import PropertyForm from "@/app/components/molecules/PropertyForm";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import Head from "next/head";
 
 export default function NewPropertyPage() {
     const router = useRouter();
@@ -142,19 +143,26 @@ export default function NewPropertyPage() {
     };
 
     return (
-        <div className="container mx-auto p-4">
-            <div className="flex items-center mb-4">
-                <Link href="/admin/dashboard" className="mr-4">
-                    <ArrowLeft />
-                </Link>
-                <h1 className="text-2xl font-bold">Agregar Nueva Propiedad</h1>
+        <>
+            <Head>
+                <title>Agregar Nueva Propiedad - Admin Dashboard</title>
+                <meta name="description" content="Formulario para agregar una nueva propiedad al sistema de administración." />
+                <meta name="robots" content="noindex, nofollow" />
+            </Head>
+            <div className="container mx-auto p-4">
+                <div className="flex items-center mb-4">
+                    <Link href="/admin/dashboard" className="mr-4">
+                        <ArrowLeft />
+                    </Link>
+                    <h1 className="text-2xl font-bold">Agregar Nueva Propiedad</h1>
+                </div>
+                <PropertyForm
+                    initialData={initialFormData}
+                    onSubmit={handleSubmit}
+                    isLoading={loading}
+                    isEdit={false}
+                />
             </div>
-            <PropertyForm
-                initialData={initialFormData}
-                onSubmit={handleSubmit}
-                isLoading={loading}
-                isEdit={false}
-            />
-        </div>
+        </>
     );
 }

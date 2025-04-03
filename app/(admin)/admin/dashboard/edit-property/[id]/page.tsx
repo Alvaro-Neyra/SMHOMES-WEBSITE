@@ -7,6 +7,7 @@ import { useRouter, useParams } from "next/navigation";
 import { Property, PropertyFormData } from "@/app/utils/interfaces";
 import PropertyForm from "@/app/components/molecules/PropertyForm";
 import { deleteImagesFromCloudinary } from "@/app/utils/imageService";
+import Head from "next/head";
 
 export default function EditPropertyPage() {
     const router = useRouter();
@@ -72,10 +73,10 @@ export default function EditPropertyPage() {
     const handleSubmit = async (formData: PropertyFormData) => {
         try {
             setLoading(true);
-    
+
             const existingImages = propertyData?.images || [];
             const updatedImages = formData.images;
-    
+
             const imagesToRemove = existingImages.filter((existingImg) => {
                 return !updatedImages.some(
                     (updatedImg) =>
@@ -83,35 +84,35 @@ export default function EditPropertyPage() {
                         updatedImg.url === existingImg.url
                 );
             });
-    
+
             if (imagesToRemove.length > 0) {
                 await deleteImagesFromCloudinary(imagesToRemove.filter(img => img.public_id !== undefined) as { public_id: string }[]);
             }
-    
+
             const base64Images = formData.images.filter((img) =>
                 typeof img === "object" && img.url?.startsWith('data:')
             );
-    
+
             const existingImagesFiltered = formData.images.filter((img) =>
                 typeof img === "object" && img.url && !img.url.startsWith('data:')
             );
-    
+
             let uploadedImages = [];
             if (base64Images.length > 0) {
                 const imagesForUpload = base64Images.map(img =>
                     typeof img === "object" ? img.url : img
                 );
-    
+
                 const uploadResponse = await fetch("/api/upload", {
                     method: "POST",
                     body: JSON.stringify({ images: imagesForUpload }),
                     headers: { "Content-Type": "application/json" },
                 });
-    
+
                 const uploadData = await uploadResponse.json();
                 uploadedImages = uploadData.images || [];
             }
-    
+
             const formattedImages = [
                 ...existingImagesFiltered.map(img => ({
                     url: img.url,
@@ -124,7 +125,7 @@ export default function EditPropertyPage() {
                     alt: img.alt ?? ""
                 }))
             ];
-    
+
             let formattedFloorPlan = null;
             if (formData.floorPlan && typeof formData.floorPlan === "object") {
                 if (formData.floorPlan.url.startsWith('data:')) {
@@ -133,10 +134,10 @@ export default function EditPropertyPage() {
                         body: JSON.stringify({ images: [formData.floorPlan.url] }),
                         headers: { "Content-Type": "application/json" },
                     });
-    
+
                     const uploadData = await uploadResponse.json();
                     const uploadedFloorPlan = uploadData.images?.[0];
-    
+
                     if (uploadedFloorPlan) {
                         formattedFloorPlan = {
                             url: uploadedFloorPlan.url,
@@ -152,29 +153,29 @@ export default function EditPropertyPage() {
                     };
                 }
             }
-    
+
             const hasBase64 = formattedImages.some(img => img.url.startsWith('data:'));
             if (hasBase64) {
                 throw new Error("Aún hay imágenes en base64 que no se procesaron correctamente");
             }
-    
+
             const updatedPropertyData = {
                 ...formData,
                 images: formattedImages,
                 floorPlan: formattedFloorPlan,
             };
-    
+
             const response = await fetch(`/api/properties/${propertyId}`, {
                 method: "PUT",
                 body: JSON.stringify(updatedPropertyData),
                 headers: { "Content-Type": "application/json" },
             });
-    
+
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Error al actualizar la propiedad");
             }
-    
+
             alert("Propiedad actualizada exitosamente");
             router.push("/admin/dashboard");
         } catch (error) {
@@ -195,32 +196,42 @@ export default function EditPropertyPage() {
     }
 
     return (
-        <div className="container mx-auto p-4">
-            <div className="flex items-center mb-4">
-                <Link href="/admin/dashboard" className="mr-4">
-                    <ArrowLeft />
-                </Link>
-                <h1 className="text-2xl font-bold">Editar Propiedad</h1>
-            </div>
-
-            {uploadProgress > 0 && uploadProgress < 100 && (
-                <div className="mb-4">
-                    <p>Subiendo imágenes: {uploadProgress}%</p>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                        <div
-                            className="bg-blue-600 h-2.5 rounded-full"
-                            style={{ width: `${uploadProgress}%` }}
-                        ></div>
-                    </div>
+        <>
+            <Head>
+                <title>Editar Propiedad - SM HOME&apos;S</title>
+                <meta
+                    name="description"
+                    content="Edita los detalles de la propiedad en el panel de administración de SM HOME'S."
+                />
+                <meta name="robots" content="noindex, nofollow" />
+            </Head>
+            <div className="container mx-auto p-4">
+                <div className="flex items-center mb-4">
+                    <Link href="/admin/dashboard" className="mr-4">
+                        <ArrowLeft />
+                    </Link>
+                    <h1 className="text-2xl font-bold">Editar Propiedad</h1>
                 </div>
-            )}
 
-            <PropertyForm
-                initialData={propertyData}
-                onSubmit={handleSubmit}
-                isLoading={loading}
-                isEdit={true}
-            />
-        </div>
+                {uploadProgress > 0 && uploadProgress < 100 && (
+                    <div className="mb-4">
+                        <p>Subiendo imágenes: {uploadProgress}%</p>
+                        <div className="w-full bg-gray-200 rounded-full h-2.5">
+                            <div
+                                className="bg-blue-600 h-2.5 rounded-full"
+                                style={{ width: `${uploadProgress}%` }}
+                            ></div>
+                        </div>
+                    </div>
+                )}
+
+                <PropertyForm
+                    initialData={propertyData}
+                    onSubmit={handleSubmit}
+                    isLoading={loading}
+                    isEdit={true}
+                />
+            </div>
+        </>
     );
 }

@@ -5,10 +5,39 @@ import HeroForm from "../../components/organisms/HeroForm";
 import TestimonialsCarrusel from "../../components/organisms/TestimonialsCarrusel";
 import { FAQBuyItems, formFields, highlightsComprar, stats } from "../../utils/constants";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function BuyPage() {
     return (
         <section>
+            <Head>
+                <title>Compra tu casa en Torrevieja - SM HOME&apos;S</title>
+                <meta
+                    name="description"
+                    content="Compra tu casa en Torrevieja o alrededores con SM HOME&apos;S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños."
+                />
+                <meta name="robots" content="index, follow" />
+                <meta name="keywords" content="comprar casa Torrevieja, inmobiliaria Torrevieja, compra propiedad Alicante, servicio inmobiliario Torrevieja, comprar vivienda Torrevieja" />
+                
+                <meta property="og:title" content="Compra tu casa en Torrevieja - SM HOME&apos;S" />
+                <meta
+                    property="og:description"
+                    content="Compra tu casa en Torrevieja o alrededores con SM HOME&apos;S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños."
+                />
+                <meta property="og:image" content="/comprar.png" />
+                <meta property="og:url" content="https://www.smhomesrealstate.com/comprar" />
+                <meta property="og:type" content="website" />
+
+                <meta name="twitter:title" content="Compra tu casa en Torrevieja - SM HOME&apos;S" />
+                <meta
+                    name="twitter:description"
+                    content="Compra tu casa en Torrevieja o alrededores con SM HOME&apos;S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños."
+                />
+                <meta name="twitter:image" content="/comprar.png" />
+                <meta name="twitter:url" content="https://www.smhomesrealstate.com/comprar" />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Head>
+
             <HeroSection
                 title="¿Quieres comprar tu casa en Torrevieja o alrededores?"
                 subtitle="SM HOME&apos;S"

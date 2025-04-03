@@ -23,6 +23,7 @@ import MapWrapper from "@/app/components/atoms/MapWrapper";
 import Description from "@/app/components/atoms/Description";
 import Property3DTour from "@/app/components/atoms/Property3DTour";
 import { FloorPlanSection } from "@/app/components/molecules/FloorPlanSection";
+import Head from "next/head";
 
 export async function generateMetadata({
     params,
@@ -31,12 +32,29 @@ export async function generateMetadata({
 }) {
     const { propertyId } = await params;
     const property = await getPropertyById(propertyId);
+
     if (!property) {
         return { title: "Propiedad no encontrada" };
     }
+
     return {
-        title: `${property.name || property.address || "Propiedad"} | Inmobiliaria`,
-        description: `${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}.`,
+        title: `${property.name || property.address || "Propiedad"} | SM HOME'S`,
+        description: `${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}. ${property.description || "Sin descripción disponible."}`,
+        openGraph: {
+            title: `${property.name || property.address || "Propiedad"} | SM HOME'S`,
+            description: `${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}. ${property.description || "Sin descripción disponible."}`,
+            url: `https://www.smhomesrealstate.com/propiedades/${propertyId}`,
+            images: [
+                property.images?.[0]?.url || "/propiedades.png",
+            ],
+            type: "website",
+        },
+        twitter: {
+            title: `${property.name || property.address || "Propiedad"} | SM HOME'S`,
+            description: `${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}. ${property.description || "Sin descripción disponible."}`,
+            image: property.images?.[0]?.url || "/propiedades.png", // Imagen para Twitter
+            card: "summary_large_image",
+        },
     };
 }
 
@@ -74,6 +92,25 @@ export default async function PropertyPage({
 
     return (
         <div className="px-4 py-8 text-gray-100 bg-blackSoft30 min-h-screen space-y-8">
+            <Head>
+                <title>{property.name || property.address || "Propiedad"} | SM HOME&apos;S</title>
+                <meta name="description" content={`${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}. ${property.description ?? "Sin descripción disponible."}`} />
+                <meta name="robots" content="index, follow" />
+                <meta name="keywords" content="inmobiliaria Torrevieja, compra casa Torrevieja, venta propiedad Torrevieja, vivienda en Alicante" />
+
+                <meta property="og:title" content={`${property.name || property.address || "Propiedad"} | SM HOME'S`} />
+                <meta property="og:description" content={`${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}. ${property.description ?? "Sin descripción disponible."}`} />
+                <meta property="og:image" content={property.images?.[0]?.url || "/default-image.jpg"} />
+                <meta property="og:url" content={`https://www.smhomesrealstate.com/propiedades/${propertyId}`} />
+                <meta property="og:type" content="website" />
+
+                <meta name="twitter:title" content={`${property.name || property.address || "Propiedad"} | SM HOME'S`} />
+                <meta name="twitter:description" content={`${property.type || "Propiedad"} ${property.bedrooms ? `con ${property.bedrooms} habitaciones` : ""} ${property.bathrooms ? `y ${property.bathrooms} baños` : ""}. ${property.description ?? "Sin descripción disponible."}`} />
+                <meta name="twitter:image" content={property.images?.[0]?.url || "/default-image.jpg"} />
+                <meta name="twitter:url" content={`https://www.smhomesrealstate.com/propiedades/${propertyId}`} />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Head>
+
             <Breadcrumbs items={breadcrumbItems} />
 
             <div className="mb-6 flex flex-col justify-center items-center gap-4 lg:flex-row lg:justify-between lg:items-center">

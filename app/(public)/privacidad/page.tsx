@@ -1,6 +1,36 @@
+import Head from "next/head";
+
 export default function PrivacyPolicy() {
     return (
         <div className="min-h-screen bg-blackSoft30 py-12 px-4 sm:px-6 lg:px-8">
+            <Head>
+                <title>Política de Privacidad - SM HOME&apos;S</title>
+                <meta
+                    name="description"
+                    content="Consulta nuestra política de privacidad para conocer cómo gestionamos tus datos personales en SM HOME&apos;S."
+                />
+                <meta name="robots" content="index, follow" />
+                <meta name="keywords" content="política de privacidad, protección de datos, SM HOME'S, privacidad de datos, términos y condiciones" />
+                
+                <meta property="og:title" content="Política de Privacidad - SM HOME&apos;S" />
+                <meta
+                    property="og:description"
+                    content="Consulta nuestra política de privacidad para conocer cómo gestionamos tus datos personales en SM HOME&apos;S."
+                />
+                <meta property="og:image" content="/privacidad.png" />
+                <meta property="og:url" content="https://www.smhomesrealstate.com/politica-de-privacidad" />
+                <meta property="og:type" content="website" />
+
+                <meta name="twitter:title" content="Política de Privacidad - SM HOME&apos;S" />
+                <meta
+                    name="twitter:description"
+                    content="Consulta nuestra política de privacidad para conocer cómo gestionamos tus datos personales en SM HOME&apos;S."
+                />
+                <meta name="twitter:image" content="/privacidad.png" />
+                <meta name="twitter:url" content="https://www.smhomesrealstate.com/politica-de-privacidad" />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Head>
+
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-gray-100 mb-8">
                 Política de Privacidad
             </h1>
