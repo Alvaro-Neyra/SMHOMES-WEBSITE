@@ -39,7 +39,6 @@ const exampleProperties = [
         distanceToBeach: 800,
         elevator: false,
         usableArea: 200,
-        floorPlan: { id: 'img-16', url: '/torrevieja4.jpg', alt: 'Plano de la casa' },
         selled: false,
         transactionType: ['venta'],
         createdAt: new Date()

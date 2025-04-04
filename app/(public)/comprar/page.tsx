@@ -1,43 +1,36 @@
-import FAQ from "../../components/molecules/FAQ";
+import Faq from "../../components/molecules/FAQ";
 import FormComponent from "../../components/molecules/FormComponent";
 import HeroSection from "../../components/molecules/HeroSectionButtons";
 import HeroForm from "../../components/organisms/HeroForm";
 import TestimonialsCarrusel from "../../components/organisms/TestimonialsCarrusel";
 import { FAQBuyItems, formFields, highlightsComprar, stats } from "../../utils/constants";
 import Link from "next/link";
-import Head from "next/head";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Compra tu casa en Torrevieja - SM HOME'S",
+    description: "Compra tu casa en Torrevieja o alrededores con SM HOME'S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños.",
+    keywords: "comprar casa Torrevieja, comprar propiedad en Alicante, inmobiliaria Torrevieja, comprar apartamento rápido, comprar casa en tiempo record, inmobiliaria cerca de la playa, SM HOME'S, compra de propiedades, asesoría inmobiliaria Torrevieja, comprar vivienda",
+    robots: "index, follow",
+    openGraph: {
+        title: "Compra tu casa en Torrevieja - SM HOME'S",
+        description: "Compra tu casa en Torrevieja o alrededores con SM HOME'S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños.",
+        images: "/comprar.png",
+        url: "https://www.smhomesrealstate.com/comprar",
+        type: "website",
+    },
+    twitter: {
+        title: "Compra tu casa en Torrevieja - SM HOME'S",
+        description: "Compra tu casa en Torrevieja o alrededores con SM HOME'S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños.",
+        images: "/comprar.png",
+        card: "summary_large_image",
+    }
+};
+
 
 export default function BuyPage() {
     return (
         <section>
-            <Head>
-                <title>Compra tu casa en Torrevieja - SM HOME&apos;S</title>
-                <meta
-                    name="description"
-                    content="Compra tu casa en Torrevieja o alrededores con SM HOME&apos;S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños."
-                />
-                <meta name="robots" content="index, follow" />
-                <meta name="keywords" content="comprar casa Torrevieja, inmobiliaria Torrevieja, compra propiedad Alicante, servicio inmobiliario Torrevieja, comprar vivienda Torrevieja" />
-                
-                <meta property="og:title" content="Compra tu casa en Torrevieja - SM HOME&apos;S" />
-                <meta
-                    property="og:description"
-                    content="Compra tu casa en Torrevieja o alrededores con SM HOME&apos;S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños."
-                />
-                <meta property="og:image" content="/comprar.png" />
-                <meta property="og:url" content="https://www.smhomesrealstate.com/comprar" />
-                <meta property="og:type" content="website" />
-
-                <meta name="twitter:title" content="Compra tu casa en Torrevieja - SM HOME&apos;S" />
-                <meta
-                    name="twitter:description"
-                    content="Compra tu casa en Torrevieja o alrededores con SM HOME&apos;S. Te ofrecemos un servicio integral y rápido para encontrar la propiedad de tus sueños."
-                />
-                <meta name="twitter:image" content="/comprar.png" />
-                <meta name="twitter:url" content="https://www.smhomesrealstate.com/comprar" />
-                <meta name="twitter:card" content="summary_large_image" />
-            </Head>
-
             <HeroSection
                 title="¿Quieres comprar tu casa en Torrevieja o alrededores?"
                 subtitle="SM HOME&apos;S"
@@ -63,14 +56,14 @@ export default function BuyPage() {
                 heading="En SM HOME&apos;S, eliminamos el estrés del proceso y te ofrecemos el servicio inmobiliario más completo para comprar tu propiedad de forma rápida, cómoda y al mejor precio."
                 subHeading="¿Qué hacemos para comprar tu casa en tiempo record?"
                 strongSubHeading="comprar tu casa en tiempo record"
-                otherChildren={<FAQ items={FAQBuyItems} />}
+                otherChildren={<Faq items={FAQBuyItems} />}
             >
                 <section>
                     <div className="px-4 space-y-[2vw] xl:space-y-[3vw]">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4">
                             {highlightsComprar.map((highlight, index) => (
                                 <div
-                                    key={index}
+                                    key={`highlight-${index}-${highlight.title}`}
                                     className="bg-blackSoft30 p-6 rounded-lg text-center hover:scale-105 transition-all duration-300 xl:space-y-[1vw]"
                                 >
                                     <div className="flex justify-center items-center gap-2 xl:gap-[1vw]">

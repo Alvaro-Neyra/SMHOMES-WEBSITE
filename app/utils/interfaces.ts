@@ -230,7 +230,7 @@ export interface Property {
     price: number;
     currency: "USD" | "MXN" | "EUR";
     images: PropertyImage[];
-    floorPlan?: PropertyImage | string | null;
+    floorPlan?: PropertyImage[] | string[] | null;
     description?: string;
     features?: string[];
     distanceToBeach?: number;
@@ -259,7 +259,7 @@ export interface PropertyFormData {
     price: number;
     currency: "USD" | "MXN" | "EUR";
     images: PropertyImage[];
-    floorPlan?: PropertyImage | string | null;
+    floorPlan?: PropertyImage[] | string[] | null;
     description?: string;
     features?: string[];
     distanceToBeach?: number;

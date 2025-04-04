@@ -204,39 +204,20 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                 break;
         }
         
-        // Beach distance as a feature
-        if (property.distanceToBeach && property.distanceToBeach < 1000) {
-            details.push(
-                <div key="beach" className="flex items-center space-x-1 text-gray-200">
-                    <Check className="w-4 h-4 text-primaryBackground" />
-                    <span className="text-sm whitespace-nowrap">
-                        {property.distanceToBeach}m a la playa
-                    </span>
-                </div>
-            );
+        // If features are available, display them when other details are missing
+        if (property.features && property.features.length > 0) {
+            property.features.slice(0, 3).forEach((feature, idx) => {
+                details.push(
+                    <div key={`feature-${idx}`} className="flex items-center space-x-1 text-gray-200">
+                        <Check className="w-4 h-4 text-primaryBackground" />
+                        <span className="text-sm whitespace-nowrap">{feature}</span>
+                    </div>
+                );
+            });
         }
         
         // Add one important feature if available
-        if (property.features && property.features.length > 0 && details.length < 4) {
-            const importantFeatures = ['Terraza', 'Garaje', 'Ascensor', 'Aire acondicionado'];
-            const featuredItem = property.features.find(feature => 
-                importantFeatures.some(important => feature.includes(important))
-            );
-            
-            if (featuredItem) {
-                details.push(
-                    <div key="feature" className="flex items-center space-x-1 text-gray-200">
-                        <Check className="w-4 h-4 text-primaryBackground" />
-                        <span className="text-sm whitespace-nowrap">
-                            {featuredItem}
-                        </span>
-                    </div>
-                );
-            }
-        }
-        
-        // Ensure we have at least 2 features for consistency
-        while (details.length < 2) {
+        while (details.length < 4) {
             if (property.transactionType && property.transactionType.length > 0 && !details.some(d => d.key === "transactionType")) {
                 details.push(
                     <div key="transactionType" className="flex items-center space-x-1 text-gray-200">
@@ -263,19 +244,6 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
         return details.slice(0, 4);
     };
 
-    // Mejorado: Función para manejar nombres largos adaptando el tamaño de fuente
-    const getPropertyNameClass = () => {
-        const nameLength = (property.name || `${getPropertyTypeText()} en ${property.city || ''}`).length;
-        
-        if (nameLength > 50) {
-            return "text-sm font-semibold text-white line-clamp-2";
-        } else if (nameLength > 30) {
-            return "text-base font-semibold text-white line-clamp-2";
-        } else {
-            return "text-lg font-semibold text-white line-clamp-2";
-        }
-    };
-
     return (
         <div className={`bg-blackSoft30 rounded-lg overflow-hidden transition-transform duration-300 ${scale ? "hover:scale-[1.01]" : ""} border border-primaryBackground border-opacity-30 flex flex-col h-full`}>
             <div className="relative w-full h-64">
@@ -285,11 +253,8 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                             src={property.images[displayedImageIndex].url}
                             alt={property.images[displayedImageIndex].alt || `Imagen de ${property.name || 'propiedad'}`}
                             fill
-                            className={`object-cover transition-opacity duration-300 ${
-                                isAnimating ? "opacity-0" : "opacity-100"
-                            }`}
+                            className={`object-cover transition-opacity duration-300 ${isAnimating ? "opacity-0" : "opacity-100"}`}
                         />
-
                         {property.images.length > 1 && (
                             <>
                                 <button
@@ -303,7 +268,6 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                                 >
                                     <ArrowLeftIcon className="w-5 h-5 text-primaryBackground" />
                                 </button>
-
                                 <button
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -315,7 +279,6 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                                 >
                                     <ArrowRightIcon className="w-5 h-5 text-primaryBackground" />
                                 </button>
-
                                 <div className="absolute bottom-2 right-2 bg-blackSoft30 bg-opacity-70 px-2 py-1 rounded text-xs text-white z-10">
                                     {currentImageIndex + 1}/{property.images.length}
                                 </div>
@@ -335,13 +298,13 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
                 <div className="absolute top-2 left-2 bg-primaryBackground text-white text-xs px-2 py-1 rounded z-10">
                     {getPropertyTypeText()}
                 </div>
-                
-                {property.transactionType && property.transactionType.length > 0 && (
+
+                {!property.selled && property.transactionType && property.transactionType.length > 0 && (
                     <div className="absolute top-2 right-2 bg-secondaryBackground text-white text-xs px-2 py-1 rounded z-10">
                         {getTransactionTypeText()}
                     </div>
                 )}
-                
+
                 {property.selled && (
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-lg px-4 py-2 rounded-full z-10 rotate-12">
                         VENDIDO
@@ -351,7 +314,7 @@ const PropertyCard: React.FC<{ property: Property, scale?: boolean }> = ({ prope
 
             <div className="p-4 flex flex-col flex-grow">
                 <div className="flex flex-col mb-3 h-20">
-                    <h3 className={getPropertyNameClass()}>
+                    <h3 className="text-lg font-semibold text-white line-clamp-2">
                         {property.name || `${getPropertyTypeText()} en ${property.city || ''}`}
                     </h3>
                     <p className="text-sm text-gray-300 truncate">

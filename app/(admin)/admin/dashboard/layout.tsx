@@ -4,7 +4,6 @@ import Link from "next/link";
 import axios from "axios";
 import { PlusCircle, Home, Settings, LogOut, Menu, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import Head from "next/head";
 
 interface AdminLayoutProps {
     children: ReactNode;
@@ -26,10 +25,6 @@ export default function AdminLayout({ children }: Readonly<AdminLayoutProps>) {
 
     return (
         <div className="flex h-screen bg-blackSoft30">
-            <Head>
-                <meta name="robots" content="noindex, nofollow" />
-            </Head>
-
             <div
                 className={`fixed md:relative inset-y-0 left-0 z-50 w-64 bg-blackSoft border-r border-primaryBackground border-opacity-30 transform transition-transform duration-300 ease-in-out ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
                     }`}

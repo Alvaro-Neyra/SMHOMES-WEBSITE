@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Save, AlertCircle, CheckCircle } from "lucide-react";
 import axios, { isAxiosError } from 'axios';
 import { useRouter } from "next/navigation";
-import Head from "next/head";
 
 export default function SettingsPage() {
     const router = useRouter();
@@ -120,12 +119,6 @@ export default function SettingsPage() {
     };
 
     return (
-        <>
-        <Head>
-            <title>Configuración - AdminPanel</title>
-            <meta name="robots" content="noindex, nofollow" />
-            <meta name="description" content="Configuración del panel de administración" />
-        </Head>
         <div className="max-w-4xl mx-auto">
             <h1 className="text-2xl md:text-3xl font-bold text-white mb-6">Configuración</h1>
 
@@ -133,7 +126,7 @@ export default function SettingsPage() {
                 <div className={`mb-6 p-4 rounded-lg flex items-start gap-3 ${notification.type === "success"
                     ? "bg-green-900/30 text-green-400 border border-green-800"
                     : "bg-red-900/30 text-red-400 border border-red-800"
-                }`}>
+                    }`}>
                     {notification.type === "success"
                         ? <CheckCircle className="w-5 h-5 mt-0.5" />
                         : <AlertCircle className="w-5 h-5 mt-0.5" />}
@@ -160,7 +153,7 @@ export default function SettingsPage() {
                                 onChange={(e) => setUsername(e.target.value)}
                                 className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent"
                                 required
-                                />
+                            />
                         </div>
 
                         <div>
@@ -173,14 +166,14 @@ export default function SettingsPage() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent"
-                                />
+                            />
                         </div>
 
                         <button
                             type="submit"
                             disabled={isLoading}
                             className="w-full flex items-center justify-center gap-2 bg-primaryBackground hover:bg-secondaryBackground text-white py-3 px-4 rounded-md transition duration-300 disabled:opacity-50"
-                            >
+                        >
                             {isLoading ? "Guardando..." : (
                                 <>
                                     <Save size={18} />
@@ -209,7 +202,7 @@ export default function SettingsPage() {
                                 onChange={(e) => setCurrentPassword(e.target.value)}
                                 className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent"
                                 required
-                                />
+                            />
                         </div>
 
                         <div>
@@ -223,7 +216,7 @@ export default function SettingsPage() {
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent"
                                 required
-                                />
+                            />
                         </div>
 
                         <div>
@@ -237,14 +230,14 @@ export default function SettingsPage() {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primaryBackground focus:border-transparent"
                                 required
-                                />
+                            />
                         </div>
 
                         <button
                             type="submit"
                             disabled={isLoading}
                             className="w-full flex items-center justify-center gap-2 bg-primaryBackground hover:bg-secondaryBackground text-white py-3 px-4 rounded-md transition duration-300 disabled:opacity-50"
-                            >
+                        >
                             {isLoading ? "Actualizando..." : (
                                 <>
                                     <Save size={18} />
@@ -288,6 +281,5 @@ export default function SettingsPage() {
                 </div>
             </div>
         </div>
-                    </>
     );
 }

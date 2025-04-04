@@ -20,7 +20,7 @@ export interface IProperty extends Document {
     price: number;
     currency: "USD" | "MXN" | "EUR";
     images: PropertyImage[];
-    floorPlan?: PropertyImage;
+    floorPlan?: PropertyImage[];
     description?: string;
     features?: string[];
     distanceToBeach?: number;
@@ -54,11 +54,11 @@ const PropertySchema = new Schema<IProperty>({
             alt: { type: String }
         }
     ],
-    floorPlan: {
+    floorPlan: [{
         url: { type: String, required: false },
         public_id: { type: String, required: false },
         alt: { type: String }
-    },
+    }],
     description: { type: String, required: false },
     features: [{ type: String }],
     distanceToBeach: { type: Number, required: false },

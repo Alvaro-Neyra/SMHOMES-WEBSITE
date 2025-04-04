@@ -1,41 +1,33 @@
-import Link from "next/link";
-import HeroVideo from "../../components/molecules/HeroVideo";
-import HeroForm from "../../components/organisms/HeroForm";
-import MapSection from "../../components/molecules/MapSection";
-import TestimonialsCarrusel from "../../components/organisms/TestimonialsCarrusel";
-import Head from "next/head";
+import HeroVideo from '@/app/components/molecules/HeroVideo';
+import MapSection from '@/app/components/molecules/MapSection';
+import HeroForm from '@/app/components/organisms/HeroForm';
+import TestimonialsCarrusel from '@/app/components/organisms/TestimonialsCarrusel';
+import { Metadata } from 'next';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+    title: "Contacto - SM HOME'S",
+    description: "Contáctanos para obtener asesoramiento inmobiliario personalizado. Te ayudamos a comprar o vender tu propiedad de forma rápida y segura.",
+    keywords: "contacto, inmobiliaria, Torrevieja, España, asesoramiento inmobiliario, propiedades, venta de casas, compra de casas, SM HOME'S, contacto de SM HOME'S",
+    robots: "index, follow",
+    openGraph: {
+        title: "Contacto - SM HOME'S",
+        description: "Contáctanos para obtener asesoramiento inmobiliario personalizado. Te ayudamos a comprar o vender tu propiedad de forma rápida y segura.",
+        images: ["/contacto.png"],
+        url: "https://www.smhomesrealstate.com/contacto",
+        type: "website",
+    },
+    twitter: {
+        title: "Contacto - SM HOME'S",
+        description: "Contáctanos para obtener asesoramiento inmobiliario personalizado. Te ayudamos a comprar o vender tu propiedad de forma rápida y segura.",
+        images: ["/contacto.png"],
+        card: "summary_large_image",
+    }
+};
 
 export default function ContactPage() {
     return (
         <section>
-            <Head>
-                <title>Contacto - SM HOME&apos;S</title>
-                <meta
-                    name="description"
-                    content="Contáctanos para obtener asesoramiento inmobiliario personalizado. Te ayudamos a comprar o vender tu propiedad de forma rápida y segura."
-                />
-                <meta name="robots" content="index, follow" />
-                <meta name="keywords" content="contacto inmobiliaria, contactar SM HOME'S, inmobiliaria en Torrevieja, contactar agencia inmobiliaria, compra de propiedad, vender casa Torrevieja" />
-                
-                <meta property="og:title" content="Contacto - SM HOME&apos;S" />
-                <meta
-                    property="og:description"
-                    content="Contáctanos para obtener asesoramiento inmobiliario personalizado. Te ayudamos a comprar o vender tu propiedad de forma rápida y segura."
-                />
-                <meta property="og:image" content="/contacto.png" />
-                <meta property="og:url" content="https://www.smhomesrealstate.com/contacto" />
-                <meta property="og:type" content="website" />
-
-                <meta name="twitter:title" content="Contacto - SM HOME&apos;S" />
-                <meta
-                    name="twitter:description"
-                    content="Contáctanos para obtener asesoramiento inmobiliario personalizado. Te ayudamos a comprar o vender tu propiedad de forma rápida y segura."
-                />
-                <meta name="twitter:image" content="/contacto.png" />
-                <meta name="twitter:url" content="https://www.smhomesrealstate.com/contacto" />
-                <meta name="twitter:card" content="summary_large_image" />
-            </Head>
-
             <HeroVideo
                 src="https://res.cloudinary.com/dbp2p2kwh/video/upload/v1743632448/videoprueba_wqqizn.mp4"
                 fallbackImage="/videoprueba_fallback.png"

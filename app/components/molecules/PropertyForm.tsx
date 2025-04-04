@@ -25,7 +25,8 @@ export default function PropertyForm({
         tour3dUrl: initialData.tour3dUrl ?? "",
         selled: initialData.selled || false,
         features: initialData.features || [],
-        coordinates: initialData.coordinates || { lat: 0, lng: 0 }
+        coordinates: initialData.coordinates || { lat: 0, lng: 0 },
+        floorPlan: Array.isArray(initialData.floorPlan) ? initialData.floorPlan : [],
     });
 
     const [featureInput, setFeatureInput] = useState("");
@@ -113,28 +114,34 @@ export default function PropertyForm({
         }));
     };
 
-    const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
-        const target = e.target;
-        if (!target || !target.files || target.files.length === 0) return;
+// En el código donde se maneja el cambio en `floorPlan`
+const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target;
+    if (!target || !target.files || target.files.length === 0) return;
 
-        const file = target.files[0];
+    const newFloorPlans: PropertyImage[] = [];
 
+    Array.from(target.files).forEach(file => {
         const reader = new FileReader();
         reader.onload = (event) => {
             const target = event.target;
             if (target?.result) {
+                newFloorPlans.push({
+                    id: Math.random().toString(36).substring(2, 9),
+                    url: target.result as string,
+                    alt: file.name
+                });
+
                 setFormData(prev => ({
                     ...prev,
-                    floorPlan: {
-                        id: Math.random().toString(36).substring(2, 9),
-                        url: target.result as string,
-                        alt: file.name
-                    }
+                    floorPlan: [...(prev.floorPlan || []) as PropertyImage[], ...newFloorPlans]
                 }));
             }
         };
         reader.readAsDataURL(file);
-    };
+    });
+};
+
 
     const handleGoogleMapsSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -819,24 +826,34 @@ export default function PropertyForm({
                     <p>Subir plano de la propiedad</p>
                 </button>
 
-                {formData.floorPlan && (
-                    <div className="mt-4">
-                        <Image
-                            src={typeof formData.floorPlan === 'object' ? formData.floorPlan.url : ''}
-                            alt={typeof formData.floorPlan === 'object' ? formData.floorPlan.alt || "Plano de la propiedad" : "Plano de la propiedad"}
-                            className="w-full h-auto rounded-lg border border-primaryBackground border-opacity-30"
-                            width={100}
-                            height={50}
-                        />
-                        <button
-                            type="button"
-                            onClick={() => setFormData(prev => ({ ...prev, floorPlan: undefined }))}
-                            className="mt-2 bg-red-500 text-white px-4 py-2 rounded-md"
-                        >
-                            Eliminar plano
-                        </button>
+                {formData.floorPlan && formData.floorPlan.length > 0 && (
+                    <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {formData.floorPlan.map((plan, index) => (
+                            <div key={index} className="relative">
+                                <Image
+                                    src={(plan as PropertyImage).url}
+                                    alt={typeof plan === "object" && "alt" in plan ? plan.alt : "Plano de la propiedad"}
+                                    className="w-full h-auto rounded-lg"
+                                    width={100}
+                                    height={50}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setFormData(prev => ({
+                                            ...prev,
+                                            floorPlan: prev.floorPlan?.filter((_, i) => i !== index) as PropertyImage[]
+                                        }));
+                                    }}
+                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1"
+                                >
+                                    <X size={16} />
+                                </button>
+                            </div>
+                        ))}
                     </div>
                 )}
+
             </div>
 
             <div className="flex justify-end space-x-4">

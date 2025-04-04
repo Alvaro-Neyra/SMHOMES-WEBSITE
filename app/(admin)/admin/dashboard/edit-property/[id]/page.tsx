@@ -4,10 +4,9 @@ import axios from "axios";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
-import { Property, PropertyFormData } from "@/app/utils/interfaces";
+import { Property, PropertyFormData, PropertyImage } from "@/app/utils/interfaces";
 import PropertyForm from "@/app/components/molecules/PropertyForm";
 import { deleteImagesFromCloudinary } from "@/app/utils/imageService";
-import Head from "next/head";
 
 export default function EditPropertyPage() {
     const router = useRouter();
@@ -35,7 +34,7 @@ export default function EditPropertyPage() {
             price: property.price || 0,
             currency: property.currency || "USD",
             images: property.images || [],
-            floorPlan: property.floorPlan || undefined,
+            floorPlan: property.floorPlan || [],
             description: property.description ?? "",
             features: property.features || [],
             distanceToBeach: property.distanceToBeach ?? 0,
@@ -126,33 +125,103 @@ export default function EditPropertyPage() {
                 }))
             ];
 
-            let formattedFloorPlan = null;
-            if (formData.floorPlan && typeof formData.floorPlan === "object") {
-                if (formData.floorPlan.url.startsWith('data:')) {
-                    const uploadResponse = await fetch("/api/upload", {
-                        method: "POST",
-                        body: JSON.stringify({ images: [formData.floorPlan.url] }),
-                        headers: { "Content-Type": "application/json" },
-                    });
+            let formattedFloorPlans = null;
 
-                    const uploadData = await uploadResponse.json();
-                    const uploadedFloorPlan = uploadData.images?.[0];
+            if (formData.floorPlan && formData.floorPlan.length > 0) {
+                formattedFloorPlans = [];
 
-                    if (uploadedFloorPlan) {
-                        formattedFloorPlan = {
-                            url: uploadedFloorPlan.url,
-                            public_id: uploadedFloorPlan.public_id,
-                            alt: formData.floorPlan.alt || "Plano de la propiedad"
-                        };
+                const existingFloorPlans = propertyData?.floorPlan || [];
+
+                // Filtrar los planos a eliminar, asegurándose de que son objetos de tipo PropertyImage
+                const floorPlansToRemove = Array.isArray(existingFloorPlans)
+                    ? existingFloorPlans.filter((existingPlan) => {
+                        // Verificar si el elemento es un objeto PropertyImage
+                        if (typeof existingPlan === "object" && "public_id" in existingPlan) {
+                            return !formData.floorPlan?.some(
+                                (updatedPlan) =>
+                                    typeof updatedPlan === "object" &&
+                                    updatedPlan.url === existingPlan.url
+                            );
+                        }
+                        return false;
+                    })
+                    : [];
+
+                if (floorPlansToRemove.length > 0) {
+                    await deleteImagesFromCloudinary(
+                        floorPlansToRemove.filter(plan => {
+                            return (plan as PropertyImage).public_id !== undefined;
+                        }) as { public_id: string }[]
+                    );
+                }
+
+                // Procesar los nuevos planos
+                for (const floorPlan of formData.floorPlan) {
+                    // Si el plano es un objeto (PropertyImage)
+                    if (typeof floorPlan === "object") {
+                        // Verificar si el plano es una imagen en base64
+                        if (floorPlan.url.startsWith("data:")) {
+                            // Subir la imagen a Cloudinary
+                            const uploadResponse = await fetch("/api/upload", {
+                                method: "POST",
+                                body: JSON.stringify({ images: [floorPlan.url] }),
+                                headers: { "Content-Type": "application/json" },
+                            });
+
+                            const uploadData = await uploadResponse.json();
+                            const uploadedFloorPlan = uploadData.images?.[0];
+
+                            if (uploadedFloorPlan) {
+                                formattedFloorPlans.push({
+                                    url: uploadedFloorPlan.url,
+                                    public_id: uploadedFloorPlan.public_id,
+                                    alt: floorPlan.alt || `Plano de la propiedad ${formattedFloorPlans.length + 1}`,
+                                    id: floorPlan.id || `floor-${Math.random().toString(36).substring(2)}`, // Generar id único si no lo tiene
+                                });
+                            }
+                        } else {
+                            // Usar el plano existente
+                            formattedFloorPlans.push({
+                                url: floorPlan.url,
+                                public_id: floorPlan.public_id ?? `existing-${Math.random().toString(36).substring(2)}`,
+                                alt: floorPlan.alt || `Plano de la propiedad ${formattedFloorPlans.length + 1}`,
+                                id: floorPlan.id || `floor-${Math.random().toString(36).substring(2)}`,
+                            });
+                        }
                     }
-                } else {
-                    formattedFloorPlan = {
-                        url: formData.floorPlan.url,
-                        public_id: formData.floorPlan.public_id ?? `existing-${Math.random().toString(36).substring(2)}`,
-                        alt: formData.floorPlan.alt || "Plano de la propiedad"
-                    };
+                    // Si el plano es una URL en formato de cadena
+                    else if (typeof floorPlan === "string") {
+                        if (floorPlan.startsWith("data:")) {
+                            // Subir la imagen en base64
+                            const uploadResponse = await fetch("/api/upload", {
+                                method: "POST",
+                                body: JSON.stringify({ images: [floorPlan] }),
+                                headers: { "Content-Type": "application/json" },
+                            });
+
+                            const uploadData = await uploadResponse.json();
+                            const uploadedFloorPlan = uploadData.images?.[0];
+
+                            if (uploadedFloorPlan) {
+                                formattedFloorPlans.push({
+                                    url: uploadedFloorPlan.url,
+                                    public_id: uploadedFloorPlan.public_id,
+                                    alt: `Plano de la propiedad ${formattedFloorPlans.length + 1}`,
+                                    id: `floor-${Math.random().toString(36).substring(2)}`, // Generar id único
+                                });
+                            }
+                        } else {
+                            formattedFloorPlans.push({
+                                url: floorPlan,
+                                public_id: `existing-${Math.random().toString(36).substring(2)}`,
+                                alt: `Plano de la propiedad ${formattedFloorPlans.length + 1}`,
+                                id: `floor-${Math.random().toString(36).substring(2)}`,
+                            });
+                        }
+                    }
                 }
             }
+
 
             const hasBase64 = formattedImages.some(img => img.url.startsWith('data:'));
             if (hasBase64) {
@@ -162,7 +231,7 @@ export default function EditPropertyPage() {
             const updatedPropertyData = {
                 ...formData,
                 images: formattedImages,
-                floorPlan: formattedFloorPlan,
+                floorPlan: formattedFloorPlans,
             };
 
             const response = await fetch(`/api/properties/${propertyId}`, {
@@ -196,42 +265,32 @@ export default function EditPropertyPage() {
     }
 
     return (
-        <>
-            <Head>
-                <title>Editar Propiedad - SM HOME&apos;S</title>
-                <meta
-                    name="description"
-                    content="Edita los detalles de la propiedad en el panel de administración de SM HOME'S."
-                />
-                <meta name="robots" content="noindex, nofollow" />
-            </Head>
-            <div className="container mx-auto p-4">
-                <div className="flex items-center mb-4">
-                    <Link href="/admin/dashboard" className="mr-4">
-                        <ArrowLeft />
-                    </Link>
-                    <h1 className="text-2xl font-bold">Editar Propiedad</h1>
-                </div>
-
-                {uploadProgress > 0 && uploadProgress < 100 && (
-                    <div className="mb-4">
-                        <p>Subiendo imágenes: {uploadProgress}%</p>
-                        <div className="w-full bg-gray-200 rounded-full h-2.5">
-                            <div
-                                className="bg-blue-600 h-2.5 rounded-full"
-                                style={{ width: `${uploadProgress}%` }}
-                            ></div>
-                        </div>
-                    </div>
-                )}
-
-                <PropertyForm
-                    initialData={propertyData}
-                    onSubmit={handleSubmit}
-                    isLoading={loading}
-                    isEdit={true}
-                />
+        <div className="container mx-auto p-4">
+            <div className="flex items-center mb-4">
+                <Link href="/admin/dashboard" className="mr-4">
+                    <ArrowLeft />
+                </Link>
+                <h1 className="text-2xl font-bold">Editar Propiedad</h1>
             </div>
-        </>
+
+            {uploadProgress > 0 && uploadProgress < 100 && (
+                <div className="mb-4">
+                    <p>Subiendo imágenes: {uploadProgress}%</p>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                        <div
+                            className="bg-blue-600 h-2.5 rounded-full"
+                            style={{ width: `${uploadProgress}%` }}
+                        ></div>
+                    </div>
+                </div>
+            )}
+
+            <PropertyForm
+                initialData={propertyData}
+                onSubmit={handleSubmit}
+                isLoading={loading}
+                isEdit={true}
+            />
+        </div>
     );
 }
