@@ -30,6 +30,26 @@ export default function EditPropertyPage() {
             landArea: property.landArea ?? 0,
             bedrooms: property.bedrooms ?? 0,
             bathrooms: property.bathrooms ?? 0,
+            halfBathrooms: property.halfBathrooms ?? 0,
+            hasGarage: property.hasGarage || false,
+            hasGarden: property.hasGarden || false,
+            hasBalcony: property.hasBalcony || false,
+            hasTerrace: property.hasTerrace || false,
+            hasLaundry: property.hasLaundry || false,
+            hasStorage: property.hasStorage || false,
+            hasFireplace: property.hasFireplace || false,
+            hasAirConditioning: property.hasAirConditioning || false,
+            hasHeating: property.hasHeating || false,
+            hasSecurity: property.hasSecurity || false,
+            hasGym: property.hasGym || false,
+            hasParking: property.hasParking || false,
+            hasPlayground: property.hasPlayground || false,
+            hasTennisCourt: property.hasTennisCourt || false,
+            hasBeachAccess: property.hasBeachAccess || false,
+            hasSeaView: property.hasSeaView || false,
+            hasMountainView: property.hasMountainView || false,
+            hasCityView: property.hasCityView || false,
+            status: property.status || "disponible",
             hasPool: property.hasPool || false,
             price: property.price || 0,
             currency: property.currency || "USD",
@@ -132,10 +152,8 @@ export default function EditPropertyPage() {
 
                 const existingFloorPlans = propertyData?.floorPlan || [];
 
-                // Filtrar los planos a eliminar, asegurándose de que son objetos de tipo PropertyImage
                 const floorPlansToRemove = Array.isArray(existingFloorPlans)
                     ? existingFloorPlans.filter((existingPlan) => {
-                        // Verificar si el elemento es un objeto PropertyImage
                         if (typeof existingPlan === "object" && "public_id" in existingPlan) {
                             return !formData.floorPlan?.some(
                                 (updatedPlan) =>
@@ -155,13 +173,9 @@ export default function EditPropertyPage() {
                     );
                 }
 
-                // Procesar los nuevos planos
                 for (const floorPlan of formData.floorPlan) {
-                    // Si el plano es un objeto (PropertyImage)
                     if (typeof floorPlan === "object") {
-                        // Verificar si el plano es una imagen en base64
                         if (floorPlan.url.startsWith("data:")) {
-                            // Subir la imagen a Cloudinary
                             const uploadResponse = await fetch("/api/upload", {
                                 method: "POST",
                                 body: JSON.stringify({ images: [floorPlan.url] }),
@@ -180,7 +194,6 @@ export default function EditPropertyPage() {
                                 });
                             }
                         } else {
-                            // Usar el plano existente
                             formattedFloorPlans.push({
                                 url: floorPlan.url,
                                 public_id: floorPlan.public_id ?? `existing-${Math.random().toString(36).substring(2)}`,
@@ -189,10 +202,8 @@ export default function EditPropertyPage() {
                             });
                         }
                     }
-                    // Si el plano es una URL en formato de cadena
                     else if (typeof floorPlan === "string") {
                         if (floorPlan.startsWith("data:")) {
-                            // Subir la imagen en base64
                             const uploadResponse = await fetch("/api/upload", {
                                 method: "POST",
                                 body: JSON.stringify({ images: [floorPlan] }),

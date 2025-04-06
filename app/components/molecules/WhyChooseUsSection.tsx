@@ -94,5 +94,10 @@ const benefitItems = [
         icon: "🌍",
         title: "Asesoramiento legal y financiero",
         description: "Te ofrecemos asesoramiento legal y financiero para que puedas tomar decisiones informadas y seguras."
+    },
+    {
+        icon: "💼",
+        title: "Colaboraciones con profesionales",
+        description: "Colaboramos con arquitectos, abogados y otros profesionales del sector para ofrecerte un servicio integral y de calidad."
     }
 ];

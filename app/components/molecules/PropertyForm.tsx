@@ -114,33 +114,32 @@ export default function PropertyForm({
         }));
     };
 
-// En el código donde se maneja el cambio en `floorPlan`
-const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    if (!target || !target.files || target.files.length === 0) return;
+    const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
+        const target = e.target;
+        if (!target || !target.files || target.files.length === 0) return;
 
-    const newFloorPlans: PropertyImage[] = [];
+        const newFloorPlans: PropertyImage[] = [];
 
-    Array.from(target.files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            const target = event.target;
-            if (target?.result) {
-                newFloorPlans.push({
-                    id: Math.random().toString(36).substring(2, 9),
-                    url: target.result as string,
-                    alt: file.name
-                });
+        Array.from(target.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const target = event.target;
+                if (target?.result) {
+                    newFloorPlans.push({
+                        id: Math.random().toString(36).substring(2, 9),
+                        url: target.result as string,
+                        alt: file.name
+                    });
 
-                setFormData(prev => ({
-                    ...prev,
-                    floorPlan: [...(prev.floorPlan || []) as PropertyImage[], ...newFloorPlans]
-                }));
-            }
-        };
-        reader.readAsDataURL(file);
-    });
-};
+                    setFormData(prev => ({
+                        ...prev,
+                        floorPlan: [...(prev.floorPlan || []) as PropertyImage[], ...newFloorPlans]
+                    }));
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    };
 
 
     const handleGoogleMapsSubmit = (e: React.FormEvent) => {
@@ -202,6 +201,33 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
         setMatterportUrl(normalizedUrl);
     };
 
+    const labelFromKey = (key: string): string => {
+        const map: Record<string, string> = {
+            hasPool: "Piscina",
+            elevator: "Ascensor",
+            hasGarage: "Garaje",
+            hasGarden: "Jardín",
+            hasBalcony: "Balcón",
+            hasTerrace: "Terraza",
+            hasLaundry: "Lavandería",
+            hasStorage: "Depósito",
+            hasFireplace: "Chimenea",
+            hasAirConditioning: "Aire Acondicionado",
+            hasHeating: "Calefacción",
+            hasSecurity: "Seguridad",
+            hasGym: "Gimnasio",
+            hasParking: "Estacionamiento",
+            hasPlayground: "Área de Juegos",
+            hasTennisCourt: "Cancha de Tenis",
+            hasBeachAccess: "Acceso a la Playa",
+            hasSeaView: "Vista al Mar",
+            hasMountainView: "Vista a la Montaña",
+            hasCityView: "Vista a la Ciudad"
+        };
+        return map[key] || key;
+    };
+
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -215,10 +241,8 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
         await onSubmit(updatedFormData);
     };
 
-    // Drag-and-drop reordering functions
     const handleDragStart = (e: React.DragEvent, index: number) => {
         setDraggedIndex(index);
-        // Make the drag preview transparent
         if (e.dataTransfer.setDragImage) {
             const dragElement = document.createElement('div');
             dragElement.style.opacity = '0';
@@ -240,7 +264,6 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         if (draggedIndex === null || draggedIndex === dropIndex) return;
 
-        // Create new image arrays with reordered images
         const newImages = [...previewImages];
         const draggedImage = newImages[draggedIndex];
 
@@ -277,7 +300,7 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
                             value={formData.name}
                             onChange={handleChange}
                             className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
-                            placeholder="Ej. Casa Vista al Mar, Departamento Centro Histórico"
+                            placeholder="Ej. Casa Vista al Mar, Apartamento Centro Histórico"
                             required
                         />
                     </div>
@@ -286,22 +309,26 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
                         <Dropdown
                             label="Seleccionar Tipo"
                             name="type"
-                            options={["Casa", "Departamento", "Terreno", "Local Comercial", "Oficina", "Garaje"]}
+                            options={["Casa", "Apartamento", "Terreno", "Local Comercial", "Oficina", "Garaje", "Chalet"]}
                             defaultValue={
                                 formData.type === "casa" ? "Casa" :
-                                    formData.type === "departamento" ? "Departamento" :
+                                    formData.type === "apartamento" ? "Apartamento" :
                                         formData.type === "terreno" ? "Terreno" :
                                             formData.type === "local" ? "Local Comercial" :
-                                                formData.type === "garaje" ? "Garaje" : "Oficina"
+                                                formData.type === "garaje" ? "Garaje" :
+                                                    formData.type === "oficina" ? "Oficina" : 
+                                                        formData.type === "chalet" ? "Chalet" : "Casa"
                             }
                             onChange={(value) => {
                                 setFormData({
                                     ...formData,
                                     type: value === "Casa" ? "casa" :
-                                        value === "Departamento" ? "departamento" :
+                                        value === "Apartamento" ? "apartamento" :
                                             value === "Terreno" ? "terreno" :
                                                 value === "Local Comercial" ? "local" :
-                                                    value === "Garaje" ? "garaje" : "oficina"
+                                                    value === "Garaje" ? "garaje" : 
+                                                        value === "Oficina" ? "oficina" :
+                                                            value === "Chalet" ? "chalet" : "casa"
                                 });
                             }}
                             className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
@@ -385,6 +412,33 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
                             className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
                         />
                     </div>
+                    <div>
+                        <label htmlFor="status" className="block text-gray-200 mb-2">Estado de la Propiedad</label>
+                        <Dropdown
+                            label="Seleccionar Estado"
+                            name="status"
+                            options={["Disponible", "Reservado", "Vendido", "Alquilado"]}
+                            defaultValue={
+                                formData.status === "reservado" ? "Reservado" :
+                                    formData.status === "vendido" ? "Vendido" :
+                                        formData.status === "alquilado" ? "Alquilado" : "Disponible"
+                            }
+                            onChange={(value) => {
+                                setFormData({
+                                    ...formData,
+                                    status:
+                                        value === "Reservado"
+                                            ? "reservado"
+                                            : value === "Vendido"
+                                                ? "vendido"
+                                                : value === "Alquilado"
+                                                    ? "alquilado"
+                                                    : "disponible"
+                                });
+                            }}
+                            className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -458,6 +512,18 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
                     </div>
 
                     <div>
+                        <label htmlFor="halfBathrooms" className="block text-gray-200 mb-2">Aseos</label>
+                        <input
+                            type="number"
+                            name="halfBathrooms"
+                            value={formData.halfBathrooms ?? ''}
+                            onChange={handleChange}
+                            min="0"
+                            className="w-full p-3 bg-blackSoft30 border border-primaryBackground border-opacity-30 rounded-lg text-white focus:border-primaryBackground focus:outline-none"
+                        />
+                    </div>
+
+                    <div>
                         <label htmlFor="distanceToBeach" className="block text-gray-200 mb-2">Distancia a la Playa (km)</label>
                         <input
                             type="number"
@@ -470,31 +536,51 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div className="flex items-center space-x-3">
-                        <input
-                            type="checkbox"
-                            id="hasPool"
-                            name="hasPool"
-                            checked={formData.hasPool}
-                            onChange={handleChange}
-                            className="w-5 h-5 accent-primaryBackground"
-                        />
-                        <label htmlFor="hasPool" className="text-gray-200">Tiene Piscina</label>
-                    </div>
+                <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-white mb-4 border-b border-primaryBackground border-opacity-30 pb-2">
+                        Comodidades
+                    </h3>
 
-                    <div className="flex items-center space-x-3">
-                        <input
-                            type="checkbox"
-                            id="elevator"
-                            name="elevator"
-                            checked={formData.elevator || false}
-                            onChange={handleChange}
-                            className="w-5 h-5 accent-primaryBackground"
-                        />
-                        <label htmlFor="elevator" className="text-gray-200">Tiene Elevador</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {[
+                            "hasPool",
+                            "elevator",
+                            "hasGarage",
+                            "hasGarden",
+                            "hasBalcony",
+                            "hasTerrace",
+                            "hasLaundry",
+                            "hasStorage",
+                            "hasFireplace",
+                            "hasAirConditioning",
+                            "hasHeating",
+                            "hasSecurity",
+                            "hasGym",
+                            "hasParking",
+                            "hasPlayground",
+                            "hasTennisCourt",
+                            "hasBeachAccess",
+                            "hasSeaView",
+                            "hasMountainView",
+                            "hasCityView"
+                        ].map((key) => (
+                            <div key={key} className="flex items-center space-x-3">
+                                <input
+                                    type="checkbox"
+                                    id={key}
+                                    name={key}
+                                    checked={!!formData[key as keyof PropertyFormData]}
+                                    onChange={handleChange}
+                                    className="w-5 h-5 accent-primaryBackground"
+                                />
+                                <label htmlFor={key} className="text-gray-200">
+                                    {labelFromKey(key)}
+                                </label>
+                            </div>
+                        ))}
                     </div>
                 </div>
+
             </div>
 
             <div className="mb-8">
@@ -814,6 +900,7 @@ const handleFloorPlanUpload = (e: ChangeEvent<HTMLInputElement>) => {
                     onChange={handleFloorPlanUpload}
                     accept="image/*"
                     className="hidden"
+                    multiple
                     ref={floorPlanInputRef}
                 />
 

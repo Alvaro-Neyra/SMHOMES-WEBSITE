@@ -217,7 +217,7 @@ export interface PropertyMapProps {
 
 export interface Property {
     id: string;
-    type: "casa" | "departamento" | "terreno" | "local" | "oficina" | "garaje";
+    type: "casa" | "apartamento" | "terreno" | "local" | "oficina" | "garaje" | "chalet";
     name: string;
     address: string;
     city: string;
@@ -226,6 +226,25 @@ export interface Property {
     landArea?: number;
     bedrooms?: number;
     bathrooms?: number;
+    halfBathrooms?: number;
+    hasGarage?: boolean;
+    hasGarden?: boolean;
+    hasBalcony?: boolean;
+    hasTerrace?: boolean;
+    hasLaundry?: boolean;
+    hasStorage?: boolean;
+    hasFireplace?: boolean;
+    hasAirConditioning?: boolean;
+    hasHeating?: boolean;
+    hasSecurity?: boolean;
+    hasGym?: boolean;
+    hasParking?: boolean;
+    hasPlayground?: boolean;
+    hasTennisCourt?: boolean;
+    hasBeachAccess?: boolean;
+    hasSeaView?: boolean;
+    hasMountainView?: boolean;
+    hasCityView?: boolean;
     hasPool?: boolean;
     price: number;
     currency: "USD" | "MXN" | "EUR";
@@ -241,12 +260,13 @@ export interface Property {
     selled?: boolean;
     transactionType: ("venta" | "renta")[];
     tour3dUrl?: string;
+    status: "disponible" | "reservado" | "vendido" | "alquilado";
     createdAt?: Date;
 }
 
 export interface PropertyFormData {
-    id?: string;
-    type: "casa" | "departamento" | "terreno" | "local" | "oficina" | "garaje";
+    id: string;
+    type: "casa" | "apartamento" | "terreno" | "local" | "oficina" | "garaje" | "chalet";
     name: string;
     address: string;
     city: string;
@@ -255,6 +275,25 @@ export interface PropertyFormData {
     landArea?: number;
     bedrooms?: number;
     bathrooms?: number;
+    halfBathrooms?: number;
+    hasGarage?: boolean;
+    hasGarden?: boolean;
+    hasBalcony?: boolean;
+    hasTerrace?: boolean;
+    hasLaundry?: boolean;
+    hasStorage?: boolean;
+    hasFireplace?: boolean;
+    hasAirConditioning?: boolean;
+    hasHeating?: boolean;
+    hasSecurity?: boolean;
+    hasGym?: boolean;
+    hasParking?: boolean;
+    hasPlayground?: boolean;
+    hasTennisCourt?: boolean;
+    hasBeachAccess?: boolean;
+    hasSeaView?: boolean;
+    hasMountainView?: boolean;
+    hasCityView?: boolean;
     hasPool?: boolean;
     price: number;
     currency: "USD" | "MXN" | "EUR";
@@ -270,6 +309,7 @@ export interface PropertyFormData {
     selled?: boolean;
     transactionType: ("venta" | "renta")[];
     tour3dUrl?: string;
+    status: "disponible" | "reservado" | "vendido" | "alquilado";
     createdAt?: Date;
 }
 

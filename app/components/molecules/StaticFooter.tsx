@@ -88,10 +88,10 @@ const StaticFooter = () => {
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Email</h6>
                                 <Link
-                                    href="mailto:contacto@smhomesrealstate.com"
+                                    href="mailto:elenamasko@smhomesrealstate.com"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]"
                                 >
-                                    contacto@smhomesrealstate.com
+                                    elenamasko@smhomesrealstate.com
                                 </Link>
                             </div>
                             <div className="xl:flex xl:flex-col xl:gap-[1vw]">

@@ -41,12 +41,13 @@ const exampleProperties = [
         usableArea: 200,
         selled: false,
         transactionType: ['venta'],
+        status: 'disponible' as const,
         createdAt: new Date()
     },
     {
         id: 'prop-2',
-        name: 'Departamento Moderno en Torre Norte',
-        type: 'departamento' as const,
+        name: 'Apartamento Moderno en Torre Norte',
+        type: 'apartamento' as const,
         address: 'Av. Marina 456, Torre Norte, Piso 12',
         city: 'Ciudad Ejemplo',
         state: 'Estado Ejemplo',
@@ -63,11 +64,12 @@ const exampleProperties = [
         currency: 'USD' as const,
         selled: false,
         images: [
-            { id: 'img-4', url: '/torrevieja4.jpg', alt: 'Vista departamento', public_id: 'img-4' },
+            { id: 'img-4', url: '/torrevieja4.jpg', alt: 'Vista Apartamento', public_id: 'img-4' },
             { id: 'img-5', url: '/torrevieja5.jpg', alt: 'Dormitorio principal', public_id: 'img-5' },
             { id: 'img-6', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'img-6' },
         ],
         transactionType: ['venta'],
+        status: 'disponible' as const,
     },
     {
         id: 'prop-3',
@@ -94,12 +96,13 @@ const exampleProperties = [
         ],
         selled: false,
         transactionType: ['venta'],
+        status: 'disponible' as const,
         createdAt: new Date()
     },
     {
         id: 'prop-4',
-        name: 'Departamento con Vista al Mar',
-        type: 'departamento' as const,
+        name: 'Apartamento con Vista al Mar',
+        type: 'apartamento' as const,
         address: 'Av. Marina 456, Torre Sur, Piso 3',
         city: 'Ciudad Ejemplo',
         state: 'Estado Ejemplo',
@@ -115,12 +118,13 @@ const exampleProperties = [
             lng: -122.4194,
         },
         images: [
-            { id: 'img-10', url: '/torrevieja4.jpg', alt: 'Vista departamento', public_id: 'torrevieja4' },
+            { id: 'img-10', url: '/torrevieja4.jpg', alt: 'Vista Apartamento', public_id: 'torrevieja4' },
             { id: 'img-11', url: '/torrevieja5.jpg', alt: 'Dormitorio principal', public_id: 'torrevieja5' },
             { id: 'img-12', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'torrevieja6' },
         ],
         selled: false,
         transactionType: ['venta'],
+        status: 'disponible' as const,
         createdAt: new Date()
     },
     {
@@ -148,12 +152,13 @@ const exampleProperties = [
         ],
         selled: false,
         transactionType: ['venta'],
+        status: 'disponible' as const,
         createdAt: new Date()
     },
     {
         id: 'prop-6',
-        name: 'Departamento Moderno en Torre Norte',
-        type: 'departamento' as const,
+        name: 'Apartamento Moderno en Torre Norte',
+        type: 'apartamento' as const,
         address: 'Av. Marina 456, Torre Norte, Piso 12',
         city: 'Ciudad Ejemplo',
         state: 'Estado Ejemplo',
@@ -165,7 +170,7 @@ const exampleProperties = [
         price: 280000,
         currency: 'USD' as const,
         images: [
-            { id: 'img-16', url: '/torrevieja4.jpg', alt: 'Vista departamento', public_id: 'torrevieja4' },
+            { id: 'img-16', url: '/torrevieja4.jpg', alt: 'Vista Apartamento', public_id: 'torrevieja4' },
             { id: 'img-17', url: '/torrevieja5.jpg', alt: 'Dormitorio principal', public_id: 'torrevieja5' },
             { id: 'img-18', url: '/torrevieja6.jpg', alt: 'Baño', public_id: 'torrevieja6' },
         ],
@@ -175,6 +180,7 @@ const exampleProperties = [
         },
         selled: false,
         transactionType: ['venta'],
+        status: 'disponible' as const,
         createdAt: new Date()
     },
     {
@@ -202,6 +208,7 @@ const exampleProperties = [
         ],
         selled: false,
         transactionType: ['venta'],
+        status: 'disponible' as const,
         createdAt: new Date()
     }
 ];

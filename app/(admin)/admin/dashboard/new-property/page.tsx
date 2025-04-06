@@ -21,6 +21,25 @@ export default function NewPropertyPage() {
         landArea: 0,
         bedrooms: 0,
         bathrooms: 0,
+        halfBathrooms: 0,
+        hasGarage: false,
+        hasGarden: false,
+        hasBalcony: false,
+        hasTerrace: false,
+        hasLaundry: false,
+        hasStorage: false,
+        hasFireplace: false,
+        hasAirConditioning: false,
+        hasHeating: false,
+        hasSecurity: false,
+        hasGym: false,
+        hasParking: false,
+        hasPlayground: false,
+        hasTennisCourt: false,
+        hasBeachAccess: false,
+        hasSeaView: false,
+        hasMountainView: false,
+        hasCityView: false,
         hasPool: false,
         price: 0,
         currency: "USD",
@@ -39,7 +58,9 @@ export default function NewPropertyPage() {
         selled: false,
         transactionType: ["venta"],
         createdAt: new Date(),
+        status: "disponible",
         tour3dUrl: "",
+        id: ""
     };
 
     const handleSubmit = async (formData: PropertyFormData) => {
@@ -87,12 +108,9 @@ export default function NewPropertyPage() {
             if (formData.floorPlan && formData.floorPlan.length > 0) {
                 formattedFloorPlans = [];
 
-                // Procesar cada plano en el array
                 for (const floorPlan of formData.floorPlan) {
                     if (typeof floorPlan === "object") {
-                        // Si es un objeto de tipo PropertyImage
                         if (floorPlan.url.startsWith("data:")) {
-                            // Si es una imagen nueva en base64
                             const uploadResponse = await fetch("/api/upload", {
                                 method: "POST",
                                 body: JSON.stringify({ images: [floorPlan.url] }),

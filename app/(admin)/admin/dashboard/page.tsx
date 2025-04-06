@@ -94,7 +94,7 @@ export default function Dashboard() {
                         <tbody>
                             {properties.map((property) => (
                                 <tr key={property.id} className="border-b border-primaryBackground border-opacity-10 hover:bg-blackSoft30 hover:bg-opacity-50">
-                                    <td className="py-3 px-4 text-white">{property.address}</td>
+                                    <td className="py-3 px-4 text-white">{property.name}</td>
                                     <td className="py-3 px-4 text-white capitalize">{property.type}</td>
                                     <td className="py-3 px-4 text-white">
                                         {property.currency === 'USD' && '$'}

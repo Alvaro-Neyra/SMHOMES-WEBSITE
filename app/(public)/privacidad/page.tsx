@@ -40,7 +40,7 @@ export default function PrivacyPolicy() {
                         <br />
                         <strong>Teléfono:</strong> +34 691 34 46 47
                         <br />
-                        <strong>Email:</strong> contacto@smhomesrealstate.com
+                        <strong>Email:</strong> elenamasko@smhomesrealstate.com
                     </p>
                 </section>
 
@@ -105,7 +105,7 @@ export default function PrivacyPolicy() {
                         <li>Revocar el consentimiento otorgado.</li>
                     </ul>
                     <p className="text-gray-300 leading-relaxed mt-4">
-                        Para ejercer sus derechos, puede contactarnos a través del teléfono <strong>+34 691 34 46 47</strong> o el correo electrónico <strong>contacto@smhomesrealstate.com</strong>. Recuerde acompañar una copia de un documento que nos permita identificarle.
+                        Para ejercer sus derechos, puede contactarnos a través del teléfono <strong>+34 691 34 46 47</strong> o el correo electrónico <strong>elenamasko@smhomesrealstate.com</strong>. Recuerde acompañar una copia de un documento que nos permita identificarle.
                     </p>
                 </section>
 

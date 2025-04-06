@@ -78,7 +78,7 @@ export default function ContactPage() {
                                         Email
                                     </h3>
                                     <p className="text-primaryColor text-sm lg:text-[1vw]">
-                                        contacto@smhomesrealstate.com
+                                        elenamasko@smhomesrealstate.com
                                     </p>
                                 </div>
                             </div>

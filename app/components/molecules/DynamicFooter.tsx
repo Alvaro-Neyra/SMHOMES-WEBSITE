@@ -103,10 +103,10 @@ const Footer = () => {
                                     Email
                                 </h6>
                                 <Link
-                                    href="mailto:contacto@smhomesrealstate.com"
+                                    href="mailto:elenamasko@smhomesrealstate.com"
                                     className="hover:text-primaryColor hover:underline transition-[color,text-decoration] duration-300 text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl"
                                 >
-                                    contacto@smhomesrealstate.com
+                                    elenamasko@smhomesrealstate.com
                                 </Link>
                             </div>
                             <div className="flex flex-col gap-1">
