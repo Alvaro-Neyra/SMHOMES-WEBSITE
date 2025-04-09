@@ -13,19 +13,19 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
     const [isDragging, setIsDragging] = useState(false);
     const [scrollLeft, setScrollLeft] = useState(0);
     const thumbnailsRef = useRef<HTMLDivElement>(null);
-    
+
     useEffect(() => {
         if (thumbnailsRef.current && !isDragging) {
             const container = thumbnailsRef.current;
             const thumbnail = container.children[current] as HTMLElement;
-            
+
             if (thumbnail) {
                 const containerWidth = container.offsetWidth;
                 const thumbnailLeft = thumbnail.offsetLeft;
                 const thumbnailWidth = thumbnail.offsetWidth;
-                
+
                 const scrollPosition = thumbnailLeft - (containerWidth / 2) + (thumbnailWidth / 2);
-                
+
                 container.scrollTo({
                     left: scrollPosition,
                     behavior: 'smooth'
@@ -70,14 +70,14 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
         setCurrent(index);
         setTimeout(() => setIsTransitioning(false), 300);
     };
-    
+
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!thumbnailsRef.current) return;
         setIsDragging(true);
         setStartX(e.pageX - thumbnailsRef.current.offsetLeft);
         setScrollLeft(thumbnailsRef.current.scrollLeft);
     };
-    
+
     const handleTouchStart = (e: React.TouchEvent) => {
         if (!thumbnailsRef.current) return;
         setIsDragging(true);
@@ -92,7 +92,7 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
         const walk = (x - startX) * 2;
         thumbnailsRef.current.scrollLeft = scrollLeft - walk;
     };
-    
+
     const handleTouchMove = (e: React.TouchEvent) => {
         if (!isDragging || !thumbnailsRef.current) return;
         const x = e.touches[0].pageX - thumbnailsRef.current.offsetLeft;
@@ -116,14 +116,14 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
             }
         `;
         document.head.appendChild(style);
-        
+
         return () => {
             document.head.removeChild(style);
         };
     }, []);
 
     return (
-        <div 
+        <div
             className="bg-blackSoft30 rounded-lg overflow-hidden mb-8 shadow-xl mx-auto 
                     w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-10/12"
             onMouseEnter={handleMouseEnter}
@@ -134,17 +134,14 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                     {property.images.map((image, index) => (
                         <div
                             key={image.id ?? `image-${index}`}
-                            className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${
-                                index === current ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                            }`}
+                            className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${index === current ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                                }`}
                         >
                             <Image
                                 src={image.url}
                                 alt={image.alt}
                                 fill
-                                priority={index === 0}
-                                sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 75vw, 640px"
-                                className="object-contain sm:object-cover bg-blackSoft"
+                                className="object-contain"
                             />
                         </div>
                     ))}
@@ -154,16 +151,16 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                     {property.type ? property.type.charAt(0).toUpperCase() + property.type.slice(1) : "Tipo de propiedad no disponible"}
                 </div>
 
-                <button 
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
+                <button
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 border border-primaryBackground bg-opacity-50 hover:bg-opacity-70 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
                     onClick={slideLeft}
                     disabled={isTransitioning}
                     aria-label="Imagen anterior"
                 >
                     <ChevronLeft className="text-primaryBackground w-6 h-6" />
                 </button>
-                <button 
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 bg-opacity-50 hover:bg-opacity-70 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
+                <button
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-blackSoft30 border border-primaryBackground bg-opacity-50 hover:bg-opacity-70 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300"
                     onClick={slideRight}
                     disabled={isTransitioning}
                     aria-label="Imagen siguiente"
@@ -177,7 +174,7 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
             </div>
 
             <div className="bg-blackSoft30 p-3">
-                <div 
+                <div
                     ref={thumbnailsRef}
                     className="flex justify-start space-x-2 overflow-x-auto py-2 cursor-grab hide-scrollbar"
                     onMouseDown={handleMouseDown}
@@ -193,18 +190,16 @@ const PropertyImageCarousel: React.FC<PropertyImageCarouselProps> = ({ property 
                             key={image.id ?? `image-${index}`}
                             onClick={() => goToSlide(index)}
                             disabled={isTransitioning}
-                            className={`relative w-16 h-16 rounded-md overflow-hidden transition-all duration-300 flex-shrink-0 ${
-                                current === index 
-                                ? 'ring-2 ring-primaryBackground scale-105 shadow-lg' 
-                                : 'opacity-60 hover:opacity-90'
-                            }`}
+                            className={`relative w-16 h-16 rounded-md overflow-hidden transition-all duration-300 flex-shrink-0 ${current === index
+                                    ? 'ring-2 ring-primaryBackground scale-105 shadow-lg'
+                                    : 'opacity-60 hover:opacity-90'
+                                }`}
                         >
                             <Image
                                 src={image.url}
                                 alt={image.alt}
                                 fill
                                 className={`object-cover transition-transform duration-300 ${isDragging ? '' : 'pointer-events-none'}`}
-                                sizes="64px"
                                 draggable={false}
                             />
                         </button>
