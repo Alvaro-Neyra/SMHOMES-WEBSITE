@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import LinkNav from "../atoms/Linknav";
-import { NAV_LINKS } from "@/app/utils/constants";
 import { FaBars } from "react-icons/fa";
 import { NavbarProps } from "@/app/utils/interfaces";
 
@@ -27,7 +26,7 @@ export default function StaticNavbar({position, active}: Readonly<NavbarProps>) 
                     </Link>
                 </div>
 
-                <ul className="hidden h-full gap-12 lg:flex">
+                {/* <ul className="hidden h-full gap-12 lg:flex">
                     {NAV_LINKS.map((link) => (
                         <li key={link.key}>
                             <LinkNav
@@ -39,7 +38,7 @@ export default function StaticNavbar({position, active}: Readonly<NavbarProps>) 
                             </LinkNav>
                         </li>
                     ))}
-                </ul>
+                </ul> */}
 
                 <div className="lg:flexCenter hidden">
                     <LinkNav

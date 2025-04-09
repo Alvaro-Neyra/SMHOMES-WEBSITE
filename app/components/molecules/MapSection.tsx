@@ -9,7 +9,7 @@ export default function MapSection() {
             <div className="mx-auto bg-blackSoft30 rounded-lg xl:rounded-[1vw] shadow-lg overflow-hidden">
                 <div className="p-6 xl:p-[2vw] text-center bg-blackSoft30 border-b border-gray-200">
                     <p className="text-lg sm:text-xl xl:text-[2vw] font-semibold text-primaryBackground">
-                        C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
+                        C. Caballero de Rodas, 120, Mod. 4 - 03182 Torrevieja, Alicante, España
                     </p>
                 </div>
 

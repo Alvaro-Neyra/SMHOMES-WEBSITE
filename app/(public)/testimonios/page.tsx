@@ -1,6 +1,7 @@
 import Link from "next/link";
 import TestimoniosClientContent from "../../components/organisms/TestimoniosClientContent";
 import { Metadata } from "next";
+import { testimonials } from "@/app/utils/constants";
 
 export const metadata: Metadata = {
     title: "Testimonios de Clientes - SM HOME'S",
@@ -37,7 +38,21 @@ export default function Testimonios() {
                     Descubre cómo nuestra plataforma ha transformado el trabajo de profesionales y empresas.
                 </p>
             </div>
-            <TestimoniosClientContent />
+            {testimonials && testimonials.length > 0 && 
+                (
+                    <TestimoniosClientContent />
+                )
+            }
+            {testimonials && testimonials.length === 0 && (
+                <div className="text-center bg-blackSoft30 rounded-xl p-8 xl:p-[2vw]">
+                    <p className="text-base md:text-lg xl:text-[2vw] text-primaryBackground">
+                        No hay testimonios en video por el momento
+                    </p>
+                    <p className="text-sm md:text-base xl:text-[1.5vw] text-gray-400 mt-4">
+                        Próximamente compartiremos más testimonios de nuestros clientes
+                    </p>
+                </div> 
+            )}
             <div className="max-w-4xl xl:max-w-[50vw] mx-auto mt-20 text-center">
                 <div className="bg-primaryBackground rounded-2xl shadow-xl px-4 sm:px-6 py-8 sm:py-12 xl:flex xl:flex-col xl:items-center xl:space-y-[2vw] xl:px-[2vw] xl:py-[3vw]">
                     <h2 className="text-2xl sm:text-3xl xl:text-[2.5vw] font-bold text-white mb-4">

@@ -1,7 +1,6 @@
 import HeroVideo from '@/app/components/molecules/HeroVideo';
 import MapSection from '@/app/components/molecules/MapSection';
 import HeroForm from '@/app/components/organisms/HeroForm';
-import TestimonialsCarrusel from '@/app/components/organisms/TestimonialsCarrusel';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -92,7 +91,7 @@ export default function ContactPage() {
                                         Dirección
                                     </h3>
                                     <p className="text-primaryColor text-sm lg:text-[1vw] xl:leading-[1.5vw]">
-                                        C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
+                                        C. Caballero de Rodas, 120, Mod. 4 - 03182 Torrevieja, Alicante, España
                                     </p>
                                 </div>
 
@@ -119,10 +118,10 @@ export default function ContactPage() {
                 </section>
             </HeroForm>
             <MapSection />
-            <section id="testimonials">
+            {/* <section id="testimonials">
                 <h1 className="text-[8vw] sm:text-4xl lg:text-5xl xl:text-[3.5vw] font-bold text-primaryColor text-center bg-blackSoftColor pt-[2vw]">Nuestros Testimonios</h1>
                 <TestimonialsCarrusel />
-            </section>
+            </section> */}
         </section>
     );
 }

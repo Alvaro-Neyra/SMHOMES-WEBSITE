@@ -37,56 +37,56 @@ export const slides: SlidesProps[] = [
 ];
 
 export const testimonials: Testimonial[] = [
-    {
-        id: 1,
-        name: 'María Rodríguez',
-        position: 'Diseñadora Gráfica',
-        avatar: '/avatars/maria.jpg',
-        initials: 'MR',
-        rating: 5,
-        content: 'Esta plataforma ha transformado por completo mi flujo de trabajo. La interfaz es intuitiva y las herramientas son exactamente lo que necesitaba para mis proyectos. ¡Altamente recomendado!',
-        bgColor: 'bg-indigo-500'
-    },
-    {
-        id: 2,
-        name: 'Carlos Mendoza',
-        position: 'Desarrollador Frontend',
-        avatar: '/avatars/carlos.jpg',
-        initials: 'CM',
-        rating: 5,
-        content: 'Como desarrollador, valoro mucho las soluciones bien diseñadas. Este servicio cumple perfectamente con mis expectativas y ha mejorado significativamente mi productividad.',
-        bgColor: 'bg-green-500'
-    },
-    {
-        id: 3,
-        name: 'Ana Gutiérrez',
-        position: 'Gerente de Marketing',
-        avatar: '/avatars/ana.jpg',
-        initials: 'AG',
-        rating: 4,
-        content: 'Hemos visto un aumento del 40% en nuestras conversiones desde que empezamos a utilizar este servicio. El soporte al cliente es excelente y siempre están dispuestos a ayudar.',
-        bgColor: 'bg-purple-500'
-    },
-    {
-        id: 4,
-        name: 'Roberto Sánchez',
-        position: 'Emprendedor',
-        avatar: '/avatars/roberto.jpg',
-        initials: 'RS',
-        rating: 5,
-        content: 'Esta herramienta me ha ayudado a escalar mi negocio de forma increíble. La relación calidad-precio es inmejorable y las actualizaciones constantes la hacen cada vez mejor.',
-        bgColor: 'bg-yellow-500'
-    },
-    {
-        id: 5,
-        name: 'Laura Jiménez',
-        position: 'Consultor SEO',
-        avatar: '/avatars/laura.jpg',
-        initials: 'LJ',
-        rating: 4,
-        content: 'He probado muchas soluciones similares, pero ninguna ofrece el nivel de detalle y personalización que encuentro aquí. Es una inversión que vale cada centavo.',
-        bgColor: 'bg-red-500'
-    }
+    // {
+    //     id: 1,
+    //     name: 'María Rodríguez',
+    //     position: 'Diseñadora Gráfica',
+    //     avatar: '/avatars/maria.jpg',
+    //     initials: 'MR',
+    //     rating: 5,
+    //     content: 'Esta plataforma ha transformado por completo mi flujo de trabajo. La interfaz es intuitiva y las herramientas son exactamente lo que necesitaba para mis proyectos. ¡Altamente recomendado!',
+    //     bgColor: 'bg-indigo-500'
+    // },
+    // {
+    //     id: 2,
+    //     name: 'Carlos Mendoza',
+    //     position: 'Desarrollador Frontend',
+    //     avatar: '/avatars/carlos.jpg',
+    //     initials: 'CM',
+    //     rating: 5,
+    //     content: 'Como desarrollador, valoro mucho las soluciones bien diseñadas. Este servicio cumple perfectamente con mis expectativas y ha mejorado significativamente mi productividad.',
+    //     bgColor: 'bg-green-500'
+    // },
+    // {
+    //     id: 3,
+    //     name: 'Ana Gutiérrez',
+    //     position: 'Gerente de Marketing',
+    //     avatar: '/avatars/ana.jpg',
+    //     initials: 'AG',
+    //     rating: 4,
+    //     content: 'Hemos visto un aumento del 40% en nuestras conversiones desde que empezamos a utilizar este servicio. El soporte al cliente es excelente y siempre están dispuestos a ayudar.',
+    //     bgColor: 'bg-purple-500'
+    // },
+    // {
+    //     id: 4,
+    //     name: 'Roberto Sánchez',
+    //     position: 'Emprendedor',
+    //     avatar: '/avatars/roberto.jpg',
+    //     initials: 'RS',
+    //     rating: 5,
+    //     content: 'Esta herramienta me ha ayudado a escalar mi negocio de forma increíble. La relación calidad-precio es inmejorable y las actualizaciones constantes la hacen cada vez mejor.',
+    //     bgColor: 'bg-yellow-500'
+    // },
+    // {
+    //     id: 5,
+    //     name: 'Laura Jiménez',
+    //     position: 'Consultor SEO',
+    //     avatar: '/avatars/laura.jpg',
+    //     initials: 'LJ',
+    //     rating: 4,
+    //     content: 'He probado muchas soluciones similares, pero ninguna ofrece el nivel de detalle y personalización que encuentro aquí. Es una inversión que vale cada centavo.',
+    //     bgColor: 'bg-red-500'
+    // }
 ];
 
 

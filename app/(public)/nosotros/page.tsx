@@ -2,7 +2,6 @@ import HeroImage from '@/app/components/molecules/HeroImage';
 import ImageSection from '@/app/components/molecules/ImageSection';
 import StaticHeroSection from '@/app/components/molecules/StaticHeroSection';
 import StaticHeroSectionImages from '@/app/components/molecules/StaticHeroSectionImages';
-import StatsSection from '@/app/components/molecules/StatsSection';
 import MarcasCarrusel from '@/app/components/organisms/MarcasCarrusel';
 import RealEstateServices from '@/app/components/organisms/RealStateServices';
 import { Metadata } from 'next';
@@ -59,7 +58,7 @@ export default function NosotrosPage() {
                 </p>
                 <Link href="#servicios" className="bg-primaryBackground border-[.2vw] border-primaryBackground text-white xl:text-[1.5vw] px-6 py-3 rounded-lg xl:rounded-[1vw] font-semibold hover:bg-blackSoftColor transition-colors duration-300">Nuestros Servicios</Link>
             </StaticHeroSectionImages>
-            <StatsSection />
+            {/* <StatsSection /> */}
             <StaticHeroSection
                 imageSrc="/torrevieja6.jpg"
                 altText="Nosotros image 1"

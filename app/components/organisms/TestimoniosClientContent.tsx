@@ -67,6 +67,7 @@ export default function TestimoniosClientContent() {
                     Testimonios de clientes
                 </h2>
 
+                {(currentTestimonials.length > 0) && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                     {currentTestimonials.map((testimonial) => (
                         <div
@@ -89,7 +90,17 @@ export default function TestimoniosClientContent() {
                                 <p className="text-white text-sm sm:text-base flex-grow xl:text-[1vw] xl:leading-[1.5vw]">{testimonial.content}</p>
                             </div>
                         </div>))}
-                </div>
+                </div>)}
+                {currentTestimonials.length === 0 && (
+                    <div className="text-center bg-blackSoft30 rounded-xl p-8 xl:p-[2vw]">
+                        <p className="text-base md:text-lg xl:text-[2vw] text-primaryBackground">
+                            No hay testimonios por el momento
+                        </p>
+                        <p className="text-sm md:text-base xl:text-[1.5vw] text-gray-400 mt-4">
+                            Próximamente compartiremos más testimonios de nuestros clientes
+                        </p>
+                    </div>
+                )}
 
                 {totalTestimonialPages > 1 && (
                     <Pagination

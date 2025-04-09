@@ -4,7 +4,6 @@ import ExploreSection from "../components/organisms/ExploreSection";
 import HousesSection from "../components/organisms/HousesSection";
 import { slides } from "../utils/constants";
 import WhyChooseUsSection from "../components/molecules/WhyChooseUsSection";
-import TestimonialsCarrusel from "../components/organisms/TestimonialsCarrusel";
 
 export default function Home() {
   return (
@@ -21,7 +20,7 @@ export default function Home() {
         buttonText="Ver Propiedades"
         buttonLink="/propiedades"
       />
-      <TestimonialsCarrusel />
+      {/* <TestimonialsCarrusel /> */}
     </section>
   );
 }

@@ -3,7 +3,6 @@ import Faq from "../../components/molecules/FAQ";
 import FormComponent from "../../components/molecules/FormComponent";
 import HeroSection from "../../components/molecules/HeroSectionButtons";
 import HeroForm from "../../components/organisms/HeroForm";
-import TestimonialsCarrusel from "../../components/organisms/TestimonialsCarrusel";
 import { FAQItems, formFields, highlights, stats } from "../../utils/constants";
 import Link from "next/link";
 
@@ -98,12 +97,12 @@ export default function SellPage() {
                 </Link>
             </HeroForm>
 
-            <section id="testimonials">
+            {/* <section id="testimonials">
                 <h1 className="text-[8vw] sm:text-4xl lg:text-5xl xl:text-[3.5vw] font-bold text-primaryColor text-center bg-blackSoftColor pt-[2vw]">
                     Nuestros Testimonios
                 </h1>
                 <TestimonialsCarrusel />
-            </section>
+            </section> */}
         </section>
     );
 }

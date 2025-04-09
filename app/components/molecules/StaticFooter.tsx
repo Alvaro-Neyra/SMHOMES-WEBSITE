@@ -16,7 +16,7 @@ const StaticFooter = () => {
                             height={50}
                             className="mx-auto md:mx-0 mb-4 w-[40vw] sm:w-[30vw] md:w-[20vw] lg:w-[12vw]"
                         />
-                        <h6 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg xl:text-[2vw] mb-2">Síguenos</h6>
+                        {/* <h6 className="font-bold text-[6vw] sm:text-[6vw] md:text-lg xl:text-[2vw] mb-2">Síguenos</h6>
                         <div className="flex justify-center md:justify-start gap-3 sm:gap-4 mb-4">
                             <Link href="https://www.youtube.com/" target="_blank">
                                 <Image
@@ -54,7 +54,7 @@ const StaticFooter = () => {
                                     className="w-[6vw] h-[6vw] sm:w-[4vw] sm:h-[4vw] md:w-[3vw] md:h-[3vw] lg:w-[2vw] lg:h-[2vw] transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="text-center md:text-left xl:flex xl:flex-col xl:gap-[2vw]">
@@ -98,7 +98,7 @@ const StaticFooter = () => {
                                 <h6 className="font-semibold text-[4vw] sm:text-[4vw] md:text-base xl:text-[1.5vw]">Dirección</h6>
                                 <p className="text-[4vw] sm:text-[3vw] md:text-base xl:text-[1.2vw]">
                                     <FaLocationDot className="inline-block mr-2 text-primaryColor" />
-                                    C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
+                                    C. Caballero de Rodas, 120, Mod. 4 - 03182 Torrevieja, Alicante, España
                                 </p>
                             </div>
                         </div>

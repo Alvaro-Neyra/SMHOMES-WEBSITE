@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
                         <br />
                         <strong>CIF:</strong> B-42629113
                         <br />
-                        <strong>Domicilio:</strong> C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
+                        <strong>Domicilio:</strong> C. Caballero de Rodas, 120, Mod. 4 - 03182 Torrevieja, Alicante, España
                         <br />
                         <strong>Teléfono:</strong> +34 691 34 46 47
                         <br />

@@ -20,7 +20,7 @@ const Footer = () => {
                             height={50}
                             className="mx-auto md:mx-0 mb-4 w-36 sm:w-40 md:w-44 lg:w-48 2xl:w-64"
                         />
-                        <h6 className="font-bold text-xl sm:text-xl md:text-xl lg:text-2xl 2xl:text-4xl mb-2">
+                        {/* <h6 className="font-bold text-xl sm:text-xl md:text-xl lg:text-2xl 2xl:text-4xl mb-2">
                             Síguenos
                         </h6>
                         <div className="flex justify-center md:justify-start gap-3 sm:gap-4 lg:gap-6 2xl:gap-8 mb-4">
@@ -60,7 +60,7 @@ const Footer = () => {
                                     className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 transition-all duration-300 hover:scale-125 hover:brightness-125"
                                 />
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="text-center md:text-left flex flex-col gap-3">
@@ -115,7 +115,7 @@ const Footer = () => {
                                 </h6>
                                 <p className="text-sm sm:text-base md:text-base lg:text-lg 2xl:text-2xl">
                                     <FaLocationDot className="inline-block mr-2 text-primaryColor" />
-                                    C. Caballero de Rodas, 120, 03182 Torrevieja, Alicante, España
+                                    C. Caballero de Rodas, 120, Mod. 4 - 03182 Torrevieja, Alicante, España
                                 </p>
                             </div>
                         </div>

@@ -41,30 +41,11 @@ export default function DynamicNavbar() {
 
     useScrollToggle(navBarRef, active, "navbar-active", isScrollToggleEnabled);
 
-    const socialIconVariants = {
-        hidden: { opacity: 0, x: 20 },
-        visible: (i: number) => ({
-            opacity: 1,
-            x: 0,
-            transition: {
-                delay: 0.2 * i,
-                duration: 0.3
-            }
-        })
-    };
-
-    const socialLinks = [
-        { href: "https://www.youtube.com/", src: "/youtube.svg", alt: "YouTube" },
-        { href: "https://www.facebook.com/", src: "/facebook.svg", alt: "Facebook" },
-        { href: "https://www.instagram.com/", src: "/instagram.svg", alt: "Instagram" },
-        { href: "https://www.linkedin.com/", src: "/linkedin.svg", alt: "LinkedIn" }
-    ];
-
     return (
         <nav
             className={`z-30 py-[2vw] px-[4vw] transition-all duration-300 bg-black bg-opacity-50 ${position === "fixed"
-                    ? "fixed top-0 left-0 w-full"
-                    : ""
+                ? "fixed top-0 left-0 w-full"
+                : ""
                 } ${active ? "navbar-active" : ""} ${position === "relative" ? "relative" : ""}`}
             ref={navBarRef}
         >
@@ -178,7 +159,7 @@ export default function DynamicNavbar() {
                             </LinkNav>
                         </motion.div>
 
-                        <motion.div
+                        {/* <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 20 }}
@@ -207,7 +188,7 @@ export default function DynamicNavbar() {
                                     </motion.div>
                                 ))}
                             </div>
-                        </motion.div>
+                        </motion.div> */}
 
                         <div
                             className="lg:hidden absolute right-4 top-[10vw] md:top-[6vw] transform -translate-y-1/2 cursor-pointer"
